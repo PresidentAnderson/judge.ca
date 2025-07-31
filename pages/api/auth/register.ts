@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { db } from '@/backend/utils/database';
+import { db } from '../../../lib/db';
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -25,8 +25,8 @@ export default async function handler(
   try {
     const validatedData = registerSchema.parse(req.body);
     
-    // Check if user already exists
-    const existingUser = await db('users').where({ email: validatedData.email }).first();
+    // Check if user already exists (mock implementation)
+    const existingUser = await db.users.findByEmail(validatedData.email);
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
     }
@@ -34,18 +34,18 @@ export default async function handler(
     // Hash password
     const hashedPassword = await bcrypt.hash(validatedData.password, 10);
 
-    // Create user
-    const [userId] = await db('users').insert({
+    // Create user (mock implementation)
+    const newUser = await db.users.create({
       email: validatedData.email,
-      password: hashedPassword,
-      first_name: validatedData.firstName,
-      last_name: validatedData.lastName,
+      password_hash: hashedPassword,
+      firstName: validatedData.firstName,
+      lastName: validatedData.lastName,
       role: validatedData.role,
-      bar_number: validatedData.barNumber,
-      phone: validatedData.phone,
-      created_at: new Date(),
-      updated_at: new Date()
-    }).returning('id');
+      barNumber: validatedData.barNumber,
+      phone: validatedData.phone
+    });
+    
+    const userId = newUser.id;
 
     // Generate JWT token
     const token = jwt.sign(

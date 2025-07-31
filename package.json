@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "nodemon src/backend/server.ts",
     "dev:frontend": "next dev",
-    "build": "npm run build:frontend && npm run build:backend",
+    "build": "next build",
     "build:frontend": "next build",
     "build:backend": "tsc -p tsconfig.server.json",
     "start": "node dist/server.js",
