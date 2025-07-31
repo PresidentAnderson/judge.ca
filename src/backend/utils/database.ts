@@ -1,18 +1,28 @@
-import knex from 'knex';
+import knex, { Knex } from 'knex';
 import knexConfig from '../../../knexfile';
 
 const environment = process.env.NODE_ENV || 'development';
 const config = knexConfig[environment];
 
-export const db = knex(config);
+if (!config) {
+  throw new Error(`No database configuration found for environment: ${environment}`);
+}
 
-export const checkConnection = async () => {
+const db: Knex = knex(config);
+
+export default db;
+
+export const testConnection = async (): Promise<boolean> => {
   try {
     await db.raw('SELECT 1');
-    console.log('Database connected successfully');
+    console.log('Database connection successful');
     return true;
   } catch (error) {
     console.error('Database connection failed:', error);
     return false;
   }
+};
+
+export const closeConnection = async (): Promise<void> => {
+  await db.destroy();
 };

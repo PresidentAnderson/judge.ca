@@ -1,6 +1,6 @@
 import { Router, Response, NextFunction } from 'express';
 import { authenticate, authorize, AuthRequest } from '../middleware/auth';
-import { db } from '../utils/database';
+import db from '../utils/database';
 import { AppError } from '../middleware/errorHandler';
 import multer from 'multer';
 import path from 'path';

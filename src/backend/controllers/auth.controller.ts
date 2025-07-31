@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { db } from '../utils/database';
+import db from '../utils/database';
 import { AppError } from '../middleware/errorHandler';
 import { sendEmail } from '../utils/email';
 import { v4 as uuidv4 } from 'uuid';
