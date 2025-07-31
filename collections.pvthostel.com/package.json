@@ -1,0 +1,35 @@
+{
+  "name": "folding-billing",
+  "version": "1.0.0",
+  "description": "A payment retry system that attempts to charge credit cards daily until successful",
+  "main": "src/app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "billing",
+    "stripe",
+    "payment",
+    "retry"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.2",
+    "node-cron": "^4.2.0",
+    "stripe": "^18.3.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.0.0"
+  }
+}
