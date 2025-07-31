@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Booking Widget - Hostels United</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <style>
+        /* Booking Widget Styles */
+        .booking-widget {
+            font-family: var(--font-primary);
+            background: var(--pvt-white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-2xl);
+            overflow: hidden;
+            max-width: 400px;
+            margin: 20px;
+        }
+        
+        .widget-header {
+            background: var(--pvt-rebel-red);
+            color: var(--pvt-white);
+            padding: var(--space-4);
+            text-align: center;
+        }
+        
+        .widget-header h3 {
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-1);
+        }
+        
+        .widget-header p {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+        
+        .widget-body {
+            padding: var(--space-6);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-4);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            color: var(--pvt-slate-700);
+            margin-bottom: var(--space-2);
+        }
+        
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--pvt-slate-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-base);
+            transition: all var(--duration-200) var(--ease-out);
+        }
+        
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--pvt-rebel-red);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .date-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+        }
+        
+        .guest-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+        }
+        
+        .price-display {
+            background: var(--pvt-slate-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+        
+        .price-label {
+            font-size: var(--text-sm);
+            color: var(--pvt-slate-500);
+            margin-bottom: var(--space-1);
+        }
+        
+        .price-amount {
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+        }
+        
+        .price-note {
+            font-size: var(--text-xs);
+            color: var(--pvt-success-green);
+            margin-top: var(--space-1);
+        }
+        
+        .btn-book {
+            width: 100%;
+            padding: var(--space-4);
+            background: var(--pvt-rebel-red);
+            color: var(--pvt-white);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--text-lg);
+            font-weight: var(--font-bold);
+            cursor: pointer;
+            transition: all var(--duration-200) var(--ease-out);
+        }
+        
+        .btn-book:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .widget-footer {
+            background: var(--pvt-slate-50);
+            padding: var(--space-4);
+            text-align: center;
+            border-top: 1px solid var(--pvt-slate-200);
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: var(--text-sm);
+            color: var(--pvt-slate-600);
+        }
+        
+        .trust-badge i {
+            color: var(--pvt-success-green);
+        }
+        
+        .powered-by {
+            font-size: var(--text-xs);
+            color: var(--pvt-slate-500);
+        }
+        
+        .powered-by a {
+            color: var(--pvt-rebel-red);
+            text-decoration: none;
+            font-weight: var(--font-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Booking Widget -->
+    <div class="booking-widget">
+        <div class="widget-header">
+            <h3>Book Direct & Save</h3>
+            <p>0% Commission • 100% Your Revenue</p>
+        </div>
+        
+        <form class="widget-body" id="bookingForm">
+            <div class="form-group">
+                <label class="form-label">Property</label>
+                <select class="form-select" name="property" required>
+                    <option value="">Select a property...</option>
+                    <option value="barcelona-freedom">Barcelona Freedom Hostel</option>
+                    <option value="rio-resistance">Rio Resistance Hostel</option>
+                    <option value="tokyo-independent">Tokyo Independent Inn</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Check-in & Check-out</label>
+                <div class="date-inputs">
+                    <input type="date" class="form-input" name="checkin" required>
+                    <input type="date" class="form-input" name="checkout" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Guests</label>
+                <div class="guest-inputs">
+                    <select class="form-select" name="adults">
+                        <option value="1">1 Adult</option>
+                        <option value="2" selected>2 Adults</option>
+                        <option value="3">3 Adults</option>
+                        <option value="4">4 Adults</option>
+                    </select>
+                    <select class="form-select" name="rooms">
+                        <option value="1" selected>1 Room</option>
+                        <option value="2">2 Rooms</option>
+                        <option value="3">3 Rooms</option>
+                        <option value="4">4 Rooms</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="price-display">
+                <div class="price-label">Total Price</div>
+                <div class="price-amount">$156</div>
+                <div class="price-note">You save $28 vs OTAs!</div>
+            </div>
+            
+            <button type="submit" class="btn-book">
+                Book Now - Commission Free
+            </button>
+        </form>
+        
+        <div class="widget-footer">
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>SSL Protected</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Instant Confirmation</span>
+                </div>
+            </div>
+            <div class="powered-by">
+                Powered by <a href="/united">Hostels United</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple booking form handler
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading state
+            const button = e.target.querySelector('.btn-book');
+            button.textContent = 'Processing...';
+            button.disabled = true;
+            
+            // Simulate booking
+            setTimeout(() => {
+                alert('Booking confirmed! Check your email for details.');
+                button.textContent = 'Book Now - Commission Free';
+                button.disabled = false;
+            }, 2000);
+        });
+        
+        // Update price based on dates
+        document.querySelectorAll('input[type="date"], select').forEach(input => {
+            input.addEventListener('change', () => {
+                // Simple price calculation
+                const nights = 2; // Would calculate from dates
+                const rooms = document.querySelector('[name="rooms"]').value;
+                const pricePerNight = 39;
+                const total = nights * rooms * pricePerNight;
+                const savings = Math.round(total * 0.18); // 18% OTA commission
+                
+                document.querySelector('.price-amount').textContent = `$${total}`;
+                document.querySelector('.price-note').textContent = `You save $${savings} vs OTAs!`;
+            });
+        });
+    </script>
+</body>
+</html>

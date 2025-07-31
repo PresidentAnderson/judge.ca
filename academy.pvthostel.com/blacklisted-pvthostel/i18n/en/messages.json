@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "blacklist": "Blacklist",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "admin": "Admin",
+    "logout": "Logout"
+  },
+  "blacklist": {
+    "title": "Blacklist Management",
+    "entity_type": "Entity Type",
+    "person": "Person",
+    "organization": "Organization",
+    "location": "Location",
+    "name": "Name",
+    "identifier": "Identifier",
+    "reason": "Reason",
+    "severity": "Severity",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "expired": "Expired",
+    "effective_date": "Effective Date",
+    "expiry_date": "Expiry Date",
+    "created_at": "Created At",
+    "updated_at": "Updated At"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "login_failed": "Login failed. Please check your credentials.",
+    "session_expired": "Session expired. Please login again."
+  },
+  "messages": {
+    "blacklist_created": "Blacklist entry created successfully",
+    "blacklist_updated": "Blacklist entry updated successfully",
+    "blacklist_deleted": "Blacklist entry deleted successfully",
+    "operation_failed": "Operation failed. Please try again.",
+    "access_denied": "Access denied. Insufficient permissions."
+  }
+}

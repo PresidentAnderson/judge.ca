@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PVT Ecosystem Dashboard - Manage your Academy courses, Automation projects, and United membership.">
+    
+    <title>Dashboard | PVT Ecosystem</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        /* Dashboard Styles */
+        .dashboard {
+            min-height: 100vh;
+            background: var(--pvt-slate-50);
+        }
+        
+        .dashboard-header {
+            background: var(--pvt-white);
+            border-bottom: 1px solid var(--pvt-slate-200);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--pvt-rebel-red);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pvt-white);
+        }
+        
+        .header-nav {
+            display: flex;
+            gap: var(--space-6);
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            color: var(--pvt-slate-600);
+            text-decoration: none;
+            transition: all var(--duration-200) var(--ease-out);
+        }
+        
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--pvt-slate-100);
+            color: var(--pvt-midnight);
+        }
+        
+        .user-menu {
+            position: relative;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--pvt-unity-purple);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pvt-white);
+            cursor: pointer;
+        }
+        
+        .dashboard-main {
+            padding: var(--space-6) 0;
+        }
+        
+        .dashboard-welcome {
+            margin-bottom: var(--space-8);
+        }
+        
+        .welcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-6);
+        }
+        
+        .welcome-text h1 {
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-2);
+        }
+        
+        .welcome-text p {
+            color: var(--pvt-slate-600);
+            font-size: var(--text-lg);
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .platform-cards {
+            display: grid;
+            gap: var(--space-6);
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            margin-bottom: var(--space-8);
+        }
+        
+        .platform-card {
+            background: var(--pvt-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-300) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: transform var(--duration-300) var(--ease-out);
+        }
+        
+        .platform-card.academy::before {
+            background: var(--pvt-freedom-blue);
+        }
+        
+        .platform-card.automation::before {
+            background: var(--pvt-unity-purple);
+        }
+        
+        .platform-card.united::before {
+            background: var(--pvt-rebel-red);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .platform-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--pvt-white);
+        }
+        
+        .academy .card-icon {
+            background: var(--pvt-freedom-blue);
+        }
+        
+        .automation .card-icon {
+            background: var(--pvt-unity-purple);
+        }
+        
+        .united .card-icon {
+            background: var(--pvt-rebel-red);
+        }
+        
+        .card-title {
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+        }
+        
+        .card-stats {
+            display: flex;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: var(--text-sm);
+            color: var(--pvt-slate-500);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wide);
+        }
+        
+        .card-content {
+            margin-bottom: var(--space-4);
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+        
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .progress-info {
+            flex: 1;
+        }
+        
+        .progress-title {
+            font-weight: var(--font-medium);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-1);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--pvt-slate-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--pvt-success-green);
+            transition: width var(--duration-500) var(--ease-out);
+        }
+        
+        .progress-percent {
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            color: var(--pvt-slate-600);
+            margin-left: var(--space-3);
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .recent-activity {
+            background: var(--pvt-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .activity-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: var(--space-6);
+        }
+        
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .activity-item {
+            display: flex;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            background: var(--pvt-slate-50);
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pvt-white);
+            flex-shrink: 0;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: var(--font-medium);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-1);
+        }
+        
+        .activity-description {
+            font-size: var(--text-sm);
+            color: var(--pvt-slate-600);
+            margin-bottom: var(--space-1);
+        }
+        
+        .activity-time {
+            font-size: var(--text-xs);
+            color: var(--pvt-slate-500);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
+            }
+            
+            .welcome-header {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            .quick-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+            
+            .platform-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="dashboard-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-th-large"></i>
+                        </div>
+                        <div>
+                            <h2>PVT Dashboard</h2>
+                        </div>
+                    </div>
+                    
+                    <nav class="header-nav">
+                        <a href="#overview" class="nav-item active">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Overview</span>
+                        </a>
+                        <a href="/academy/" class="nav-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Academy</span>
+                        </a>
+                        <a href="/automation/" class="nav-item">
+                            <i class="fas fa-robot"></i>
+                            <span>Automation</span>
+                        </a>
+                        <a href="/united/" class="nav-item">
+                            <i class="fas fa-fist-raised"></i>
+                            <span>United</span>
+                        </a>
+                    </nav>
+                    
+                    <div class="user-menu">
+                        <div class="user-avatar" onclick="toggleUserMenu()">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Dashboard Main -->
+        <main class="dashboard-main">
+            <div class="container">
+                <!-- Welcome Section -->
+                <div class="dashboard-welcome">
+                    <div class="welcome-header">
+                        <div class="welcome-text">
+                            <h1>Welcome back, <span id="userName">Demo User</span>!</h1>
+                            <p>Here's what's happening across your PVT Ecosystem platforms</p>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="/academy/" class="btn btn-primary">
+                                <i class="fas fa-book-open"></i>
+                                Continue Learning
+                            </a>
+                            <a href="/automation/" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i>
+                                New Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Platform Cards -->
+                <div class="platform-cards">
+                    <!-- Academy Card -->
+                    <div class="platform-card academy">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="card-title">PVT Academy</h3>
+                                <p class="card-subtitle">Your Learning Journey</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-value">2</span>
+                                <span class="stat-label">Enrolled</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">1</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">65%</span>
+                                <span class="stat-label">Progress</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">Mental Health First Response</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-percent">85%</div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">Hospitality Foundations</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-percent">45%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="/academy/" class="btn btn-primary">Continue Learning</a>
+                            <a href="/academy/" class="btn btn-ghost">Browse Courses</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Automation Card -->
+                    <div class="platform-card automation">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 class="card-title">Automation Portal</h3>
+                                <p class="card-subtitle">Your Projects</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">Active</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">$2,400</span>
+                                <span class="stat-label">Saved</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">WhatsApp Booking Bot</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-percent">90%</div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">Review Automation System</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-percent">60%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="/automation/" class="btn btn-primary">View Projects</a>
+                            <a href="/automation/" class="btn btn-ghost">Submit New</a>
+                        </div>
+                    </div>
+                    
+                    <!-- United Card -->
+                    <div class="platform-card united">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-fist-raised"></i>
+                            </div>
+                            <div>
+                                <h3 class="card-title">Hostels United</h3>
+                                <p class="card-subtitle">Your Independence</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-value">78%</span>
+                                <span class="stat-label">Direct</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">$1,200</span>
+                                <span class="stat-label">Monthly Saved</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">92</span>
+                                <span class="stat-label">Freedom Score</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">OTA Independence</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-percent">78%</div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-info">
+                                    <div class="progress-title">Direct Booking Growth</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-percent">+25%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="/united/" class="btn btn-primary">View Portal</a>
+                            <a href="/united/booking/" class="btn btn-ghost">Booking Engine</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="activity-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#" class="btn btn-ghost btn-sm">View All</a>
+                    </div>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: var(--pvt-freedom-blue);">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Completed lesson: Crisis Recognition</div>
+                                <div class="activity-description">Mental Health First Response Course</div>
+                                <div class="activity-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: var(--pvt-unity-purple);">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Project update received</div>
+                                <div class="activity-description">WhatsApp Bot - 90% complete</div>
+                                <div class="activity-time">5 hours ago</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: var(--pvt-rebel-red);">
+                                <i class="fas fa-fist-raised"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Direct booking received</div>
+                                <div class="activity-description">+$156 revenue (0% commission)</div>
+                                <div class="activity-time">1 day ago</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: var(--pvt-success-green);">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Certificate earned</div>
+                                <div class="activity-description">Hospitality Foundations - Level 1</div>
+                                <div class="activity-time">3 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Load user data
+        const userData = JSON.parse(localStorage.getItem('pvt_user'));
+        if (!userData) {
+            window.location.href = '/auth/login.html';
+        } else {
+            document.getElementById('userName').textContent = userData.name;
+        }
+        
+        // User menu toggle
+        function toggleUserMenu() {
+            // Simple logout for demo
+            if (confirm('Logout?')) {
+                localStorage.removeItem('pvt_user');
+                window.location.href = '/auth/login.html';
+            }
+        }
+        
+        // Navigation active state
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (item.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Animate progress bars on load
+        setTimeout(() => {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }, 500);
+    </script>
+</body>
+</html>

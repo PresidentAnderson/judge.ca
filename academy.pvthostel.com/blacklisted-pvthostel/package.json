@@ -1,0 +1,48 @@
+{
+  "name": "blacklisted-pvthostel",
+  "version": "1.0.0",
+  "description": "Comprehensive blacklist management platform",
+  "main": "src/server/index.js",
+  "scripts": {
+    "start": "node src/server/index.js",
+    "dev": "nodemon src/server/index.js",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "seed": "node scripts/seed-blacklist.js",
+    "cleanup": "node scripts/cleanup-logs.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.8.1",
+    "winston": "^3.10.0",
+    "joi": "^17.9.2",
+    "dotenv": "^16.3.1",
+    "redis": "^4.6.7",
+    "multer": "^1.4.5-lts.1",
+    "i18next": "^23.4.4",
+    "i18next-fs-backend": "^2.1.5",
+    "compression": "^1.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.6.2",
+    "supertest": "^6.3.3",
+    "eslint": "^8.46.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "babel-loader": "^9.1.3",
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9"
+  },
+  "keywords": ["blacklist", "security", "monitoring", "hostel", "management"],
+  "author": "PVT Hostel Team",
+  "license": "MIT"
+}

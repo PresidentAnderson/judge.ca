@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "export": "Exporter",
+    "import": "Importer"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "blacklist": "Liste noire",
+    "analytics": "Analyses",
+    "settings": "Paramètres",
+    "admin": "Admin",
+    "logout": "Déconnexion"
+  },
+  "blacklist": {
+    "title": "Gestion de la liste noire",
+    "entity_type": "Type d'entité",
+    "person": "Personne",
+    "organization": "Organisation",
+    "location": "Lieu",
+    "name": "Nom",
+    "identifier": "Identifiant",
+    "reason": "Raison",
+    "severity": "Gravité",
+    "high": "Élevé",
+    "medium": "Moyen",
+    "low": "Faible",
+    "status": "Statut",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "expired": "Expiré",
+    "effective_date": "Date d'effet",
+    "expiry_date": "Date d'expiration",
+    "created_at": "Créé le",
+    "updated_at": "Modifié le"
+  },
+  "auth": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "login_failed": "Échec de la connexion. Vérifiez vos identifiants.",
+    "session_expired": "Session expirée. Veuillez vous reconnecter."
+  },
+  "messages": {
+    "blacklist_created": "Entrée de liste noire créée avec succès",
+    "blacklist_updated": "Entrée de liste noire mise à jour avec succès",
+    "blacklist_deleted": "Entrée de liste noire supprimée avec succès",
+    "operation_failed": "Opération échouée. Veuillez réessayer.",
+    "access_denied": "Accès refusé. Permissions insuffisantes."
+  }
+}

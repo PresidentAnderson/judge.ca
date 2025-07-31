@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PVT Automation Auction - Get custom technology solutions built within your budget through our revolutionary reverse auction marketplace.">
+    
+    <title>Automation Auction Portal | PVT Ecosystem</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layouts.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="assets/automation.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="/" class="navbar-brand">
+                    <div class="brand-logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect width="40" height="40" rx="8" fill="url(#logo-gradient)"/>
+                            <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="white"/>
+                            <defs>
+                                <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                    <stop stop-color="#DC2626"/>
+                                    <stop offset="1" stop-color="#7C3AED"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="brand-text">
+                            <span class="brand-name">PVT Automation</span>
+                            <span class="brand-tagline">Tech at Your Budget</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <div class="navbar-menu" id="navbarMenu">
+                    <div class="navbar-nav">
+                        <a href="#how-it-works" class="nav-link">How It Works</a>
+                        <a href="#submit-project" class="nav-link">Submit Project</a>
+                        <a href="#browse-projects" class="nav-link">Browse Projects</a>
+                        <a href="#developers" class="nav-link">For Developers</a>
+                        <a href="#success-stories" class="nav-link">Success Stories</a>
+                    </div>
+                    <div class="navbar-actions">
+                        <a href="/dashboard" class="btn btn-ghost">My Projects</a>
+                        <a href="#submit-project" class="btn btn-primary">Submit Project</a>
+                    </div>
+                </div>
+                
+                <button class="navbar-toggle" id="navbarToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Automation Hero -->
+    <section class="automation-hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+            <canvas id="particleCanvas"></canvas>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge animate-fade-in">
+                    <i class="fas fa-robot"></i>
+                    <span>150+ Projects Completed</span>
+                </div>
+                
+                <h1 class="hero-title animate-slide-up">
+                    Technology Solutions at
+                    <span class="text-gradient">YOUR Budget</span>
+                </h1>
+                
+                <p class="hero-description animate-slide-up" style="animation-delay: 0.1s">
+                    Describe your problem in plain language. Set your budget. 
+                    Watch skilled developers compete to build your solution.
+                </p>
+                
+                <div class="hero-stats animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="stat-item">
+                        <div class="stat-number">$850</div>
+                        <div class="stat-label">Avg Project Cost</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">14 days</div>
+                        <div class="stat-label">Avg Delivery Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.8/5</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Money-Back Guarantee</div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions animate-slide-up" style="animation-delay: 0.3s">
+                    <a href="#submit-project" class="btn btn-primary btn-lg">
+                        <i class="fas fa-plus-circle"></i>
+                        Submit Your Project
+                    </a>
+                    <a href="#how-it-works" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-play-circle"></i>
+                        See How It Works
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Simple Process</span>
+                <h2 class="section-title">How <span class="text-gradient">It Works</span></h2>
+                <p class="section-description">
+                    From idea to implementation in four simple steps. No tech knowledge required.
+                </p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Describe Your Problem</h3>
+                        <p>Tell us what you need in plain language. Our AI helps translate your needs into technical requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>Set Your Budget</h3>
+                        <p>Choose how much you want to spend. Developers will compete to deliver the best solution within your budget.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Review Proposals</h3>
+                        <p>Skilled developers submit proposals. Compare approaches, timelines, and developer ratings.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Get Your Solution</h3>
+                        <p>Work directly with your chosen developer. Funds held in escrow until you're completely satisfied.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submit Project Form -->
+    <section class="submit-project" id="submit-project">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Start Your Project</span>
+                <h2 class="section-title">Submit Your <span class="text-gradient">Project</span></h2>
+                <p class="section-description">
+                    Describe what you need and let our AI help create the perfect project brief.
+                </p>
+            </div>
+            
+            <div class="project-form-container">
+                <form class="project-form" id="projectSubmissionForm">
+                    <div class="form-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <div class="progress-step active">Basic Info</div>
+                            <div class="progress-step">Project Details</div>
+                            <div class="progress-step">Budget & Timeline</div>
+                            <div class="progress-step">Review</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 1: Basic Info -->
+                    <div class="form-step active" data-step="1">
+                        <h3>Tell us about yourself</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Your Name *</label>
+                            <input type="text" class="form-input" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-input" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Organization Name</label>
+                            <input type="text" class="form-input" name="organization">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Property Type *</label>
+                            <select class="form-select" name="propertyType" required>
+                                <option value="">Select...</option>
+                                <option value="hostel">Hostel</option>
+                                <option value="hotel">Hotel</option>
+                                <option value="guesthouse">Guesthouse</option>
+                                <option value="vacation-rental">Vacation Rental</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary btn-next">
+                                Next Step
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Project Details -->
+                    <div class="form-step" data-step="2">
+                        <h3>Describe your project</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Project Title *</label>
+                            <input type="text" class="form-input" name="projectTitle" 
+                                   placeholder="e.g., WhatsApp Booking Bot for My Hostel">
+                            <span class="form-help">Give your project a clear, descriptive title</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">What problem are you trying to solve? *</label>
+                            <textarea class="form-textarea" name="problemDescription" rows="4" 
+                                      placeholder="e.g., Guests keep asking the same questions on WhatsApp about availability and prices. I spend hours every day answering them manually."></textarea>
+                            <span class="form-help">Describe in your own words - no technical jargon needed!</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">What would the ideal solution look like?</label>
+                            <textarea class="form-textarea" name="solutionDescription" rows="4" 
+                                      placeholder="e.g., A bot that automatically responds to common questions, checks availability, and can even take bookings directly through WhatsApp."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Project Category *</label>
+                            <div class="category-grid">
+                                <label class="category-option">
+                                    <input type="radio" name="category" value="booking-system">
+                                    <div class="category-content">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <span>Booking System</span>
+                                    </div>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="category" value="chatbot">
+                                    <div class="category-content">
+                                        <i class="fas fa-robot"></i>
+                                        <span>Chatbot</span>
+                                    </div>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="category" value="website">
+                                    <div class="category-content">
+                                        <i class="fas fa-globe"></i>
+                                        <span>Website</span>
+                                    </div>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="category" value="mobile-app">
+                                    <div class="category-content">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Mobile App</span>
+                                    </div>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="category" value="automation">
+                                    <div class="category-content">
+                                        <i class="fas fa-cogs"></i>
+                                        <span>Automation</span>
+                                    </div>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="category" value="other">
+                                    <div class="category-content">
+                                        <i class="fas fa-question"></i>
+                                        <span>Other</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-ghost btn-prev">
+                                <i class="fas fa-arrow-left"></i>
+                                Previous
+                            </button>
+                            <button type="button" class="btn btn-primary btn-next">
+                                Next Step
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Budget & Timeline -->
+                    <div class="form-step" data-step="3">
+                        <h3>Budget and timeline</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">What's your budget for this project? *</label>
+                            <div class="budget-slider">
+                                <input type="range" class="slider" name="budget" 
+                                       min="100" max="10000" value="1000" step="100">
+                                <div class="budget-display">
+                                    <span class="budget-amount">$1,000</span>
+                                    <span class="budget-label">USD</span>
+                                </div>
+                            </div>
+                            <div class="budget-presets">
+                                <button type="button" class="budget-preset" data-amount="500">$500</button>
+                                <button type="button" class="budget-preset" data-amount="1000">$1,000</button>
+                                <button type="button" class="budget-preset" data-amount="2500">$2,500</button>
+                                <button type="button" class="budget-preset" data-amount="5000">$5,000</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">When do you need this completed? *</label>
+                            <select class="form-select" name="timeline" required>
+                                <option value="">Select timeline...</option>
+                                <option value="asap">ASAP (Within 1 week)</option>
+                                <option value="2-weeks">Within 2 weeks</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="2-months">Within 2 months</option>
+                                <option value="flexible">I'm flexible</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Additional requirements or preferences</label>
+                            <textarea class="form-textarea" name="additionalInfo" rows="3" 
+                                      placeholder="e.g., Must integrate with my existing booking system, prefer someone who speaks Spanish"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" name="ongoingSupport">
+                                <span>I may need ongoing support after project completion</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-ghost btn-prev">
+                                <i class="fas fa-arrow-left"></i>
+                                Previous
+                            </button>
+                            <button type="button" class="btn btn-primary btn-next">
+                                Review Project
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Review -->
+                    <div class="form-step" data-step="4">
+                        <h3>Review your project</h3>
+                        
+                        <div class="project-summary">
+                            <div class="summary-section">
+                                <h4>Project Details</h4>
+                                <dl>
+                                    <dt>Title:</dt>
+                                    <dd id="summaryTitle">-</dd>
+                                    
+                                    <dt>Category:</dt>
+                                    <dd id="summaryCategory">-</dd>
+                                    
+                                    <dt>Budget:</dt>
+                                    <dd id="summaryBudget">-</dd>
+                                    
+                                    <dt>Timeline:</dt>
+                                    <dd id="summaryTimeline">-</dd>
+                                </dl>
+                            </div>
+                            
+                            <div class="summary-section">
+                                <h4>AI-Enhanced Project Brief</h4>
+                                <div class="ai-brief" id="aiBrief">
+                                    <div class="loading-spinner">
+                                        <i class="fas fa-spinner animate-spin"></i>
+                                        <span>Generating project brief...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" name="terms" required>
+                                <span>I agree to the <a href="/terms" target="_blank">Terms of Service</a> and understand that my project will be visible to qualified developers</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-ghost btn-prev">
+                                <i class="fas fa-arrow-left"></i>
+                                Previous
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-rocket"></i>
+                                Submit Project
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browse Projects -->
+    <section class="browse-projects" id="browse-projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Active Projects</span>
+                <h2 class="section-title">Browse <span class="text-gradient">Open Projects</span></h2>
+                <p class="section-description">
+                    See what other hospitality businesses are building. Get inspired for your own project.
+                </p>
+            </div>
+            
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="booking-system">Booking Systems</button>
+                <button class="filter-btn" data-filter="chatbot">Chatbots</button>
+                <button class="filter-btn" data-filter="website">Websites</button>
+                <button class="filter-btn" data-filter="automation">Automation</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Sample Project 1 -->
+                <div class="project-card" data-category="chatbot">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-robot"></i>
+                            <span>Chatbot</span>
+                        </div>
+                        <div class="project-status status-active">
+                            <i class="fas fa-clock"></i>
+                            <span>2 days left</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="project-title">WhatsApp Booking Assistant for Beach Hostel</h3>
+                    <p class="project-description">
+                        Need a WhatsApp bot that can answer common questions about our hostel, 
+                        check availability, and process bookings. Must support English and Portuguese.
+                    </p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Budget: $800</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>2 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>5 proposals</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-client">
+                        <img src="../images/clients/client-1.jpg" alt="Client">
+                        <div>
+                            <span class="client-name">Rio Beach Hostel</span>
+                            <span class="client-location">Rio de Janeiro, Brazil</span>
+                        </div>
+                    </div>
+                    
+                    <a href="projects/whatsapp-booking-bot.html" class="btn btn-primary btn-sm btn-block">
+                        View Project Details
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Sample Project 2 -->
+                <div class="project-card" data-category="booking-system">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Booking System</span>
+                        </div>
+                        <div class="project-status status-active">
+                            <i class="fas fa-clock"></i>
+                            <span>5 days left</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="project-title">Direct Booking Engine with Payment Integration</h3>
+                    <p class="project-description">
+                        Looking to build a commission-free booking engine for our website. 
+                        Must integrate with Stripe and sync with our existing PMS.
+                    </p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Budget: $2,500</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>1 month</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>8 proposals</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-client">
+                        <img src="../images/clients/client-2.jpg" alt="Client">
+                        <div>
+                            <span class="client-name">Amsterdam Central Hostel</span>
+                            <span class="client-location">Amsterdam, Netherlands</span>
+                        </div>
+                    </div>
+                    
+                    <a href="projects/direct-booking-engine.html" class="btn btn-primary btn-sm btn-block">
+                        View Project Details
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Sample Project 3 -->
+                <div class="project-card" data-category="automation">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-cogs"></i>
+                            <span>Automation</span>
+                        </div>
+                        <div class="project-status status-funded">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Funded</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="project-title">Guest Review Automation System</h3>
+                    <p class="project-description">
+                        Automate the process of requesting and managing guest reviews across 
+                        multiple platforms. Must track response rates and send reminders.
+                    </p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Budget: $650</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>2 weeks</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>Winner selected</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-client">
+                        <img src="../images/clients/client-3.jpg" alt="Client">
+                        <div>
+                            <span class="client-name">Tokyo Capsule Hotel</span>
+                            <span class="client-location">Tokyo, Japan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="winning-developer">
+                        <img src="../images/developers/dev-1.jpg" alt="Developer">
+                        <span>Built by Alex Chen</span>
+                        <div class="developer-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="projects-cta">
+                <a href="projects/" class="btn btn-secondary">
+                    View All Projects
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories" id="success-stories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Real Results</span>
+                <h2 class="section-title">Success <span class="text-gradient">Stories</span></h2>
+            </div>
+            
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-image">
+                        <img src="../images/success/chatbot-success.jpg" alt="Chatbot Success">
+                        <div class="story-badge">
+                            <i class="fas fa-robot"></i>
+                            <span>Chatbot</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <h3>80% Reduction in Response Time</h3>
+                        <p>
+                            "Our WhatsApp bot now handles 90% of guest inquiries automatically. 
+                            What used to take hours now happens instantly, and guests love the 
+                            24/7 availability."
+                        </p>
+                        
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <span class="metric-value">$650</span>
+                                <span class="metric-label">Project Cost</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">10 days</span>
+                                <span class="metric-label">Delivery Time</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">300%</span>
+                                <span class="metric-label">ROI in 3 months</span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-client">
+                                <img src="../images/clients/maria-silva.jpg" alt="Maria Silva">
+                                <div>
+                                    <span class="client-name">Maria Silva</span>
+                                    <span class="client-role">Owner, Rio Dreams Hostel</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-image">
+                        <img src="../images/success/booking-success.jpg" alt="Booking Success">
+                        <div class="story-badge">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Booking System</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <h3>€45,000 Saved from OTA Commissions</h3>
+                        <p>
+                            "The direct booking system paid for itself in the first month. 
+                            We're now getting 60% of our bookings commission-free, and the 
+                            system integrates perfectly with our PMS."
+                        </p>
+                        
+                        <div class="story-metrics">
+                            <div class="metric">
+                                <span class="metric-value">$2,200</span>
+                                <span class="metric-label">Project Cost</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3 weeks</span>
+                                <span class="metric-label">Delivery Time</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2000%</span>
+                                <span class="metric-label">ROI in 1 year</span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-client">
+                                <img src="../images/clients/johan-berg.jpg" alt="Johan Berg">
+                                <div>
+                                    <span class="client-name">Johan Berg</span>
+                                    <span class="client-role">Manager, Stockholm City Hostel</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developers CTA -->
+    <section class="developers-cta" id="developers">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Are You a Developer?</h2>
+                    <p>
+                        Join our network of skilled developers building solutions for the 
+                        hospitality industry. Set your own rates, work on interesting projects, 
+                        and make a real impact.
+                    </p>
+                    <div class="developer-benefits">
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Average project value: $850</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Quick payments via escrow</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Work with global clients</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Build your portfolio</span>
+                        </div>
+                    </div>
+                    <a href="developers/apply.html" class="btn btn-primary btn-lg">
+                        Apply as Developer
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="cta-image">
+                    <img src="../images/developer-illustration.svg" alt="Join as Developer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <h3>How does the reverse auction work?</h3>
+                        <p>
+                            You post your project with a budget, and developers compete to offer 
+                            the best solution within your price range. You choose the proposal 
+                            that best fits your needs.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What if I'm not happy with the result?</h3>
+                        <p>
+                            All projects are protected by our escrow system. Funds are only 
+                            released when you're completely satisfied. We also offer a 30-day 
+                            money-back guarantee.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Do I need technical knowledge?</h3>
+                        <p>
+                            Not at all! Describe your problem in plain language, and our AI 
+                            helps translate it into technical requirements that developers 
+                            can understand.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <h3>How long do projects typically take?</h3>
+                        <p>
+                            Most projects are completed within 2-4 weeks. Simple automations 
+                            can be done in days, while complex systems may take 1-2 months.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What happens after my project is complete?</h3>
+                        <p>
+                            You own all code and assets. Many clients choose to retain their 
+                            developer for ongoing support, but it's entirely optional.
+                        </p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Can I see examples of completed projects?</h3>
+                        <p>
+                            Yes! Browse our success stories and completed projects to see 
+                            real examples of what's been built for other hospitality businesses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">
+                    Stop Overpaying for <span class="text-gradient">Simple Solutions</span>
+                </h2>
+                <p class="cta-description">
+                    Join hundreds of hospitality businesses getting custom technology 
+                    built within their budget.
+                </p>
+                <a href="#submit-project" class="btn btn-primary btn-lg">
+                    Submit Your First Project
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <p class="cta-note">
+                    <i class="fas fa-shield-alt"></i>
+                    100% money-back guarantee • No risk to try
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 PVT Automation Auction. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="/">Back to PVT Ecosystem</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/privacy">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="assets/automation.js"></script>
+</body>
+</html>

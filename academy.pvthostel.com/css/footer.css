@@ -1,0 +1,170 @@
+/* Footer Styles */
+footer {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+  border-top: 1px solid #333;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+footer .panel {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer .panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+footer .panel h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4fd1c7;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+footer .panel a {
+  display: block;
+  color: #e0e0e0;
+  text-decoration: none;
+  margin-bottom: 0.8rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+footer .panel a:hover {
+  color: #4fd1c7;
+  border-bottom-color: #4fd1c7;
+  padding-left: 0.5rem;
+}
+
+/* Language Select Styles */
+footer select {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+footer select:hover, footer select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4fd1c7;
+  outline: none;
+}
+
+footer select option {
+  background: #1a1a2e;
+  color: #ffffff;
+  padding: 0.5rem;
+}
+
+/* Dark Mode Toggle Button */
+footer button {
+  background: linear-gradient(135deg, #4fd1c7 0%, #3b82f6 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+footer button:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #4fd1c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(79, 209, 199, 0.3);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #0f0f23;
+  color: #e0e0e0;
+}
+
+body.dark-mode footer {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  border-top-color: #444;
+}
+
+body.dark-mode footer .panel {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  footer .container {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  footer .panel {
+    padding: 1.5rem;
+  }
+  
+  footer {
+    padding: 2rem 0 1rem;
+  }
+}
+
+/* Animation for language switching */
+.language-switch-animation {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer bottom section */
+footer .footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* HubSpot form container */
+#hubspotForm {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

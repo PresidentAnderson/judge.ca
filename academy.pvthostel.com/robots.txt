@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://academy.pvthostel.com/sitemap.xml
+
+# Academy
+Allow: /academy/
+Allow: /academy/courses/
+Allow: /academy/instructors/
+
+# Automation
+Allow: /automation/
+Allow: /automation/projects/
+Allow: /automation/developers/
+
+# United
+Allow: /united/
+Allow: /united/booking/
+Allow: /united/portal/
+
+# Public pages
+Allow: /auth/
+Allow: /dashboard/
+
+# Block sensitive areas
+Disallow: /api/
+Disallow: /docs/
+Disallow: /branding/
+Disallow: /*.json
+Disallow: /*.md
+
+# Block development files
+Disallow: /package.json
+Disallow: /README.md
+Disallow: /.htaccess

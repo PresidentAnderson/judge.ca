@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | PVT Ecosystem</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: var(--space-8);
+        }
+        
+        .error-icon {
+            font-size: 120px;
+            color: var(--pvt-rebel-red);
+            margin-bottom: var(--space-6);
+        }
+        
+        .error-code {
+            font-size: 72px;
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-4);
+        }
+        
+        .error-title {
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-4);
+        }
+        
+        .error-description {
+            font-size: var(--text-lg);
+            color: var(--pvt-slate-600);
+            margin-bottom: var(--space-8);
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: var(--font-semibold);
+            transition: all var(--duration-200) var(--ease-out);
+        }
+        
+        .btn-primary {
+            background: var(--pvt-rebel-red);
+            color: var(--pvt-white);
+        }
+        
+        .btn-primary:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--pvt-white);
+            color: var(--pvt-slate-700);
+            border: 2px solid var(--pvt-slate-300);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--pvt-slate-50);
+            border-color: var(--pvt-slate-400);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 48px;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        
+        <div class="error-code">404</div>
+        
+        <h1 class="error-title">Revolution Not Found</h1>
+        
+        <p class="error-description">
+            The page you're looking for seems to have joined a different resistance movement. 
+            Don't worry, the revolution continues elsewhere!
+        </p>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                Back to Revolution HQ
+            </a>
+            <a href="/academy/" class="btn btn-secondary">
+                <i class="fas fa-graduation-cap"></i>
+                Start Learning
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error | PVT Ecosystem</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: var(--space-8);
+        }
+        
+        .error-icon {
+            font-size: 120px;
+            color: var(--pvt-rebel-red);
+            margin-bottom: var(--space-6);
+        }
+        
+        .error-code {
+            font-size: 72px;
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-4);
+        }
+        
+        .error-title {
+            font-size: var(--text-3xl);
+            font-weight: var(--font-bold);
+            color: var(--pvt-midnight);
+            margin-bottom: var(--space-4);
+        }
+        
+        .error-description {
+            font-size: var(--text-lg);
+            color: var(--pvt-slate-600);
+            margin-bottom: var(--space-8);
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: var(--font-semibold);
+            transition: all var(--duration-200) var(--ease-out);
+        }
+        
+        .btn-primary {
+            background: var(--pvt-rebel-red);
+            color: var(--pvt-white);
+        }
+        
+        .btn-primary:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--pvt-white);
+            color: var(--pvt-slate-700);
+            border: 2px solid var(--pvt-slate-300);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--pvt-slate-50);
+            border-color: var(--pvt-slate-400);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 48px;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-server"></i>
+        </div>
+        
+        <div class="error-code">500</div>
+        
+        <h1 class="error-title">Revolution Temporarily Paused</h1>
+        
+        <p class="error-description">
+            Our servers are experiencing some technical difficulties. 
+            Even revolutions need maintenance breaks! We'll be back shortly.
+        </p>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-refresh"></i>
+                Try Again
+            </a>
+            <a href="mailto:support@pvtecosystem.com" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                Contact Support
+            </a>
+        </div>
+    </div>
+</body>
+</html>

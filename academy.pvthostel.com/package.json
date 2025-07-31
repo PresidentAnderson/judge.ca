@@ -1,0 +1,24 @@
+{
+  "name": "pvt-ecosystem",
+  "version": "1.0.0",
+  "description": "PVT Ecosystem - Academy, Automation, and Hostels United platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080",
+    "serve": "npx http-server -p 8080"
+  },
+  "keywords": [
+    "hospitality",
+    "training",
+    "academy",
+    "automation",
+    "hostels",
+    "education"
+  ],
+  "author": "Jonathan Anderson",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
