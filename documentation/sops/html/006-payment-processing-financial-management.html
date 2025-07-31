@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-006: Payment Processing and Financial Management - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-006<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-006: Payment Processing and Financial Management</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Finance & Operations</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Chief Financial Officer</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-006-payment-processing-and-financial-management">SOP-006: Payment Processing and Financial Management</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Finance &amp; Operations<br><strong>Owner:</strong> Chief Financial Officer  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive payment processing and financial management protocols for Judge.ca, ensuring secure, efficient, and compliant handling of all financial transactions while maintaining transparency and accountability.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All payment processing activities on the platform</li>
+<li>Attorney subscription and commission payments</li>
+<li>Client service fees and transactions</li>
+<li>Refund and dispute resolution processes</li>
+<li>Financial reporting and reconciliation</li>
+<li>Compliance with Quebec and Canadian financial regulations</li>
+</ul>
+<h2 id="regulatory-framework">Regulatory Framework</h2><p>This SOP ensures compliance with:</p>
+<ul>
+<li>Payment Card Industry Data Security Standard (PCI DSS)</li>
+<li>Personal Information Protection and Electronic Documents Act (PIPEDA)</li>
+<li>Quebec Consumer Protection Act</li>
+<li>Income Tax Act (Canada)</li>
+<li>Proceeds of Crime (Money Laundering) and Terrorist Financing Act</li>
+<li>Financial Transactions and Reports Analysis Centre of Canada (FINTRAC) requirements</li>
+</ul>
+<h2 id="payment-processing-architecture">Payment Processing Architecture</h2><h3 id="supported-payment-methods">Supported Payment Methods</h3><h4 id="credit-and-debit-cards">Credit and Debit Cards</h4><p><strong>Accepted Cards</strong>:</p>
+<ul>
+<li>Visa (all types)</li>
+<li>Mastercard (all types)</li>
+<li>American Express</li>
+<li>Interac debit cards</li>
+</ul>
+<p><strong>Security Requirements</strong>:</p>
+<ul>
+<li>End-to-end encryption for all card data</li>
+<li>Tokenization for stored payment information</li>
+<li>PCI DSS Level 1 compliance</li>
+<li>Two-factor authentication for high-value transactions</li>
+</ul>
+<h4 id="electronic-fund-transfers-eft-">Electronic Fund Transfers (EFT)</h4><p><strong>Supported Institutions</strong>:</p>
+<ul>
+<li>All major Canadian banks</li>
+<li>Quebec credit unions (Desjardins, etc.)</li>
+<li>Online banking platforms</li>
+<li>Pre-authorized debit (PAD) agreements</li>
+</ul>
+<p><strong>Processing Standards</strong>:</p>
+<ul>
+<li>Secure bank-grade encryption</li>
+<li>Real-time transaction verification</li>
+<li>Automated reconciliation systems</li>
+<li>Detailed transaction logging</li>
+</ul>
+<h4 id="digital-wallets">Digital Wallets</h4><p><strong>Supported Platforms</strong>:</p>
+<ul>
+<li>PayPal (standard and business accounts)</li>
+<li>Apple Pay (iOS devices)</li>
+<li>Google Pay (Android devices)</li>
+<li>Interac e-Transfer</li>
+</ul>
+<p><strong>Integration Requirements</strong>:</p>
+<ul>
+<li>API security compliance</li>
+<li>Real-time transaction processing</li>
+<li>Automated fraud detection</li>
+<li>Seamless user experience</li>
+</ul>
+<h3 id="payment-processing-workflow">Payment Processing Workflow</h3><h4 id="transaction-initiation">Transaction Initiation</h4><ol>
+<li><strong>User Authentication</strong>: Verify user identity and account status</li>
+<li><strong>Payment Method Selection</strong>: Present available payment options</li>
+<li><strong>Amount Validation</strong>: Confirm transaction amounts and applicable taxes</li>
+<li><strong>Security Verification</strong>: Implement fraud detection and prevention measures</li>
+</ol>
+<h4 id="transaction-processing">Transaction Processing</h4><ol>
+<li><strong>Payment Gateway</strong>: Secure transmission to payment processor</li>
+<li><strong>Authorization</strong>: Real-time authorization from financial institution</li>
+<li><strong>Capture</strong>: Transaction capture and confirmation</li>
+<li><strong>Notification</strong>: Immediate confirmation to user and relevant parties</li>
+</ol>
+<h4 id="post-transaction-activities">Post-Transaction Activities</h4><ol>
+<li><strong>Record Keeping</strong>: Complete transaction documentation</li>
+<li><strong>Reconciliation</strong>: Daily and monthly financial reconciliation</li>
+<li><strong>Reporting</strong>: Automated reporting to finance and operations teams</li>
+<li><strong>Compliance</strong>: Regulatory reporting and audit trail maintenance</li>
+</ol>
+<h2 id="financial-management-structure">Financial Management Structure</h2><h3 id="revenue-streams">Revenue Streams</h3><h4 id="attorney-subscriptions">Attorney Subscriptions</h4><p><strong>Pricing Tiers</strong>:</p>
+<ul>
+<li><strong>Basic Plan</strong>: $199/month<ul>
+<li>Up to 10 client matches per month</li>
+<li>Basic profile features</li>
+<li>Standard customer support</li>
+</ul>
+</li>
+<li><strong>Professional Plan</strong>: $399/month<ul>
+<li>Up to 25 client matches per month</li>
+<li>Enhanced profile features</li>
+<li>Priority customer support</li>
+</ul>
+</li>
+<li><strong>Premium Plan</strong>: $699/month<ul>
+<li>Unlimited client matches</li>
+<li>Premium profile features</li>
+<li>Dedicated account management</li>
+</ul>
+</li>
+</ul>
+<p><strong>Billing Cycle</strong>: Monthly recurring charges on subscription anniversary date
+<strong>Payment Terms</strong>: Net 15 days, automatic payment preferred
+<strong>Late Payment</strong>: 2% monthly penalty after 30 days overdue</p>
+<h4 id="commission-based-revenue">Commission-Based Revenue</h4><p><strong>Lead Conversion Fees</strong>:</p>
+<ul>
+<li><strong>Consultation Fee</strong>: 15% of attorney&#39;s consultation fee</li>
+<li><strong>Retainer Fee</strong>: 10% of initial retainer amount</li>
+<li><strong>Success Fee</strong>: 5% of case value for successful outcomes</li>
+</ul>
+<p><strong>Collection Process</strong>:</p>
+<ul>
+<li>Automatic collection at time of client payment</li>
+<li>Monthly invoicing for accumulated commissions</li>
+<li>Detailed reporting to attorneys for transparency</li>
+</ul>
+<h4 id="client-service-fees">Client Service Fees</h4><p><strong>Matching Service</strong>: $49 per attorney match request
+<strong>Premium Matching</strong>: $99 for expedited matching (within 24 hours)
+<strong>Consultation Booking</strong>: $25 fee for consultation scheduling service
+<strong>Educational Resources</strong>: Freemium model with premium content access</p>
+<h3 id="cost-management">Cost Management</h3><h4 id="direct-costs">Direct Costs</h4><ul>
+<li>Payment processing fees (2.9% + $0.30 per transaction)</li>
+<li>Third-party service integrations</li>
+<li>Professional service provider fees</li>
+<li>Technology infrastructure costs</li>
+</ul>
+<h4 id="operational-expenses">Operational Expenses</h4><ul>
+<li>Staff salaries and benefits</li>
+<li>Office space and utilities</li>
+<li>Marketing and advertising</li>
+<li>Professional development and training</li>
+</ul>
+<h4 id="technology-investments">Technology Investments</h4><ul>
+<li>Platform development and maintenance</li>
+<li>Security infrastructure and monitoring</li>
+<li>Data storage and backup systems</li>
+<li>Business intelligence and analytics tools</li>
+</ul>
+<h2 id="transaction-processing-procedures">Transaction Processing Procedures</h2><h3 id="standard-transaction-flow">Standard Transaction Flow</h3><h4 id="client-payment-processing">Client Payment Processing</h4><ol>
+<li><strong>Service Selection</strong>: Client selects attorney matching service</li>
+<li><strong>Fee Calculation</strong>: Automatic calculation including applicable taxes</li>
+<li><strong>Payment Authorization</strong>: Secure payment method processing</li>
+<li><strong>Service Activation</strong>: Immediate activation of requested services</li>
+<li><strong>Confirmation</strong>: Email confirmation with transaction details</li>
+</ol>
+<h4 id="attorney-payment-collection">Attorney Payment Collection</h4><ol>
+<li><strong>Service Delivery</strong>: Attorney provides services to matched client</li>
+<li><strong>Fee Reporting</strong>: Attorney reports service delivery and fees</li>
+<li><strong>Commission Calculation</strong>: Automatic calculation of platform commission</li>
+<li><strong>Payment Processing</strong>: Collection of commission from attorney account</li>
+<li><strong>Documentation</strong>: Complete transaction record with audit trail</li>
+</ol>
+<h3 id="subscription-management">Subscription Management</h3><h4 id="new-subscription-processing">New Subscription Processing</h4><ol>
+<li><strong>Plan Selection</strong>: Attorney chooses appropriate subscription tier</li>
+<li><strong>Account Setup</strong>: Complete profile and verification process</li>
+<li><strong>Payment Method</strong>: Secure collection and storage of payment information</li>
+<li><strong>Billing Schedule</strong>: Establishment of recurring billing cycle</li>
+<li><strong>Service Activation</strong>: Immediate access to subscribed services</li>
+</ol>
+<h4 id="subscription-changes">Subscription Changes</h4><ol>
+<li><strong>Change Request</strong>: Attorney initiates plan change through platform</li>
+<li><strong>Pro-ration Calculation</strong>: Automatic calculation of credits or charges</li>
+<li><strong>Payment Adjustment</strong>: Processing of difference in subscription fees</li>
+<li><strong>Service Update</strong>: Immediate implementation of new service level</li>
+<li><strong>Confirmation</strong>: Email notification of change completion</li>
+</ol>
+<h4 id="subscription-cancellation">Subscription Cancellation</h4><ol>
+<li><strong>Cancellation Request</strong>: Attorney initiates cancellation process</li>
+<li><strong>Service Completion</strong>: Continue service through end of billing period</li>
+<li><strong>Final Billing</strong>: Process final charges and pro-rated refunds</li>
+<li><strong>Account Deactivation</strong>: Scheduled deactivation at period end</li>
+<li><strong>Data Retention</strong>: Maintain records per regulatory requirements</li>
+</ol>
+<h2 id="refund-and-dispute-management">Refund and Dispute Management</h2><h3 id="refund-policy-framework">Refund Policy Framework</h3><h4 id="eligible-refund-scenarios">Eligible Refund Scenarios</h4><ul>
+<li><strong>Service Non-Delivery</strong>: Platform fails to deliver promised services</li>
+<li><strong>Technical Issues</strong>: System problems prevent service access</li>
+<li><strong>Billing Errors</strong>: Incorrect charges or duplicate transactions</li>
+<li><strong>Attorney Misconduct</strong>: Verified professional conduct violations</li>
+</ul>
+<h4 id="refund-processing-timeline">Refund Processing Timeline</h4><ul>
+<li><strong>Immediate Refunds</strong>: Billing errors and duplicate charges (within 24 hours)</li>
+<li><strong>Standard Refunds</strong>: Service issues and technical problems (within 5 business days)</li>
+<li><strong>Investigation Refunds</strong>: Misconduct claims (within 15 business days after investigation)</li>
+</ul>
+<h4 id="refund-calculation-methods">Refund Calculation Methods</h4><ul>
+<li><strong>Full Refund</strong>: Complete service failure or serious misconduct</li>
+<li><strong>Partial Refund</strong>: Proportional to service delivery shortfall</li>
+<li><strong>Credit Refund</strong>: Platform credits for future service use</li>
+<li><strong>Processing Fee</strong>: Non-refundable processing fees clearly disclosed</li>
+</ul>
+<h3 id="dispute-resolution-process">Dispute Resolution Process</h3><h4 id="chargeback-management">Chargeback Management</h4><ol>
+<li><strong>Notification Receipt</strong>: Immediate notification of chargeback claim</li>
+<li><strong>Documentation Gathering</strong>: Compile all relevant transaction records</li>
+<li><strong>Response Preparation</strong>: Prepare comprehensive dispute response</li>
+<li><strong>Submission</strong>: Submit response within required timeframe</li>
+<li><strong>Follow-up</strong>: Monitor resolution and implement preventive measures</li>
+</ol>
+<h4 id="internal-dispute-resolution">Internal Dispute Resolution</h4><ol>
+<li><strong>Complaint Receipt</strong>: Log and acknowledge customer dispute</li>
+<li><strong>Investigation</strong>: Thorough review of transaction and service delivery</li>
+<li><strong>Resolution Determination</strong>: Fair and reasonable resolution decision</li>
+<li><strong>Implementation</strong>: Process refunds or credits as determined</li>
+<li><strong>Documentation</strong>: Complete records for audit and improvement</li>
+</ol>
+<h2 id="financial-reporting-and-analytics">Financial Reporting and Analytics</h2><h3 id="daily-reporting">Daily Reporting</h3><h4 id="transaction-summary">Transaction Summary</h4><ul>
+<li>Total transaction volume and count</li>
+<li>Payment method breakdown</li>
+<li>Failed transaction analysis</li>
+<li>Chargeback and dispute notifications</li>
+</ul>
+<h4 id="cash-flow-monitoring">Cash Flow Monitoring</h4><ul>
+<li>Daily receipts by revenue stream</li>
+<li>Outstanding receivables summary</li>
+<li>Pending payment notifications</li>
+<li>Bank reconciliation status</li>
+</ul>
+<h3 id="monthly-reporting">Monthly Reporting</h3><h4 id="revenue-analysis">Revenue Analysis</h4><ul>
+<li>Monthly recurring revenue (MRR) trends</li>
+<li>Commission revenue performance</li>
+<li>Client service fee analysis</li>
+<li>Year-over-year growth comparisons</li>
+</ul>
+<h4 id="expense-management">Expense Management</h4><ul>
+<li>Payment processing costs</li>
+<li>Operational expense tracking</li>
+<li>Technology investment analysis</li>
+<li>Profitability by service line</li>
+</ul>
+<h3 id="quarterly-analysis">Quarterly Analysis</h3><h4 id="financial-performance">Financial Performance</h4><ul>
+<li>Comprehensive profit and loss analysis</li>
+<li>Balance sheet and cash flow statements</li>
+<li>Key performance indicator tracking</li>
+<li>Budget variance analysis</li>
+</ul>
+<h4 id="strategic-planning">Strategic Planning</h4><ul>
+<li>Market trend analysis</li>
+<li>Pricing strategy evaluation</li>
+<li>Investment requirement forecasting</li>
+<li>Business growth projections</li>
+</ul>
+<h2 id="compliance-and-security">Compliance and Security</h2><h3 id="pci-dss-compliance">PCI DSS Compliance</h3><h4 id="security-requirements">Security Requirements</h4><ol>
+<li><strong>Secure Network</strong>: Firewalls and secure transmission protocols</li>
+<li><strong>Data Protection</strong>: Encryption of cardholder data at rest and in transit</li>
+<li><strong>Vulnerability Management</strong>: Regular security testing and updates</li>
+<li><strong>Access Control</strong>: Strict access controls and authentication</li>
+<li><strong>Network Monitoring</strong>: Continuous security monitoring and logging</li>
+<li><strong>Security Policies</strong>: Comprehensive information security program</li>
+</ol>
+<h4 id="compliance-maintenance">Compliance Maintenance</h4><ul>
+<li>Annual security assessments by qualified security assessors</li>
+<li>Quarterly vulnerability scanning by approved vendors</li>
+<li>Annual penetration testing by certified professionals</li>
+<li>Continuous compliance monitoring and reporting</li>
+</ul>
+<h3 id="anti-money-laundering-aml-">Anti-Money Laundering (AML)</h3><h4 id="customer-due-diligence">Customer Due Diligence</h4><ul>
+<li><strong>Identity Verification</strong>: Comprehensive client and attorney verification</li>
+<li><strong>Risk Assessment</strong>: Ongoing risk evaluation and monitoring</li>
+<li><strong>Enhanced Due Diligence</strong>: Additional scrutiny for high-risk clients</li>
+<li><strong>Record Keeping</strong>: Detailed records of all verification activities</li>
+</ul>
+<h4 id="transaction-monitoring">Transaction Monitoring</h4><ul>
+<li><strong>Automated Monitoring</strong>: Real-time transaction analysis</li>
+<li><strong>Suspicious Activity</strong>: Identification and reporting of unusual patterns</li>
+<li><strong>Threshold Reporting</strong>: Compliance with reporting requirements</li>
+<li><strong>Documentation</strong>: Complete audit trail for all monitoring activities</li>
+</ul>
+<h3 id="data-privacy-protection">Data Privacy Protection</h3><h4 id="personal-information-handling">Personal Information Handling</h4><ul>
+<li><strong>Collection</strong>: Limited to necessary business purposes</li>
+<li><strong>Storage</strong>: Secure storage with appropriate access controls</li>
+<li><strong>Use</strong>: Strictly for authorized business activities</li>
+<li><strong>Retention</strong>: Compliance with legal retention requirements</li>
+</ul>
+<h4 id="privacy-compliance">Privacy Compliance</h4><ul>
+<li><strong>PIPEDA Compliance</strong>: Full compliance with federal privacy law</li>
+<li><strong>Quebec Privacy Act</strong>: Adherence to provincial requirements</li>
+<li><strong>Consent Management</strong>: Clear consent for all data uses</li>
+<li><strong>Individual Rights</strong>: Respect for access, correction, and deletion rights</li>
+</ul>
+<h2 id="financial-controls-and-audit">Financial Controls and Audit</h2><h3 id="internal-controls">Internal Controls</h3><h4 id="segregation-of-duties">Segregation of Duties</h4><ul>
+<li><strong>Payment Processing</strong>: Separate initiation and approval roles</li>
+<li><strong>Bank Reconciliation</strong>: Independent reconciliation and review</li>
+<li><strong>Financial Reporting</strong>: Preparation and approval by different individuals</li>
+<li><strong>System Access</strong>: Role-based access controls and regular reviews</li>
+</ul>
+<h4 id="authorization-limits">Authorization Limits</h4><ul>
+<li><strong>Level 1</strong>: Customer service representatives ($500 maximum)</li>
+<li><strong>Level 2</strong>: Supervisors and managers ($2,000 maximum)</li>
+<li><strong>Level 3</strong>: Directors and executives ($10,000 maximum)</li>
+<li><strong>Level 4</strong>: CFO and CEO (unlimited with board oversight)</li>
+</ul>
+<h4 id="documentation-requirements">Documentation Requirements</h4><ul>
+<li><strong>Transaction Records</strong>: Complete documentation for all financial transactions</li>
+<li><strong>Approval Documentation</strong>: Written approval for all significant financial decisions</li>
+<li><strong>Reconciliation Records</strong>: Daily and monthly reconciliation documentation</li>
+<li><strong>Audit Trails</strong>: Comprehensive audit trails for all financial activities</li>
+</ul>
+<h3 id="external-audit">External Audit</h3><h4 id="annual-financial-audit">Annual Financial Audit</h4><ul>
+<li><strong>CPA Firm</strong>: Engagement of qualified chartered professional accountants</li>
+<li><strong>Scope</strong>: Comprehensive audit of financial statements and controls</li>
+<li><strong>Timeline</strong>: Annual audit completed within 90 days of year-end</li>
+<li><strong>Reporting</strong>: Audit report provided to board and stakeholders</li>
+</ul>
+<h4 id="regulatory-examinations">Regulatory Examinations</h4><ul>
+<li><strong>Payment Processor</strong>: Annual examination by payment card networks</li>
+<li><strong>FINTRAC</strong>: Periodic examinations by financial intelligence unit</li>
+<li><strong>CRA</strong>: Tax compliance audits as required</li>
+<li><strong>Provincial Regulators</strong>: Consumer protection compliance reviews</li>
+</ul>
+<h2 id="emergency-procedures">Emergency Procedures</h2><h3 id="payment-system-outages">Payment System Outages</h3><h4 id="immediate-response">Immediate Response</h4><ol>
+<li><strong>Issue Identification</strong>: Rapid identification of system problems</li>
+<li><strong>Stakeholder Notification</strong>: Immediate notification to affected parties</li>
+<li><strong>Alternative Processing</strong>: Implementation of backup payment methods</li>
+<li><strong>Service Restoration</strong>: Priority restoration of payment services</li>
+</ol>
+<h4 id="communication-protocol">Communication Protocol</h4><ul>
+<li><strong>Internal Team</strong>: Immediate notification to all relevant staff</li>
+<li><strong>Clients and Attorneys</strong>: Transparent communication about service disruption</li>
+<li><strong>Payment Processors</strong>: Coordination with payment service providers</li>
+<li><strong>Regulatory Bodies</strong>: Notification as required by regulations</li>
+</ul>
+<h3 id="security-incidents">Security Incidents</h3><h4 id="incident-response">Incident Response</h4><ol>
+<li><strong>Detection</strong>: Immediate detection of security breaches</li>
+<li><strong>Containment</strong>: Rapid containment of security incidents</li>
+<li><strong>Investigation</strong>: Thorough investigation of security events</li>
+<li><strong>Remediation</strong>: Implementation of corrective measures</li>
+</ol>
+<h4 id="notification-requirements">Notification Requirements</h4><ul>
+<li><strong>Clients</strong>: Notification of personal information breaches</li>
+<li><strong>Payment Networks</strong>: Immediate notification of card data incidents</li>
+<li><strong>Regulators</strong>: Compliance with regulatory notification requirements</li>
+<li><strong>Law Enforcement</strong>: Cooperation with criminal investigations</li>
+</ul>
+<h2 id="technology-integration">Technology Integration</h2><h3 id="payment-gateway-integration">Payment Gateway Integration</h3><h4 id="primary-processor-stripe">Primary Processor: Stripe</h4><ul>
+<li><strong>Features</strong>: Comprehensive payment processing capabilities</li>
+<li><strong>Security</strong>: PCI DSS Level 1 compliance and advanced fraud protection</li>
+<li><strong>Reporting</strong>: Real-time transaction reporting and analytics</li>
+<li><strong>Support</strong>: 24/7 technical support and documentation</li>
+</ul>
+<h4 id="backup-processor-moneris">Backup Processor: Moneris</h4><ul>
+<li><strong>Redundancy</strong>: Backup processing capability for business continuity</li>
+<li><strong>Local Support</strong>: Canadian-based support and processing</li>
+<li><strong>Integration</strong>: Seamless failover capabilities</li>
+<li><strong>Compliance</strong>: Full regulatory compliance for Canadian operations</li>
+</ul>
+<h3 id="financial-management-systems">Financial Management Systems</h3><h4 id="accounting-software-quickbooks-enterprise">Accounting Software: QuickBooks Enterprise</h4><ul>
+<li><strong>Integration</strong>: Real-time synchronization with payment systems</li>
+<li><strong>Reporting</strong>: Comprehensive financial reporting capabilities</li>
+<li><strong>Compliance</strong>: Tax compliance and regulatory reporting features</li>
+<li><strong>Scalability</strong>: Enterprise-level capacity for business growth</li>
+</ul>
+<h4 id="banking-integration">Banking Integration</h4><ul>
+<li><strong>Royal Bank of Canada</strong>: Primary banking relationship</li>
+<li><strong>Desjardins</strong>: Quebec-focused banking services</li>
+<li><strong>Online Banking</strong>: Automated reconciliation and cash management</li>
+<li><strong>Treasury Management</strong>: Professional cash management services</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Chief Financial Officer</strong>: <a href="mailto:cfo@judge.ca">cfo@judge.ca</a><br><strong>Finance Manager</strong>: <a href="mailto:finance@judge.ca">finance@judge.ca</a><br><strong>Payment Support</strong>: <a href="mailto:payments@judge.ca">payments@judge.ca</a><br><strong>Compliance Officer</strong>: <a href="mailto:compliance@judge.ca">compliance@judge.ca</a>  </p>
+<p><strong>Finance Department</strong>: 1-514-555-0123 ext. 300<br><strong>Payment Issues</strong>: 1-514-555-0123 ext. 350<br><strong>Emergency Financial</strong>: 1-514-555-0123 ext. 911  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Confidential</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

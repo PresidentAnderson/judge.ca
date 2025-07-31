@@ -1,0 +1,942 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-007: Marketing and Client Acquisition Procedures - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-007<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-007: Marketing and Client Acquisition Procedures</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Marketing & Business Development</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Chief Marketing Officer</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-007-marketing-and-client-acquisition-procedures">SOP-007: Marketing and Client Acquisition Procedures</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Marketing &amp; Business Development<br><strong>Owner:</strong> Chief Marketing Officer  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive marketing and client acquisition strategies for Judge.ca, ensuring effective growth of both client and attorney user bases while maintaining brand integrity and regulatory compliance.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All marketing campaigns and communications</li>
+<li>Client acquisition strategies and tactics</li>
+<li>Attorney recruitment and onboarding</li>
+<li>Digital marketing and advertising activities</li>
+<li>Content creation and distribution</li>
+<li>Partnership development and management</li>
+<li>Brand management and consistency</li>
+</ul>
+<h2 id="marketing-strategy-framework">Marketing Strategy Framework</h2><h3 id="brand-positioning">Brand Positioning</h3><p><strong>Primary Position</strong>: &quot;Quebec&#39;s most trusted attorney referral platform&quot;
+<strong>Value Proposition</strong>: Intelligent matching technology combined with rigorous professional verification</p>
+<h3 id="target-market-segmentation">Target Market Segmentation</h3><h4 id="primary-client-segments">Primary Client Segments</h4><h5 id="1-first-time-legal-service-seekers">1. First-Time Legal Service Seekers</h5><p><strong>Demographics</strong>:</p>
+<ul>
+<li>Age: 25-50</li>
+<li>Income: $50,000-$150,000</li>
+<li>Location: Montreal, Quebec City, Laval</li>
+<li>Situation: Facing legal issues for the first time</li>
+</ul>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Overwhelmed by legal complexity</li>
+<li>Seeking trustworthy guidance</li>
+<li>Price-conscious but value quality</li>
+<li>Prefer digital research and communication</li>
+</ul>
+<p><strong>Marketing Approach</strong>:</p>
+<ul>
+<li>Educational content marketing</li>
+<li>Search engine optimization (SEO)</li>
+<li>Social media engagement</li>
+<li>Referral incentive programs</li>
+</ul>
+<h5 id="2-small-business-owners">2. Small Business Owners</h5><p><strong>Demographics</strong>:</p>
+<ul>
+<li>Business size: 1-50 employees</li>
+<li>Industry: Professional services, retail, technology</li>
+<li>Legal needs: Corporate law, employment, contracts</li>
+<li>Location: Greater Montreal area</li>
+</ul>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Time-constrained decision makers</li>
+<li>Need ongoing legal support</li>
+<li>Budget-conscious but understand value</li>
+<li>Prefer efficient, professional service</li>
+</ul>
+<p><strong>Marketing Approach</strong>:</p>
+<ul>
+<li>B2B content marketing</li>
+<li>Professional networking events</li>
+<li>Industry association partnerships</li>
+<li>LinkedIn advertising campaigns</li>
+</ul>
+<h5 id="3-individuals-with-specific-legal-needs">3. Individuals with Specific Legal Needs</h5><p><strong>Demographics</strong>:</p>
+<ul>
+<li>Various age groups and backgrounds</li>
+<li>Specific legal situations (family, immigration, real estate)</li>
+<li>Seeking specialized expertise</li>
+<li>Located throughout Quebec</li>
+</ul>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Urgent need for legal assistance</li>
+<li>Seeking specialized knowledge</li>
+<li>Willing to pay for quality service</li>
+<li>Research-oriented decision making</li>
+</ul>
+<p><strong>Marketing Approach</strong>:</p>
+<ul>
+<li>Practice area-specific campaigns</li>
+<li>Google Ads for high-intent keywords</li>
+<li>Attorney showcase content</li>
+<li>Client success story marketing</li>
+</ul>
+<h4 id="primary-attorney-segments">Primary Attorney Segments</h4><h5 id="1-solo-practitioners">1. Solo Practitioners</h5><p><strong>Demographics</strong>:</p>
+<ul>
+<li>2-15 years of experience</li>
+<li>Seeking client acquisition support</li>
+<li>Technology-adopters</li>
+<li>Quebec Bar members in good standing</li>
+</ul>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Limited marketing budgets</li>
+<li>Need consistent client flow</li>
+<li>Value professional reputation</li>
+<li>Prefer performance-based marketing</li>
+</ul>
+<p><strong>Marketing Approach</strong>:</p>
+<ul>
+<li>Professional referral programs</li>
+<li>Law society partnerships</li>
+<li>Success-based testimonials</li>
+<li>Free trial offerings</li>
+</ul>
+<h5 id="2-small-to-medium-law-firms">2. Small to Medium Law Firms</h5><p><strong>Demographics</strong>:</p>
+<ul>
+<li>3-20 attorneys</li>
+<li>Established practices seeking growth</li>
+<li>Multiple practice areas</li>
+<li>Regional or provincial focus</li>
+</ul>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Marketing-savvy but time-constrained</li>
+<li>Seek qualified lead generation</li>
+<li>Professional reputation focused</li>
+<li>Technology integration capabilities</li>
+</ul>
+<p><strong>Marketing Approach</strong>:</p>
+<ul>
+<li>Firm-level partnership programs</li>
+<li>Custom integration solutions</li>
+<li>Professional development content</li>
+<li>Executive relationship building</li>
+</ul>
+<h2 id="digital-marketing-strategy">Digital Marketing Strategy</h2><h3 id="search-engine-optimization-seo-">Search Engine Optimization (SEO)</h3><h4 id="keyword-strategy">Keyword Strategy</h4><p><strong>Primary Keywords</strong>:</p>
+<ul>
+<li>&quot;avocat Québec&quot; / &quot;lawyer Quebec&quot;</li>
+<li>&quot;services juridiques Montreal&quot; / &quot;legal services Montreal&quot;</li>
+<li>&quot;trouver avocat&quot; / &quot;find lawyer&quot;</li>
+<li>&quot;référence avocat Québec&quot; / &quot;attorney referral Quebec&quot;</li>
+</ul>
+<p><strong>Long-tail Keywords</strong>:</p>
+<ul>
+<li>&quot;meilleur avocat droit familial Montreal&quot;</li>
+<li>&quot;avocat immigration Québec prix&quot;</li>
+<li>&quot;consultation juridique gratuite&quot;</li>
+<li>&quot;avocat entreprise PME Montreal&quot;</li>
+</ul>
+<h4 id="content-marketing-strategy">Content Marketing Strategy</h4><p><strong>Blog Content Categories</strong>:</p>
+<ol>
+<li><strong>Legal Education</strong>: &quot;Understanding Your Rights&quot; series</li>
+<li><strong>Attorney Selection</strong>: &quot;How to Choose&quot; guides</li>
+<li><strong>Legal Process</strong>: &quot;What to Expect&quot; articles</li>
+<li><strong>Quebec Law</strong>: &quot;Know Your Province&quot; content</li>
+</ol>
+<p><strong>Content Production Schedule</strong>:</p>
+<ul>
+<li><strong>Weekly</strong>: 2 educational blog posts (1 French, 1 English)</li>
+<li><strong>Bi-weekly</strong>: Attorney spotlight features</li>
+<li><strong>Monthly</strong>: Comprehensive legal guides</li>
+<li><strong>Quarterly</strong>: Industry trend reports</li>
+</ul>
+<h4 id="technical-seo-requirements">Technical SEO Requirements</h4><ul>
+<li><strong>Page Speed</strong>: Sub-3 second load times</li>
+<li><strong>Mobile Optimization</strong>: Responsive design for all devices</li>
+<li><strong>Local SEO</strong>: Quebec-focused location optimization</li>
+<li><strong>Schema Markup</strong>: Professional service structured data</li>
+</ul>
+<h3 id="pay-per-click-ppc-advertising">Pay-Per-Click (PPC) Advertising</h3><h4 id="google-ads-campaigns">Google Ads Campaigns</h4><p><strong>Campaign Structure</strong>:</p>
+<ol>
+<li><strong>Brand Protection</strong>: Judge.ca branded terms</li>
+<li><strong>Legal Services</strong>: Generic legal service keywords</li>
+<li><strong>Attorney Types</strong>: Specific practice area targeting</li>
+<li><strong>Geographic</strong>: Quebec city and region targeting</li>
+</ol>
+<p><strong>Budget Allocation</strong>:</p>
+<ul>
+<li>Brand Protection: 15% of budget</li>
+<li>Legal Services: 40% of budget</li>
+<li>Attorney Types: 35% of budget</li>
+<li>Geographic: 10% of budget</li>
+</ul>
+<p><strong>Quality Score Optimization</strong>:</p>
+<ul>
+<li>Relevant ad copy and landing pages</li>
+<li>High click-through rates (&gt;3%)</li>
+<li>Strong conversion rates (&gt;5%)</li>
+<li>Regular campaign optimization</li>
+</ul>
+<h4 id="social-media-advertising">Social Media Advertising</h4><p><strong>Facebook/Instagram Campaigns</strong>:</p>
+<ul>
+<li><strong>Audience</strong>: Quebec residents, 25-65, interested in legal services</li>
+<li><strong>Objective</strong>: Brand awareness and lead generation</li>
+<li><strong>Budget</strong>: $5,000/month</li>
+<li><strong>Content</strong>: Educational posts and client testimonials</li>
+</ul>
+<p><strong>LinkedIn Campaigns</strong>:</p>
+<ul>
+<li><strong>Audience</strong>: Quebec business owners and professionals</li>
+<li><strong>Objective</strong>: B2B lead generation</li>
+<li><strong>Budget</strong>: $3,000/month</li>
+<li><strong>Content</strong>: Professional insights and attorney expertise</li>
+</ul>
+<h3 id="email-marketing">Email Marketing</h3><h4 id="client-acquisition-campaigns">Client Acquisition Campaigns</h4><p><strong>Welcome Series</strong>:</p>
+<ol>
+<li>Introduction to Judge.ca platform</li>
+<li>How to choose the right attorney</li>
+<li>Understanding legal fees and billing</li>
+<li>Success stories and testimonials</li>
+<li>Educational resources and guides</li>
+</ol>
+<p><strong>Nurture Campaigns</strong>:</p>
+<ul>
+<li>Monthly legal education newsletters</li>
+<li>Seasonal legal advice (tax season, year-end business)</li>
+<li>Industry-specific content for business clients</li>
+<li>Personal legal milestone content (home buying, family)</li>
+</ul>
+<h4 id="attorney-recruitment-campaigns">Attorney Recruitment Campaigns</h4><p><strong>Onboarding Series</strong>:</p>
+<ol>
+<li>Platform overview and benefits</li>
+<li>Profile optimization best practices</li>
+<li>Client communication excellence</li>
+<li>Success metrics and reporting</li>
+<li>Advanced features and tools</li>
+</ol>
+<p><strong>Retention Campaigns</strong>:</p>
+<ul>
+<li>Monthly performance reports</li>
+<li>Professional development opportunities</li>
+<li>Platform updates and new features</li>
+<li>Peer success stories and networking</li>
+</ul>
+<h2 id="content-marketing-program">Content Marketing Program</h2><h3 id="content-creation-framework">Content Creation Framework</h3><h4 id="educational-content-development">Educational Content Development</h4><p><strong>Legal Education Series</strong>:</p>
+<ul>
+<li>Quebec civil law basics</li>
+<li>Common legal procedures</li>
+<li>Rights and responsibilities guides</li>
+<li>Legal document templates</li>
+<li>Self-help legal resources</li>
+</ul>
+<p><strong>Attorney Selection Guides</strong>:</p>
+<ul>
+<li>Practice area expertise assessment</li>
+<li>Questions to ask potential attorneys</li>
+<li>Red flags to avoid</li>
+<li>Cost estimation guidelines</li>
+<li>Communication expectation setting</li>
+</ul>
+<h4 id="content-distribution-strategy">Content Distribution Strategy</h4><p><strong>Platform Channels</strong>:</p>
+<ul>
+<li>Judge.ca blog and resource center</li>
+<li>Attorney profile content features</li>
+<li>Email newsletter integration</li>
+<li>Social media content sharing</li>
+</ul>
+<p><strong>External Channels</strong>:</p>
+<ul>
+<li>Guest posting on legal publications</li>
+<li>Professional association publications</li>
+<li>Business journal contributions</li>
+<li>Podcast appearances and interviews</li>
+</ul>
+<h3 id="video-marketing-program">Video Marketing Program</h3><h4 id="educational-video-series">Educational Video Series</h4><p><strong>&quot;Know Your Rights&quot; Series</strong>:</p>
+<ul>
+<li>5-minute educational videos on key legal topics</li>
+<li>Bilingual production (French and English)</li>
+<li>Professional attorney hosts</li>
+<li>Monthly release schedule</li>
+</ul>
+<p><strong>&quot;Attorney Spotlight&quot; Series</strong>:</p>
+<ul>
+<li>Professional attorney interviews</li>
+<li>Practice area expertise demonstrations</li>
+<li>Client success story features</li>
+<li>Behind-the-scenes law firm content</li>
+</ul>
+<h4 id="production-standards">Production Standards</h4><ul>
+<li><strong>Quality</strong>: Professional video and audio quality</li>
+<li><strong>Branding</strong>: Consistent Judge.ca branding throughout</li>
+<li><strong>Accessibility</strong>: Closed captions in both languages</li>
+<li><strong>Optimization</strong>: SEO-optimized titles and descriptions</li>
+</ul>
+<h2 id="partnership-development">Partnership Development</h2><h3 id="strategic-partnership-categories">Strategic Partnership Categories</h3><h4 id="law-society-partnerships">Law Society Partnerships</h4><p><strong>Quebec Bar Association</strong>:</p>
+<ul>
+<li>Professional development collaboration</li>
+<li>Member benefit programs</li>
+<li>Continuing education partnerships</li>
+<li>Professional standard alignment</li>
+</ul>
+<p><strong>Regional Bar Associations</strong>:</p>
+<ul>
+<li>Local market penetration</li>
+<li>Community event partnerships</li>
+<li>Referral network development</li>
+<li>Professional networking opportunities</li>
+</ul>
+<h4 id="educational-institution-partnerships">Educational Institution Partnerships</h4><p><strong>Law Schools</strong>:</p>
+<ul>
+<li>Student placement programs</li>
+<li>Graduate recruitment partnerships</li>
+<li>Continuing education provision</li>
+<li>Research collaboration opportunities</li>
+</ul>
+<p><strong>Business Schools</strong>:</p>
+<ul>
+<li>Entrepreneurship program partnerships</li>
+<li>Legal education for business students</li>
+<li>Executive education collaborations</li>
+<li>Case study development</li>
+</ul>
+<h4 id="corporate-partnerships">Corporate Partnerships</h4><p><strong>Financial Institutions</strong>:</p>
+<ul>
+<li>Cross-referral opportunities</li>
+<li>Client education partnerships</li>
+<li>Professional service bundling</li>
+<li>Business development collaboration</li>
+</ul>
+<p><strong>Professional Service Firms</strong>:</p>
+<ul>
+<li>Accountants and tax professionals</li>
+<li>Business consultants and advisors</li>
+<li>Real estate professionals</li>
+<li>Insurance professionals</li>
+</ul>
+<h3 id="partnership-development-process">Partnership Development Process</h3><h4 id="partner-identification">Partner Identification</h4><ol>
+<li><strong>Market Research</strong>: Identify potential strategic partners</li>
+<li><strong>Alignment Assessment</strong>: Evaluate strategic fit and mutual benefit</li>
+<li><strong>Competitive Analysis</strong>: Ensure non-competitive relationships</li>
+<li><strong>Value Proposition</strong>: Develop compelling partnership proposals</li>
+</ol>
+<h4 id="partnership-negotiation">Partnership Negotiation</h4><ol>
+<li><strong>Initial Contact</strong>: Professional outreach and introduction</li>
+<li><strong>Needs Assessment</strong>: Understand partner requirements and goals</li>
+<li><strong>Proposal Development</strong>: Create detailed partnership proposals</li>
+<li><strong>Contract Negotiation</strong>: Legal review and agreement finalization</li>
+</ol>
+<h4 id="partnership-management">Partnership Management</h4><ol>
+<li><strong>Onboarding</strong>: Structured partner integration process</li>
+<li><strong>Relationship Management</strong>: Regular communication and support</li>
+<li><strong>Performance Tracking</strong>: Monitor partnership effectiveness</li>
+<li><strong>Optimization</strong>: Continuous improvement and expansion</li>
+</ol>
+<h2 id="public-relations-and-communications">Public Relations and Communications</h2><h3 id="media-relations-strategy">Media Relations Strategy</h3><h4 id="target-media-outlets">Target Media Outlets</h4><p><strong>Legal Publications</strong>:</p>
+<ul>
+<li>Canadian Lawyer Magazine</li>
+<li>Quebec Bar Association publications</li>
+<li>Legal technology publications</li>
+<li>Professional development magazines</li>
+</ul>
+<p><strong>Business Media</strong>:</p>
+<ul>
+<li>Quebec business journals</li>
+<li>Entrepreneur magazines</li>
+<li>Technology industry publications</li>
+<li>Local business newspapers</li>
+</ul>
+<p><strong>General Interest Media</strong>:</p>
+<ul>
+<li>Major Quebec newspapers</li>
+<li>Radio and television stations</li>
+<li>Online news platforms</li>
+<li>Community publications</li>
+</ul>
+<h4 id="message-development">Message Development</h4><p><strong>Key Messages</strong>:</p>
+<ol>
+<li>&quot;Judge.ca is transforming legal service access in Quebec&quot;</li>
+<li>&quot;Technology enables better attorney-client matching&quot;</li>
+<li>&quot;Professional verification ensures service quality&quot;</li>
+<li>&quot;Education empowers better legal decisions&quot;</li>
+</ol>
+<p><strong>Supporting Stories</strong>:</p>
+<ul>
+<li>Client success stories and testimonials</li>
+<li>Attorney practice growth stories</li>
+<li>Technology innovation features</li>
+<li>Community impact and accessibility</li>
+</ul>
+<h3 id="crisis-communication-protocols">Crisis Communication Protocols</h3><h4 id="crisis-response-team">Crisis Response Team</h4><ul>
+<li><strong>Spokesperson</strong>: Chief Executive Officer</li>
+<li><strong>Communications Lead</strong>: Chief Marketing Officer</li>
+<li><strong>Legal Advisor</strong>: General Counsel</li>
+<li><strong>Operations Lead</strong>: Chief Operating Officer</li>
+</ul>
+<h4 id="response-procedures">Response Procedures</h4><ol>
+<li><strong>Assessment</strong>: Rapid situation assessment and impact analysis</li>
+<li><strong>Response Development</strong>: Coordinated response strategy development</li>
+<li><strong>Stakeholder Communication</strong>: Immediate communication to key stakeholders</li>
+<li><strong>Media Management</strong>: Professional media response and follow-up</li>
+<li><strong>Recovery Planning</strong>: Long-term reputation recovery and improvement</li>
+</ol>
+<h2 id="performance-measurement-and-analytics">Performance Measurement and Analytics</h2><h3 id="key-performance-indicators-kpis-">Key Performance Indicators (KPIs)</h3><h4 id="client-acquisition-metrics">Client Acquisition Metrics</h4><ul>
+<li><strong>Cost Per Acquisition (CPA)</strong>: Target $150 per client</li>
+<li><strong>Lifetime Value (LTV)</strong>: Target $500 per client</li>
+<li><strong>Conversion Rate</strong>: Target 5% website to client conversion</li>
+<li><strong>Client Retention</strong>: Target 70% annual retention rate</li>
+</ul>
+<h4 id="attorney-acquisition-metrics">Attorney Acquisition Metrics</h4><ul>
+<li><strong>Attorney CPA</strong>: Target $300 per attorney</li>
+<li><strong>Attorney LTV</strong>: Target $5,000 per attorney</li>
+<li><strong>Attorney Retention</strong>: Target 85% annual retention</li>
+<li><strong>Profile Completion</strong>: Target 95% complete profiles</li>
+</ul>
+<h4 id="marketing-channel-performance">Marketing Channel Performance</h4><ul>
+<li><strong>Organic Search</strong>: 40% of traffic target</li>
+<li><strong>Paid Search</strong>: 25% of traffic target</li>
+<li><strong>Social Media</strong>: 15% of traffic target</li>
+<li><strong>Direct/Referral</strong>: 20% of traffic target</li>
+</ul>
+<h4 id="content-marketing-metrics">Content Marketing Metrics</h4><ul>
+<li><strong>Blog Traffic</strong>: 10,000 monthly visitors target</li>
+<li><strong>Content Engagement</strong>: 3-minute average session duration</li>
+<li><strong>Lead Generation</strong>: 200 monthly qualified leads</li>
+<li><strong>Email Performance</strong>: 25% open rate, 5% click rate</li>
+</ul>
+<h3 id="analytics-and-reporting">Analytics and Reporting</h3><h4 id="monthly-marketing-reports">Monthly Marketing Reports</h4><p><strong>Traffic and Conversion Analysis</strong>:</p>
+<ul>
+<li>Website traffic by source and channel</li>
+<li>Conversion funnel performance analysis</li>
+<li>Lead quality and conversion tracking</li>
+<li>Campaign performance and ROI analysis</li>
+</ul>
+<p><strong>Content Performance Review</strong>:</p>
+<ul>
+<li>Blog post performance and engagement</li>
+<li>Video content views and completion rates</li>
+<li>Social media engagement and reach</li>
+<li>Email campaign performance metrics</li>
+</ul>
+<h4 id="quarterly-strategic-reviews">Quarterly Strategic Reviews</h4><p><strong>Market Analysis</strong>:</p>
+<ul>
+<li>Competitive landscape assessment</li>
+<li>Market share and positioning analysis</li>
+<li>Customer satisfaction and feedback review</li>
+<li>Growth opportunity identification</li>
+</ul>
+<p><strong>Campaign Optimization</strong>:</p>
+<ul>
+<li>ROI analysis across all marketing channels</li>
+<li>Budget allocation optimization recommendations</li>
+<li>Creative performance and A/B testing results</li>
+<li>Strategic initiative planning and prioritization</li>
+</ul>
+<h2 id="budget-management">Budget Management</h2><h3 id="annual-marketing-budget-allocation">Annual Marketing Budget Allocation</h3><h4 id="digital-marketing-60-">Digital Marketing (60%)</h4><ul>
+<li>Search Engine Marketing: 25%</li>
+<li>Social Media Advertising: 15%</li>
+<li>Content Marketing: 10%</li>
+<li>Email Marketing: 5%</li>
+<li>Website and SEO: 5%</li>
+</ul>
+<h4 id="traditional-marketing-20-">Traditional Marketing (20%)</h4><ul>
+<li>Print Advertising: 10%</li>
+<li>Professional Events: 5%</li>
+<li>Public Relations: 3%</li>
+<li>Radio/TV Advertising: 2%</li>
+</ul>
+<h4 id="content-and-creative-15-">Content and Creative (15%)</h4><ul>
+<li>Video Production: 8%</li>
+<li>Graphic Design: 4%</li>
+<li>Photography: 2%</li>
+<li>Copywriting: 1%</li>
+</ul>
+<h4 id="events-and-partnerships-5-">Events and Partnerships (5%)</h4><ul>
+<li>Trade Shows and Conferences: 3%</li>
+<li>Partnership Development: 1%</li>
+<li>Community Events: 1%</li>
+</ul>
+<h3 id="budget-monitoring-and-control">Budget Monitoring and Control</h3><ul>
+<li><strong>Monthly Reviews</strong>: Budget variance analysis and adjustment</li>
+<li><strong>Quarterly Planning</strong>: Budget reallocation based on performance</li>
+<li><strong>Annual Planning</strong>: Strategic budget development and approval</li>
+<li><strong>ROI Tracking</strong>: Continuous return on investment monitoring</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Chief Marketing Officer</strong>: <a href="mailto:marketing@judge.ca">marketing@judge.ca</a><br><strong>Digital Marketing Manager</strong>: <a href="mailto:digital@judge.ca">digital@judge.ca</a><br><strong>Content Marketing Manager</strong>: <a href="mailto:content@judge.ca">content@judge.ca</a><br><strong>Partnership Development</strong>: <a href="mailto:partnerships@judge.ca">partnerships@judge.ca</a>  </p>
+<p><strong>Marketing Department</strong>: 1-514-555-0123 ext. 200<br><strong>Media Inquiries</strong>: 1-514-555-0123 ext. 250  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

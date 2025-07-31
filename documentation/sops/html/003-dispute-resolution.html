@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-003: Dispute Resolution Process - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-003<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-003: Dispute Resolution Process</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Customer Relations & Legal</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Director of Client Relations</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-003-dispute-resolution-process">SOP-003: Dispute Resolution Process</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Customer Relations &amp; Legal<br><strong>Owner:</strong> Director of Client Relations  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes a comprehensive framework for resolving disputes between clients and attorneys on the Judge.ca platform, ensuring fair resolution while maintaining professional relationships and platform integrity.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All disputes arising from attorney-client relationships facilitated through Judge.ca</li>
+<li>Platform-related issues and concerns</li>
+<li>Quality of service complaints</li>
+<li>Billing and payment disputes</li>
+<li>Professional conduct concerns</li>
+</ul>
+<h2 id="legal-framework">Legal Framework</h2><p>This process operates within:</p>
+<ul>
+<li>Quebec Civil Code provisions</li>
+<li>Law Society of Quebec professional conduct rules</li>
+<li>Judge.ca Terms of Service</li>
+<li>Applicable consumer protection laws</li>
+</ul>
+<h2 id="dispute-categories">Dispute Categories</h2><h3 id="category-1-service-quality-issues">Category 1: Service Quality Issues</h3><ul>
+<li>Missed appointments or deadlines</li>
+<li>Poor communication</li>
+<li>Inadequate legal work quality</li>
+<li>Unprofessional behavior</li>
+</ul>
+<h3 id="category-2-financial-disputes">Category 2: Financial Disputes</h3><ul>
+<li>Billing disagreements</li>
+<li>Payment processing issues</li>
+<li>Fee structure misunderstandings</li>
+<li>Unexpected charges</li>
+</ul>
+<h3 id="category-3-platform-technical-issues">Category 3: Platform Technical Issues</h3><ul>
+<li>Matching system problems</li>
+<li>Communication platform failures</li>
+<li>Profile information inaccuracies</li>
+<li>System accessibility issues</li>
+</ul>
+<h3 id="category-4-professional-conduct-violations">Category 4: Professional Conduct Violations</h3><ul>
+<li>Ethical breaches</li>
+<li>Conflict of interest issues</li>
+<li>Confidentiality violations</li>
+<li>Professional misconduct</li>
+</ul>
+<h2 id="resolution-process-framework">Resolution Process Framework</h2><h3 id="tier-1-direct-resolution-0-7-days-">Tier 1: Direct Resolution (0-7 days)</h3><p><strong>Goal</strong>: Facilitate direct communication between parties
+<strong>Success Rate Target</strong>: 60% of disputes</p>
+<h4 id="step-1-initial-assessment">Step 1: Initial Assessment</h4><ol>
+<li>Receive and log dispute complaint</li>
+<li>Categorize dispute type and severity</li>
+<li>Assign unique case number</li>
+<li>Notify relevant parties within 24 hours</li>
+</ol>
+<h4 id="step-2-information-gathering">Step 2: Information Gathering</h4><ol>
+<li>Collect detailed information from complainant</li>
+<li>Request documentation and evidence</li>
+<li>Contact attorney for their perspective</li>
+<li>Review platform interaction history</li>
+</ol>
+<h4 id="step-3-facilitated-communication">Step 3: Facilitated Communication</h4><ol>
+<li>Arrange three-way communication session</li>
+<li>Provide neutral facilitation</li>
+<li>Guide parties toward mutual understanding</li>
+<li>Document agreed-upon resolution</li>
+</ol>
+<h3 id="tier-2-mediated-resolution-7-21-days-">Tier 2: Mediated Resolution (7-21 days)</h3><p><strong>Goal</strong>: Professional mediation for complex issues
+<strong>Success Rate Target</strong>: 30% of remaining disputes</p>
+<h4 id="step-4-mediation-preparation">Step 4: Mediation Preparation</h4><ol>
+<li>Assign qualified mediator</li>
+<li>Prepare case summary for mediator</li>
+<li>Schedule mediation session</li>
+<li>Provide mediation guidelines to parties</li>
+</ol>
+<h4 id="step-5-mediation-process">Step 5: Mediation Process</h4><ol>
+<li>Conduct structured mediation session</li>
+<li>Explore underlying interests and concerns</li>
+<li>Generate resolution options</li>
+<li>Facilitate agreement negotiation</li>
+</ol>
+<h4 id="step-6-agreement-documentation">Step 6: Agreement Documentation</h4><ol>
+<li>Document mediation outcome</li>
+<li>Create written agreement if resolved</li>
+<li>Establish monitoring and follow-up procedures</li>
+<li>Close case or escalate as needed</li>
+</ol>
+<h3 id="tier-3-formal-resolution-21-45-days-">Tier 3: Formal Resolution (21-45 days)</h3><p><strong>Goal</strong>: Decisive resolution for unresolved disputes
+<strong>Success Rate Target</strong>: 95% of all disputes</p>
+<h4 id="step-7-formal-investigation">Step 7: Formal Investigation</h4><ol>
+<li>Assign senior investigator</li>
+<li>Conduct thorough evidence review</li>
+<li>Interview all relevant parties</li>
+<li>Consult legal and professional experts</li>
+</ol>
+<h4 id="step-8-decision-and-remediation">Step 8: Decision and Remediation</h4><ol>
+<li>Issue formal resolution decision</li>
+<li>Implement appropriate remedies</li>
+<li>Take necessary platform actions</li>
+<li>Provide appeals process information</li>
+</ol>
+<h2 id="resolution-procedures-by-category">Resolution Procedures by Category</h2><h3 id="service-quality-issues">Service Quality Issues</h3><h4 id="initial-response-within-24-hours-">Initial Response (Within 24 hours)</h4><ol>
+<li>Acknowledge complaint receipt</li>
+<li>Request specific details about service issues</li>
+<li>Contact attorney for response</li>
+<li>Review communication records</li>
+</ol>
+<h4 id="investigation-process">Investigation Process</h4><ol>
+<li>Analyze objective evidence (dates, communications)</li>
+<li>Assess reasonableness of client expectations</li>
+<li>Evaluate attorney&#39;s professional standards</li>
+<li>Consider contextual factors and circumstances</li>
+</ol>
+<h4 id="possible-resolutions">Possible Resolutions</h4><ul>
+<li>Attorney commitment to improve service</li>
+<li>Additional consultation time at no charge</li>
+<li>Partial fee refund or adjustment</li>
+<li>Case transfer to different attorney</li>
+<li>Platform intervention and monitoring</li>
+</ul>
+<h3 id="financial-disputes">Financial Disputes</h3><h4 id="documentation-requirements">Documentation Requirements</h4><ol>
+<li>Written fee agreement or estimate</li>
+<li>Time records and billing statements</li>
+<li>Payment transaction records</li>
+<li>Communication regarding fees</li>
+</ol>
+<h4 id="resolution-approaches">Resolution Approaches</h4><ol>
+<li><strong>Fee Verification</strong>: Confirm charges against agreement</li>
+<li><strong>Payment Plan</strong>: Arrange acceptable payment schedule</li>
+<li><strong>Mediated Settlement</strong>: Negotiate reduced fee or payment plan</li>
+<li><strong>Refund Processing</strong>: Partial or full refund when justified</li>
+<li><strong>Collection Hold</strong>: Suspend collection during resolution</li>
+</ol>
+<h3 id="platform-technical-issues">Platform Technical Issues</h3><h4 id="immediate-response">Immediate Response</h4><ol>
+<li>Verify technical problem</li>
+<li>Implement temporary workaround if possible</li>
+<li>Escalate to technical team</li>
+<li>Provide regular updates to affected parties</li>
+</ol>
+<h4 id="resolution-process">Resolution Process</h4><ol>
+<li><strong>Technical Fix</strong>: Resolve underlying system issue</li>
+<li><strong>Data Recovery</strong>: Restore lost information where possible</li>
+<li><strong>Alternative Access</strong>: Provide alternative service methods</li>
+<li><strong>Compensation</strong>: Platform credits or fee adjustments for significant impact</li>
+</ol>
+<h3 id="professional-conduct-violations">Professional Conduct Violations</h3><h4 id="serious-conduct-issues">Serious Conduct Issues</h4><ol>
+<li><strong>Immediate Investigation</strong>: Priority handling for ethical violations</li>
+<li><strong>Interim Measures</strong>: Temporary suspension if necessary</li>
+<li><strong>Professional Consultation</strong>: Involve legal ethics experts</li>
+<li><strong>Regulatory Reporting</strong>: Report to Law Society if required</li>
+</ol>
+<h4 id="investigation-standards">Investigation Standards</h4><ol>
+<li><strong>Evidence Standards</strong>: Clear and convincing evidence required</li>
+<li><strong>Due Process</strong>: Ensure fair hearing for all parties</li>
+<li><strong>Professional Standards</strong>: Apply Law Society conduct rules</li>
+<li><strong>Documentation</strong>: Comprehensive record-keeping</li>
+</ol>
+<h2 id="resolution-authority-levels">Resolution Authority Levels</h2><h3 id="level-1-customer-service-representative">Level 1: Customer Service Representative</h3><p><strong>Authority</strong>: </p>
+<ul>
+<li>Service credits up to $500</li>
+<li>Schedule adjustments</li>
+<li>Process refunds up to $250</li>
+<li>Facilitate basic communication</li>
+</ul>
+<h3 id="level-2-dispute-resolution-specialist">Level 2: Dispute Resolution Specialist</h3><p><strong>Authority</strong>:</p>
+<ul>
+<li>Service credits up to $2,000</li>
+<li>Authorize refunds up to $1,000</li>
+<li>Arrange alternative attorney matches</li>
+<li>Implement service improvements</li>
+</ul>
+<h3 id="level-3-director-of-client-relations">Level 3: Director of Client Relations</h3><p><strong>Authority</strong>:</p>
+<ul>
+<li>Unlimited service credits and refunds</li>
+<li>Platform policy exceptions</li>
+<li>Attorney disciplinary actions</li>
+<li>External mediation arrangements</li>
+</ul>
+<h3 id="level-4-executive-team">Level 4: Executive Team</h3><p><strong>Authority</strong>:</p>
+<ul>
+<li>Contract terminations</li>
+<li>Legal action decisions</li>
+<li>Regulatory reporting</li>
+<li>Major policy changes</li>
+</ul>
+<h2 id="documentation-requirements">Documentation Requirements</h2><h3 id="case-file-contents">Case File Contents</h3><ol>
+<li><strong>Initial Complaint</strong>: Original dispute description</li>
+<li><strong>Evidence</strong>: All supporting documentation</li>
+<li><strong>Communications</strong>: Complete interaction records</li>
+<li><strong>Investigation Notes</strong>: Detailed findings and analysis</li>
+<li><strong>Resolution</strong>: Final outcome and rationale</li>
+</ol>
+<h3 id="record-retention">Record Retention</h3><ul>
+<li><strong>Resolved Cases</strong>: 7 years minimum</li>
+<li><strong>Professional Conduct</strong>: Permanent retention</li>
+<li><strong>Legal Actions</strong>: Until final resolution + 10 years</li>
+<li><strong>Policy Violations</strong>: Permanent retention</li>
+</ul>
+<h2 id="quality-assurance">Quality Assurance</h2><h3 id="performance-metrics">Performance Metrics</h3><ul>
+<li><strong>Resolution Time</strong>: Average time by dispute category</li>
+<li><strong>Resolution Rate</strong>: Percentage resolved at each tier</li>
+<li><strong>Client Satisfaction</strong>: Post-resolution survey results</li>
+<li><strong>Attorney Satisfaction</strong>: Professional feedback ratings</li>
+</ul>
+<h3 id="monthly-review-process">Monthly Review Process</h3><ol>
+<li>Analyze dispute trends and patterns</li>
+<li>Identify systemic issues requiring attention</li>
+<li>Review resolution effectiveness</li>
+<li>Update procedures based on learnings</li>
+</ol>
+<h3 id="training-requirements">Training Requirements</h3><ul>
+<li><strong>New Staff</strong>: 40-hour dispute resolution training</li>
+<li><strong>Annual Refresh</strong>: 16-hour continuing education</li>
+<li><strong>Specialized Training</strong>: Professional conduct and ethics</li>
+<li><strong>Mediation Certification</strong>: For senior specialists</li>
+</ul>
+<h2 id="prevention-strategies">Prevention Strategies</h2><h3 id="proactive-measures">Proactive Measures</h3><ol>
+<li><strong>Clear Expectations</strong>: Detailed service descriptions</li>
+<li><strong>Regular Check-ins</strong>: Scheduled client satisfaction calls</li>
+<li><strong>Early Warning Systems</strong>: Automated satisfaction monitoring</li>
+<li><strong>Professional Development</strong>: Attorney communication training</li>
+</ol>
+<h3 id="communication-improvements">Communication Improvements</h3><ol>
+<li><strong>Expectation Setting</strong>: Clear service level agreements</li>
+<li><strong>Progress Updates</strong>: Regular case status communications</li>
+<li><strong>Professional Guidelines</strong>: Attorney communication standards</li>
+<li><strong>Client Education</strong>: Legal process education resources</li>
+</ol>
+<h2 id="escalation-procedures">Escalation Procedures</h2><h3 id="internal-escalation">Internal Escalation</h3><ol>
+<li><strong>Severity Assessment</strong>: Immediate escalation for serious issues</li>
+<li><strong>Time Limits</strong>: Automatic escalation after defined periods</li>
+<li><strong>Authority Levels</strong>: Clear escalation hierarchy</li>
+<li><strong>Executive Notification</strong>: Major issues reported to executives</li>
+</ol>
+<h3 id="external-escalation">External Escalation</h3><ol>
+<li><strong>Law Society Reporting</strong>: Professional conduct violations</li>
+<li><strong>Regulatory Authorities</strong>: Consumer protection issues</li>
+<li><strong>Legal Counsel</strong>: Potential legal action</li>
+<li><strong>Professional Associations</strong>: Industry-wide concerns</li>
+</ol>
+<h2 id="appeals-process">Appeals Process</h2><h3 id="appeal-eligibility">Appeal Eligibility</h3><ul>
+<li>Decisions involving financial remedies over $1,000</li>
+<li>Professional conduct findings</li>
+<li>Platform access restrictions</li>
+<li>Attorney partnership terminations</li>
+</ul>
+<h3 id="appeal-procedure">Appeal Procedure</h3><ol>
+<li><strong>Written Appeal</strong>: Detailed grounds for appeal</li>
+<li><strong>Independent Review</strong>: Different reviewer assigned</li>
+<li><strong>Additional Evidence</strong>: Opportunity to submit new information</li>
+<li><strong>Final Decision</strong>: Executive-level review and decision</li>
+</ol>
+<h3 id="appeal-timeline">Appeal Timeline</h3><ul>
+<li><strong>Submission Deadline</strong>: 30 days from original decision</li>
+<li><strong>Initial Review</strong>: Within 14 days</li>
+<li><strong>Final Decision</strong>: Within 45 days</li>
+</ul>
+<h2 id="emergency-procedures">Emergency Procedures</h2><h3 id="urgent-situations">Urgent Situations</h3><ul>
+<li>Immediate safety concerns</li>
+<li>Professional misconduct requiring immediate action</li>
+<li>Legal or regulatory deadline pressures</li>
+<li>Media or public relations issues</li>
+</ul>
+<h3 id="emergency-response">Emergency Response</h3><ol>
+<li><strong>Immediate Assessment</strong>: Senior staff involvement</li>
+<li><strong>Interim Measures</strong>: Temporary protective actions</li>
+<li><strong>Accelerated Process</strong>: Expedited investigation and resolution</li>
+<li><strong>Stakeholder Notification</strong>: Relevant parties informed</li>
+</ol>
+<h2 id="continuous-improvement">Continuous Improvement</h2><h3 id="feedback-integration">Feedback Integration</h3><ol>
+<li><strong>Client Feedback</strong>: Post-resolution satisfaction surveys</li>
+<li><strong>Attorney Input</strong>: Professional feedback on process</li>
+<li><strong>Staff Suggestions</strong>: Internal improvement recommendations</li>
+<li><strong>Industry Best Practices</strong>: External benchmarking</li>
+</ol>
+<h3 id="process-updates">Process Updates</h3><ol>
+<li><strong>Quarterly Review</strong>: Process effectiveness assessment</li>
+<li><strong>Annual Revision</strong>: Comprehensive procedure updates</li>
+<li><strong>Policy Changes</strong>: Platform policy alignment</li>
+<li><strong>Training Updates</strong>: Staff development modifications</li>
+</ol>
+<h2 id="contact-information">Contact Information</h2><p><strong>Dispute Resolution Hotline</strong>: 1-514-555-0123 ext. 400<br><strong>Email</strong>: <a href="mailto:disputes@judge.ca">disputes@judge.ca</a><br><strong>Emergency Line</strong>: 1-514-555-0123 ext. 911  </p>
+<p><strong>Director of Client Relations</strong>: <a href="mailto:clientrelations@judge.ca">clientrelations@judge.ca</a><br><strong>Legal Department</strong>: <a href="mailto:legal@judge.ca">legal@judge.ca</a>  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

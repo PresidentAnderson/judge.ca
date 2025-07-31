@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-001: Client Onboarding Process - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-001<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-001: Client Onboarding Process</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Customer Success</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Director of Client Services</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-001-client-onboarding-process">SOP-001: Client Onboarding Process</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Customer Success<br><strong>Owner:</strong> Director of Client Services  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure (SOP) outlines the step-by-step process for onboarding new clients to the Judge.ca platform, ensuring a consistent and professional experience.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to all staff members involved in client onboarding, including:</p>
+<ul>
+<li>Customer Success Representatives</li>
+<li>Technical Support Staff</li>
+<li>Quality Assurance Team</li>
+<li>Management</li>
+</ul>
+<h2 id="definitions">Definitions</h2><ul>
+<li><strong>Client:</strong> Individual seeking legal services through Judge.ca</li>
+<li><strong>Onboarding:</strong> Process of introducing new clients to the platform</li>
+<li><strong>Profile:</strong> Client account and preference information</li>
+<li><strong>Match:</strong> Connection between client and attorney</li>
+</ul>
+<h2 id="procedure">Procedure</h2><h3 id="phase-1-initial-registration-0-24-hours-">Phase 1: Initial Registration (0-24 hours)</h3><h4 id="step-1-account-creation-verification">Step 1: Account Creation Verification</h4><ol>
+<li>Monitor new client registrations in real-time dashboard</li>
+<li>Verify email address validation within 2 hours</li>
+<li>Check for duplicate accounts using email and phone number</li>
+<li>Flag suspicious registrations for manual review</li>
+</ol>
+<p><strong>Time Requirement:</strong> 15 minutes per client<br><strong>Responsible Party:</strong> Customer Success Representative</p>
+<h4 id="step-2-welcome-communication">Step 2: Welcome Communication</h4><ol>
+<li>Send automated welcome email within 5 minutes of registration</li>
+<li>Include platform overview and getting started guide</li>
+<li>Provide customer support contact information</li>
+<li>Schedule follow-up email for 24 hours if no activity</li>
+</ol>
+<p><strong>Templates Used:</strong></p>
+<ul>
+<li>Welcome Email Template (WEL-001)</li>
+<li>Getting Started Guide (GSG-001)</li>
+</ul>
+<h4 id="step-3-profile-completion-review">Step 3: Profile Completion Review</h4><ol>
+<li>Review completed profile information for completeness</li>
+<li>Identify missing critical information</li>
+<li>Send personalized follow-up for incomplete profiles</li>
+<li>Escalate complex cases to senior staff</li>
+</ol>
+<p><strong>Quality Metrics:</strong></p>
+<ul>
+<li>Profile completion rate: &gt;80%</li>
+<li>Response time: &lt;2 hours</li>
+<li>Escalation rate: &lt;5%</li>
+</ul>
+<h3 id="phase-2-legal-needs-assessment-24-48-hours-">Phase 2: Legal Needs Assessment (24-48 hours)</h3><h4 id="step-4-initial-consultation-setup">Step 4: Initial Consultation Setup</h4><ol>
+<li>Review client&#39;s legal need description</li>
+<li>Validate practice area selection</li>
+<li>Check for conflicts of interest</li>
+<li>Prepare background research if complex case</li>
+</ol>
+<p><strong>Required Actions:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Practice area verification</li>
+<li><input disabled="" type="checkbox"> Complexity assessment (1-5 scale)</li>
+<li><input disabled="" type="checkbox"> Budget alignment check</li>
+<li><input disabled="" type="checkbox"> Geographic preference validation</li>
+</ul>
+<h4 id="step-5-attorney-matching-preparation">Step 5: Attorney Matching Preparation</h4><ol>
+<li>Run initial matching algorithm</li>
+<li>Review top 5 attorney matches</li>
+<li>Verify attorney availability and capacity</li>
+<li>Prepare match presentation materials</li>
+</ol>
+<p><strong>Criteria Checklist:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Practice area expertise match</li>
+<li><input disabled="" type="checkbox"> Budget compatibility</li>
+<li><input disabled="" type="checkbox"> Geographic proximity</li>
+<li><input disabled="" type="checkbox"> Language preference alignment</li>
+<li><input disabled="" type="checkbox"> Attorney rating and reviews</li>
+</ul>
+<h3 id="phase-3-match-presentation-48-72-hours-">Phase 3: Match Presentation (48-72 hours)</h3><h4 id="step-6-client-match-notification">Step 6: Client Match Notification</h4><ol>
+<li>Prepare personalized match summary</li>
+<li>Include attorney profiles and ratings</li>
+<li>Provide match explanation and scoring</li>
+<li>Schedule follow-up call within 24 hours</li>
+</ol>
+<p><strong>Deliverables:</strong></p>
+<ul>
+<li>Match summary report</li>
+<li>Attorney comparison chart</li>
+<li>Next steps guide</li>
+<li>Direct contact information</li>
+</ul>
+<h4 id="step-7-follow-up-and-support">Step 7: Follow-up and Support</h4><ol>
+<li>Call client within 24 hours of match notification</li>
+<li>Answer questions about matched attorneys</li>
+<li>Facilitate initial attorney contact if requested</li>
+<li>Schedule 1-week follow-up</li>
+</ol>
+<p><strong>Call Script Points:</strong></p>
+<ul>
+<li>Welcome and introduction</li>
+<li>Match explanation</li>
+<li>Q&amp;A session</li>
+<li>Next steps clarification</li>
+<li>Support availability reminder</li>
+</ul>
+<h3 id="phase-4-ongoing-support-week-1-4-">Phase 4: Ongoing Support (Week 1-4)</h3><h4 id="step-8-progress-monitoring">Step 8: Progress Monitoring</h4><ol>
+<li>Track client-attorney communication initiation</li>
+<li>Monitor client satisfaction indicators</li>
+<li>Identify and address potential issues</li>
+<li>Maintain communication log</li>
+</ol>
+<p><strong>Monitoring Frequency:</strong></p>
+<ul>
+<li>Week 1: Daily check-ins</li>
+<li>Week 2: Every 2 days</li>
+<li>Week 3-4: Weekly check-ins</li>
+</ul>
+<h4 id="step-9-satisfaction-survey">Step 9: Satisfaction Survey</h4><ol>
+<li>Send satisfaction survey after 2 weeks</li>
+<li>Analyze feedback for improvement opportunities</li>
+<li>Address any concerns raised</li>
+<li>Update client success metrics</li>
+</ol>
+<p><strong>Survey Topics:</strong></p>
+<ul>
+<li>Platform ease of use</li>
+<li>Match quality</li>
+<li>Communication effectiveness</li>
+<li>Support responsiveness</li>
+<li>Overall satisfaction</li>
+</ul>
+<h2 id="quality-standards">Quality Standards</h2><h3 id="service-level-agreements-slas-">Service Level Agreements (SLAs)</h3><ul>
+<li>Initial response: Within 2 hours</li>
+<li>Welcome email: Within 5 minutes</li>
+<li>Match notification: Within 72 hours</li>
+<li>Follow-up call: Within 24 hours of match</li>
+</ul>
+<h3 id="key-performance-indicators-kpis-">Key Performance Indicators (KPIs)</h3><ul>
+<li>Client satisfaction score: &gt;4.5/5</li>
+<li>Profile completion rate: &gt;80%</li>
+<li>Match acceptance rate: &gt;60%</li>
+<li>Support response time: &lt;2 hours</li>
+</ul>
+<h2 id="tools-and-resources">Tools and Resources</h2><h3 id="required-systems">Required Systems</h3><ul>
+<li>Judge.ca CRM system</li>
+<li>Email automation platform</li>
+<li>Customer support ticketing system</li>
+<li>Client communication portal</li>
+</ul>
+<h3 id="documentation">Documentation</h3><ul>
+<li>Client onboarding checklist</li>
+<li>Email templates library</li>
+<li>FAQ document</li>
+<li>Escalation procedures</li>
+</ul>
+<h3 id="training-materials">Training Materials</h3><ul>
+<li>Platform overview presentation</li>
+<li>Customer service best practices</li>
+<li>Legal terminology guide</li>
+<li>Conflict resolution techniques</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2><h3 id="common-issues-and-solutions">Common Issues and Solutions</h3><h4 id="issue-client-not-receiving-emails">Issue: Client not receiving emails</h4><p><strong>Solution:</strong></p>
+<ol>
+<li>Check spam/junk folders</li>
+<li>Verify email address accuracy</li>
+<li>Whitelist Judge.ca domain</li>
+<li>Use alternative communication method</li>
+</ol>
+<h4 id="issue-incomplete-profile-information">Issue: Incomplete profile information</h4><p><strong>Solution:</strong></p>
+<ol>
+<li>Send personalized reminder email</li>
+<li>Offer phone assistance for completion</li>
+<li>Explain importance of complete information</li>
+<li>Provide completion incentive if appropriate</li>
+</ol>
+<h4 id="issue-dissatisfaction-with-matches">Issue: Dissatisfaction with matches</h4><p><strong>Solution:</strong></p>
+<ol>
+<li>Review matching criteria with client</li>
+<li>Adjust preferences if needed</li>
+<li>Run new matching algorithm</li>
+<li>Provide additional attorney options</li>
+</ol>
+<h2 id="compliance-and-legal-considerations">Compliance and Legal Considerations</h2><h3 id="privacy-protection">Privacy Protection</h3><ul>
+<li>Ensure PIPEDA compliance</li>
+<li>Maintain confidentiality standards</li>
+<li>Secure information handling</li>
+<li>Consent verification</li>
+</ul>
+<h3 id="professional-standards">Professional Standards</h3><ul>
+<li>Respect attorney-client privilege</li>
+<li>Avoid providing legal advice</li>
+<li>Maintain professional boundaries</li>
+<li>Report ethical concerns</li>
+</ul>
+<h2 id="documentation-and-record-keeping">Documentation and Record Keeping</h2><h3 id="required-records">Required Records</h3><ul>
+<li>Client communication logs</li>
+<li>Onboarding completion certificates</li>
+<li>Satisfaction survey results</li>
+<li>Issue resolution documentation</li>
+</ul>
+<h3 id="retention-periods">Retention Periods</h3><ul>
+<li>Communication records: 7 years</li>
+<li>Satisfaction surveys: 5 years</li>
+<li>Issue logs: 3 years</li>
+<li>Training records: Permanent</li>
+</ul>
+<h2 id="continuous-improvement">Continuous Improvement</h2><h3 id="monthly-review-process">Monthly Review Process</h3><ol>
+<li>Analyze onboarding metrics</li>
+<li>Identify improvement opportunities</li>
+<li>Update procedures as needed</li>
+<li>Train staff on changes</li>
+</ol>
+<h3 id="annual-sop-review">Annual SOP Review</h3><ul>
+<li>Comprehensive procedure evaluation</li>
+<li>Stakeholder feedback collection</li>
+<li>Best practice integration</li>
+<li>Version control update</li>
+</ul>
+<h2 id="emergency-procedures">Emergency Procedures</h2><h3 id="high-priority-client-issues">High-Priority Client Issues</h3><ol>
+<li>Escalate to manager immediately</li>
+<li>Provide hourly updates</li>
+<li>Document all actions taken</li>
+<li>Conduct post-incident review</li>
+</ol>
+<h3 id="system-outages">System Outages</h3><ol>
+<li>Switch to manual processes</li>
+<li>Notify affected clients</li>
+<li>Maintain service levels</li>
+<li>Update clients on resolution</li>
+</ol>
+<h2 id="contact-information">Contact Information</h2><p><strong>SOP Owner:</strong> Director of Client Services<br><strong>Email:</strong> <a href="mailto:clientservices@judge.ca">clientservices@judge.ca</a><br><strong>Phone:</strong> 1-514-555-0123 ext. 201  </p>
+<p><strong>Technical Support:</strong> <a href="mailto:support@judge.ca">support@judge.ca</a><br><strong>Emergency Line:</strong> 1-514-555-0123 ext. 911  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-005: Customer Service Standards and Communication Protocols - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-005<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-005: Customer Service Standards and Communication Protocols</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Customer Relations</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Director of Customer Experience</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-005-customer-service-standards-and-communication-protocols">SOP-005: Customer Service Standards and Communication Protocols</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Customer Relations<br><strong>Owner:</strong> Director of Customer Experience  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive customer service standards and communication protocols for Judge.ca, ensuring consistent, professional, and culturally appropriate service delivery to all clients and attorneys using our platform.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All customer-facing staff and representatives</li>
+<li>Phone, email, chat, and in-person communications</li>
+<li>Client and attorney support interactions</li>
+<li>Escalation procedures and complaint handling</li>
+<li>Bilingual service delivery requirements</li>
+</ul>
+<h2 id="service-standards-framework">Service Standards Framework</h2><h3 id="core-service-principles">Core Service Principles</h3><h4 id="1-professional-excellence">1. Professional Excellence</h4><ul>
+<li>Maintain highest standards of professional conduct</li>
+<li>Demonstrate expertise in platform features and legal referral processes</li>
+<li>Provide accurate, helpful, and timely information</li>
+<li>Follow through on all commitments and promises</li>
+</ul>
+<h4 id="2-cultural-sensitivity">2. Cultural Sensitivity</h4><ul>
+<li>Respect Quebec&#39;s bilingual heritage and cultural context</li>
+<li>Understand local business practices and professional expectations</li>
+<li>Demonstrate awareness of Quebec legal system nuances</li>
+<li>Adapt communication style to cultural preferences</li>
+</ul>
+<h4 id="3-client-centric-focus">3. Client-Centric Focus</h4><ul>
+<li>Prioritize client needs and satisfaction</li>
+<li>Listen actively and empathetically to concerns</li>
+<li>Provide personalized solutions when possible</li>
+<li>Maintain confidentiality and privacy standards</li>
+</ul>
+<h4 id="4-continuous-improvement">4. Continuous Improvement</h4><ul>
+<li>Seek feedback from clients and attorneys</li>
+<li>Identify opportunities for service enhancement</li>
+<li>Participate in ongoing training and development</li>
+<li>Share insights and best practices with team</li>
+</ul>
+<h2 id="communication-standards">Communication Standards</h2><h3 id="response-time-requirements">Response Time Requirements</h3><h4 id="email-communications">Email Communications</h4><ul>
+<li><strong>Initial Response</strong>: Within 4 hours during business hours</li>
+<li><strong>Complex Issues</strong>: Within 24 hours maximum</li>
+<li><strong>Follow-up</strong>: Within 48 hours if additional information needed</li>
+<li><strong>Resolution</strong>: Within 5 business days for standard issues</li>
+</ul>
+<h4 id="phone-communications">Phone Communications</h4><ul>
+<li><strong>Answer Time</strong>: Within 3 rings or 15 seconds</li>
+<li><strong>Hold Time</strong>: Maximum 2 minutes before offering callback</li>
+<li><strong>Call Return</strong>: Within 2 hours for missed calls during business hours</li>
+<li><strong>Voicemail</strong>: Check and respond every 2 hours</li>
+</ul>
+<h4 id="live-chat-support">Live Chat Support</h4><ul>
+<li><strong>Response Time</strong>: Within 2 minutes during active hours</li>
+<li><strong>Session Continuity</strong>: Maintain conversation context throughout</li>
+<li><strong>Transfer Protocol</strong>: Seamless handoff with full context</li>
+<li><strong>Follow-up</strong>: Email summary for complex chat sessions</li>
+</ul>
+<h4 id="in-person-meetings">In-Person Meetings</h4><ul>
+<li><strong>Scheduling</strong>: Confirm 24 hours in advance</li>
+<li><strong>Punctuality</strong>: Arrive 5 minutes early, start on time</li>
+<li><strong>Preparation</strong>: Review client history and needs beforehand</li>
+<li><strong>Follow-up</strong>: Send meeting summary within 24 hours</li>
+</ul>
+<h3 id="bilingual-service-delivery">Bilingual Service Delivery</h3><h4 id="language-preferences">Language Preferences</h4><ul>
+<li><strong>French First</strong>: Default to French communications in Quebec</li>
+<li><strong>Choice Respect</strong>: Honor client language preferences</li>
+<li><strong>Consistent Service</strong>: Maintain language choice throughout interaction</li>
+<li><strong>Quality Assurance</strong>: Ensure equal service quality in both languages</li>
+</ul>
+<h4 id="translation-standards">Translation Standards</h4><ul>
+<li><strong>Professional Quality</strong>: Use certified translators for official documents</li>
+<li><strong>Cultural Adaptation</strong>: Adapt content for cultural context, not just language</li>
+<li><strong>Legal Terminology</strong>: Maintain accuracy in legal and professional terms</li>
+<li><strong>Review Process</strong>: All translations reviewed by native speakers</li>
+</ul>
+<h2 id="customer-interaction-protocols">Customer Interaction Protocols</h2><h3 id="greeting-and-introduction-standards">Greeting and Introduction Standards</h3><h4 id="phone-greetings">Phone Greetings</h4><p><strong>French</strong>: &quot;Bonjour, Judge.ca, [Name] à votre service. Comment puis-je vous aider aujourd&#39;hui?&quot;
+<strong>English</strong>: &quot;Good [morning/afternoon], Judge.ca, this is [Name]. How may I assist you today?&quot;</p>
+<h4 id="email-greetings">Email Greetings</h4><p><strong>French</strong>: &quot;Bonjour [Name], Merci de nous avoir contactés...&quot;
+<strong>English</strong>: &quot;Hello [Name], Thank you for contacting us...&quot;</p>
+<h4 id="professional-identification">Professional Identification</h4><ul>
+<li>Always provide your full name and role</li>
+<li>Offer direct contact information for follow-up</li>
+<li>Confirm client&#39;s preferred name and pronunciation</li>
+<li>Establish communication preferences early</li>
+</ul>
+<h3 id="active-listening-techniques">Active Listening Techniques</h3><h4 id="engagement-strategies">Engagement Strategies</h4><ol>
+<li><strong>Full Attention</strong>: Focus completely on the client&#39;s words and tone</li>
+<li><strong>Clarifying Questions</strong>: Ask specific questions to understand needs fully</li>
+<li><strong>Paraphrasing</strong>: Reflect back what you&#39;ve heard to confirm understanding</li>
+<li><strong>Empathy</strong>: Acknowledge emotions and demonstrate understanding</li>
+</ol>
+<h4 id="documentation-practices">Documentation Practices</h4><ul>
+<li>Take detailed notes during all interactions</li>
+<li>Record key decisions and agreed-upon actions</li>
+<li>Note client preferences and special considerations</li>
+<li>Update client records immediately after interactions</li>
+</ul>
+<h3 id="problem-solving-approach">Problem-Solving Approach</h3><h4 id="learn-method">LEARN Method</h4><p><strong>L - Listen</strong>: Fully understand the issue before responding
+<strong>E - Empathize</strong>: Acknowledge client feelings and perspectives
+<strong>A - Apologize</strong>: When appropriate, offer sincere apologies
+<strong>R - Respond</strong>: Provide clear solutions and next steps
+<strong>N - Note</strong>: Document resolution and follow-up requirements</p>
+<h4 id="solution-development">Solution Development</h4><ol>
+<li><strong>Immediate Assessment</strong>: Determine if issue can be resolved immediately</li>
+<li><strong>Resource Identification</strong>: Identify tools and resources needed</li>
+<li><strong>Option Generation</strong>: Develop multiple solution options when possible</li>
+<li><strong>Client Choice</strong>: Allow client to choose from available solutions</li>
+<li><strong>Implementation</strong>: Execute chosen solution efficiently</li>
+</ol>
+<h2 id="service-level-agreements">Service Level Agreements</h2><h3 id="response-standards-by-issue-type">Response Standards by Issue Type</h3><h4 id="technical-support-issues">Technical Support Issues</h4><ul>
+<li><strong>Platform Access Problems</strong>: 2-hour response, 24-hour resolution</li>
+<li><strong>Account Setup Issues</strong>: 4-hour response, same-day resolution</li>
+<li><strong>Payment Processing</strong>: 1-hour response, 4-hour resolution</li>
+<li><strong>Data Corrections</strong>: 4-hour response, 48-hour resolution</li>
+</ul>
+<h4 id="matching-and-referral-services">Matching and Referral Services</h4><ul>
+<li><strong>Attorney Matching</strong>: 24-hour response, 5-day completion</li>
+<li><strong>Profile Updates</strong>: 4-hour response, same-day completion</li>
+<li><strong>Availability Changes</strong>: 2-hour response, immediate update</li>
+<li><strong>Special Requests</strong>: 24-hour response, case-by-case timeline</li>
+</ul>
+<h4 id="billing-and-financial-issues">Billing and Financial Issues</h4><ul>
+<li><strong>Payment Questions</strong>: 2-hour response, same-day resolution</li>
+<li><strong>Billing Disputes</strong>: 4-hour response, 5-day investigation</li>
+<li><strong>Refund Requests</strong>: 24-hour response, 10-day processing</li>
+<li><strong>Account Adjustments</strong>: 4-hour response, 48-hour completion</li>
+</ul>
+<h4 id="general-inquiries">General Inquiries</h4><ul>
+<li><strong>Service Information</strong>: 4-hour response, immediate completion</li>
+<li><strong>Process Questions</strong>: 2-hour response, immediate completion</li>
+<li><strong>Educational Requests</strong>: 24-hour response, resource provision</li>
+<li><strong>Partnership Inquiries</strong>: 24-hour response, appropriate routing</li>
+</ul>
+<h2 id="quality-assurance-program">Quality Assurance Program</h2><h3 id="monitoring-and-evaluation">Monitoring and Evaluation</h3><h4 id="interaction-monitoring">Interaction Monitoring</h4><ul>
+<li><strong>Call Monitoring</strong>: 10% of calls reviewed monthly</li>
+<li><strong>Email Review</strong>: 5% of emails assessed weekly</li>
+<li><strong>Chat Evaluation</strong>: Real-time supervision and feedback</li>
+<li><strong>Performance Scoring</strong>: Standardized evaluation criteria</li>
+</ul>
+<h4 id="customer-feedback-collection">Customer Feedback Collection</h4><ul>
+<li><strong>Post-Interaction Surveys</strong>: Short satisfaction surveys after service</li>
+<li><strong>Annual Satisfaction Study</strong>: Comprehensive service evaluation</li>
+<li><strong>Focus Groups</strong>: Quarterly sessions with key client segments</li>
+<li><strong>Attorney Feedback</strong>: Regular surveys of attorney partners</li>
+</ul>
+<h3 id="performance-metrics">Performance Metrics</h3><h4 id="quantitative-measures">Quantitative Measures</h4><ul>
+<li><strong>Response Time</strong>: Average time to first response</li>
+<li><strong>Resolution Time</strong>: Average time to complete resolution</li>
+<li><strong>Customer Satisfaction</strong>: CSAT scores and NPS ratings</li>
+<li><strong>First Call Resolution</strong>: Percentage resolved on first contact</li>
+</ul>
+<h4 id="qualitative-measures">Qualitative Measures</h4><ul>
+<li><strong>Communication Quality</strong>: Professional and clear communication</li>
+<li><strong>Problem-Solving Effectiveness</strong>: Creative and thorough solutions</li>
+<li><strong>Cultural Sensitivity</strong>: Appropriate cultural awareness and adaptation</li>
+<li><strong>Professional Development</strong>: Continuous learning and improvement</li>
+</ul>
+<h2 id="training-and-development">Training and Development</h2><h3 id="initial-training-program">Initial Training Program</h3><h4 id="orientation-week-1-">Orientation (Week 1)</h4><ul>
+<li>Company history, mission, and values</li>
+<li>Platform overview and functionality</li>
+<li>Quebec legal system basics</li>
+<li>Customer service philosophy and standards</li>
+</ul>
+<h4 id="skills-development-week-2-">Skills Development (Week 2)</h4><ul>
+<li>Communication techniques and best practices</li>
+<li>Conflict resolution and de-escalation</li>
+<li>Problem-solving methodologies</li>
+<li>Technology platform training</li>
+</ul>
+<h4 id="cultural-competency-week-3-">Cultural Competency (Week 3)</h4><ul>
+<li>Quebec business culture and expectations</li>
+<li>Bilingual communication excellence</li>
+<li>Legal professional etiquette</li>
+<li>Cultural sensitivity training</li>
+</ul>
+<h4 id="practice-and-assessment-week-4-">Practice and Assessment (Week 4)</h4><ul>
+<li>Role-playing exercises and scenarios</li>
+<li>Shadowing experienced team members</li>
+<li>Practice interactions with feedback</li>
+<li>Final assessment and certification</li>
+</ul>
+<h3 id="ongoing-development">Ongoing Development</h3><h4 id="monthly-training-sessions">Monthly Training Sessions</h4><ul>
+<li>Platform updates and new features</li>
+<li>Advanced communication techniques</li>
+<li>Industry trends and best practices</li>
+<li>Case study analysis and learning</li>
+</ul>
+<h4 id="quarterly-assessments">Quarterly Assessments</h4><ul>
+<li>Performance review and feedback</li>
+<li>Skill development planning</li>
+<li>Career advancement discussions</li>
+<li>Training needs assessment</li>
+</ul>
+<h4 id="annual-professional-development">Annual Professional Development</h4><ul>
+<li>Conference attendance opportunities</li>
+<li>Professional certification support</li>
+<li>Advanced training programs</li>
+<li>Cross-departmental learning</li>
+</ul>
+<h2 id="escalation-procedures">Escalation Procedures</h2><h3 id="escalation-triggers">Escalation Triggers</h3><h4 id="automatic-escalation">Automatic Escalation</h4><ul>
+<li>Complaints involving attorney misconduct</li>
+<li>Billing disputes over $1,000</li>
+<li>Legal threats or regulatory concerns</li>
+<li>Media or public relations issues</li>
+</ul>
+<h4 id="situation-based-escalation">Situation-Based Escalation</h4><ul>
+<li>Client dissatisfaction after multiple attempts</li>
+<li>Complex technical issues requiring specialist knowledge</li>
+<li>Requests outside standard service parameters</li>
+<li>Cultural or language complexity beyond staff capability</li>
+</ul>
+<h3 id="escalation-hierarchy">Escalation Hierarchy</h3><h4 id="level-1-customer-service-representative">Level 1: Customer Service Representative</h4><p><strong>Authority</strong>: Standard service delivery, basic problem resolution
+<strong>Escalation To</strong>: Customer Service Supervisor</p>
+<h4 id="level-2-customer-service-supervisor">Level 2: Customer Service Supervisor</h4><p><strong>Authority</strong>: Service credits up to $500, policy exceptions
+<strong>Escalation To</strong>: Customer Service Manager</p>
+<h4 id="level-3-customer-service-manager">Level 3: Customer Service Manager</h4><p><strong>Authority</strong>: Significant policy exceptions, service credits up to $2,000
+<strong>Escalation To</strong>: Director of Customer Experience</p>
+<h4 id="level-4-director-of-customer-experience">Level 4: Director of Customer Experience</h4><p><strong>Authority</strong>: Major policy decisions, unlimited service authority
+<strong>Escalation To</strong>: Executive Team</p>
+<h3 id="escalation-process">Escalation Process</h3><h4 id="documentation-requirements">Documentation Requirements</h4><ol>
+<li>Complete interaction history and timeline</li>
+<li>All attempted solutions and outcomes</li>
+<li>Client&#39;s specific requests and concerns</li>
+<li>Recommended resolution approach</li>
+</ol>
+<h4 id="handoff-procedures">Handoff Procedures</h4><ol>
+<li>Personal introduction to next level handler</li>
+<li>Complete context transfer</li>
+<li>Client notification of escalation reason</li>
+<li>Follow-up to ensure satisfaction</li>
+</ol>
+<h2 id="special-situations-management">Special Situations Management</h2><h3 id="high-value-client-protocol">High-Value Client Protocol</h3><ul>
+<li><strong>VIP Treatment</strong>: Expedited service and priority handling</li>
+<li><strong>Dedicated Support</strong>: Assigned relationship manager</li>
+<li><strong>Custom Solutions</strong>: Flexible approaches to unique needs</li>
+<li><strong>Executive Access</strong>: Direct access to senior management</li>
+</ul>
+<h3 id="sensitive-legal-matters">Sensitive Legal Matters</h3><ul>
+<li><strong>Confidentiality</strong>: Extra precautions for sensitive information</li>
+<li><strong>Discretion</strong>: Professional handling of delicate situations</li>
+<li><strong>Legal Consultation</strong>: Access to legal team when needed</li>
+<li><strong>Documentation</strong>: Careful record-keeping with privacy considerations</li>
+</ul>
+<h3 id="crisis-communications">Crisis Communications</h3><ul>
+<li><strong>Immediate Response</strong>: Rapid acknowledgment and action</li>
+<li><strong>Senior Involvement</strong>: Quick escalation to appropriate authority</li>
+<li><strong>Stakeholder Notification</strong>: Timely updates to all relevant parties</li>
+<li><strong>Follow-up</strong>: Comprehensive post-crisis analysis and improvement</li>
+</ul>
+<h3 id="cultural-and-language-challenges">Cultural and Language Challenges</h3><ul>
+<li><strong>Translator Access</strong>: Professional translation services available</li>
+<li><strong>Cultural Consultation</strong>: Expert advice on cultural considerations</li>
+<li><strong>Flexibility</strong>: Adapted approaches respecting cultural preferences</li>
+<li><strong>Education</strong>: Team development on cultural competency</li>
+</ul>
+<h2 id="technology-and-tools">Technology and Tools</h2><h3 id="communication-platforms">Communication Platforms</h3><h4 id="customer-relationship-management-crm-">Customer Relationship Management (CRM)</h4><ul>
+<li>Complete client interaction history</li>
+<li>Preference tracking and notes</li>
+<li>Automated follow-up reminders</li>
+<li>Performance analytics and reporting</li>
+</ul>
+<h4 id="phone-system-features">Phone System Features</h4><ul>
+<li>Call routing based on language preference</li>
+<li>Call recording for quality assurance</li>
+<li>Voicemail-to-email transcription</li>
+<li>Interactive voice response (IVR) options</li>
+</ul>
+<h4 id="live-chat-platform">Live Chat Platform</h4><ul>
+<li>Real-time translation capabilities</li>
+<li>Screen sharing for technical support</li>
+<li>Chat history and context preservation</li>
+<li>Integration with CRM system</li>
+</ul>
+<h4 id="email-management">Email Management</h4><ul>
+<li>Template library for common responses</li>
+<li>Automated response acknowledgments</li>
+<li>Priority flagging for urgent issues</li>
+<li>Bilingual signature options</li>
+</ul>
+<h3 id="knowledge-management">Knowledge Management</h3><h4 id="service-knowledge-base">Service Knowledge Base</h4><ul>
+<li>Comprehensive FAQ database</li>
+<li>Step-by-step procedure guides</li>
+<li>Platform feature explanations</li>
+<li>Legal referral process documentation</li>
+</ul>
+<h4 id="cultural-reference-materials">Cultural Reference Materials</h4><ul>
+<li>Quebec business etiquette guidelines</li>
+<li>Legal professional standards reference</li>
+<li>Cultural sensitivity best practices</li>
+<li>Language preference protocols</li>
+</ul>
+<h2 id="performance-management">Performance Management</h2><h3 id="individual-performance-standards">Individual Performance Standards</h3><h4 id="productivity-metrics">Productivity Metrics</h4><ul>
+<li><strong>Call Volume</strong>: Target calls per day by role</li>
+<li><strong>Email Response</strong>: Target emails processed daily</li>
+<li><strong>Resolution Rate</strong>: Percentage of issues resolved</li>
+<li><strong>Quality Scores</strong>: Customer satisfaction ratings</li>
+</ul>
+<h4 id="professional-development-goals">Professional Development Goals</h4><ul>
+<li><strong>Skill Enhancement</strong>: Continuous learning objectives</li>
+<li><strong>Cultural Competency</strong>: Bilingual service excellence</li>
+<li><strong>Product Knowledge</strong>: Platform expertise development</li>
+<li><strong>Leadership Growth</strong>: Advancement preparation</li>
+</ul>
+<h3 id="team-performance-standards">Team Performance Standards</h3><h4 id="department-metrics">Department Metrics</h4><ul>
+<li><strong>Customer Satisfaction</strong>: Overall CSAT and NPS scores</li>
+<li><strong>Response Times</strong>: Department-wide response averages</li>
+<li><strong>Resolution Rates</strong>: Percentage of successful resolutions</li>
+<li><strong>Escalation Rates</strong>: Frequency of escalations by type</li>
+</ul>
+<h4 id="continuous-improvement">Continuous Improvement</h4><ul>
+<li><strong>Best Practice Sharing</strong>: Regular team knowledge exchange</li>
+<li><strong>Process Optimization</strong>: Ongoing procedure refinement</li>
+<li><strong>Technology Enhancement</strong>: Tool and platform improvements</li>
+<li><strong>Training Evolution</strong>: Program updates based on performance</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Customer Service Manager</strong>: <a href="mailto:service@judge.ca">service@judge.ca</a><br><strong>Director of Customer Experience</strong>: <a href="mailto:experience@judge.ca">experience@judge.ca</a><br><strong>Emergency Escalation</strong>: <a href="mailto:escalation@judge.ca">escalation@judge.ca</a><br><strong>Training Coordinator</strong>: <a href="mailto:training@judge.ca">training@judge.ca</a>  </p>
+<p><strong>Customer Service Phone</strong>: 1-514-555-0123<br><strong>Emergency Line</strong>: 1-514-555-0123 ext. 911  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

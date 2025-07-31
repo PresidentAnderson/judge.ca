@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-009: Attorney Profile Management and Optimization - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-009<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-009: Attorney Profile Management and Optimization</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Attorney Relations & Technology</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Director of Attorney Relations</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-009-attorney-profile-management-and-optimization">SOP-009: Attorney Profile Management and Optimization</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Attorney Relations &amp; Technology<br><strong>Owner:</strong> Director of Attorney Relations  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive guidelines for attorney profile management, optimization, and maintenance on the Judge.ca platform, ensuring high-quality professional representation and effective client matching.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>Attorney profile creation and setup</li>
+<li>Profile content optimization and maintenance</li>
+<li>Professional photography and branding</li>
+<li>Practice area specialization management</li>
+<li>Client review and rating systems</li>
+<li>Profile performance analytics and improvement</li>
+<li>Compliance with professional standards</li>
+</ul>
+<h2 id="profile-management-framework">Profile Management Framework</h2><h3 id="profile-creation-standards">Profile Creation Standards</h3><h4 id="essential-profile-elements">Essential Profile Elements</h4><p><strong>Basic Information Requirements</strong>:</p>
+<ul>
+<li>Full legal name and professional designation</li>
+<li>Quebec Bar Association number and admission date</li>
+<li>Current law firm or practice affiliation</li>
+<li>Professional contact information (phone, email, address)</li>
+<li>Languages spoken (French, English, other)</li>
+</ul>
+<p><strong>Professional Credentials</strong>:</p>
+<ul>
+<li>Law school education and graduation year</li>
+<li>Bar admission details for all jurisdictions</li>
+<li>Professional certifications and specializations</li>
+<li>Continuing legal education (CLE) compliance status</li>
+<li>Professional liability insurance details</li>
+</ul>
+<p><strong>Practice Information</strong>:</p>
+<ul>
+<li>Primary and secondary practice areas</li>
+<li>Years of experience in each practice area</li>
+<li>Notable case types and outcomes</li>
+<li>Professional associations and memberships</li>
+<li>Court admissions and jurisdictional authority</li>
+</ul>
+<h4 id="profile-completeness-standards">Profile Completeness Standards</h4><p><strong>Minimum Requirements (80% completion)</strong>:</p>
+<ul>
+<li>All basic information fields completed</li>
+<li>Professional headshot uploaded</li>
+<li>Practice area descriptions (minimum 100 words each)</li>
+<li>Contact information verified</li>
+<li>Professional credentials validated</li>
+</ul>
+<p><strong>Recommended Standards (95% completion)</strong>:</p>
+<ul>
+<li>Comprehensive practice area descriptions</li>
+<li>Client testimonials and case studies</li>
+<li>Professional achievements and awards</li>
+<li>Educational background and training</li>
+<li>Community involvement and volunteer work</li>
+</ul>
+<p><strong>Optimal Standards (100% completion)</strong>:</p>
+<ul>
+<li>Video introduction and practice overview</li>
+<li>Detailed fee structure and billing practices</li>
+<li>Office photos and location information</li>
+<li>Professional blog or article contributions</li>
+<li>Client communication preferences</li>
+</ul>
+<h3 id="profile-content-development">Profile Content Development</h3><h4 id="professional-biography-writing">Professional Biography Writing</h4><p><strong>Structure and Format</strong>:</p>
+<ol>
+<li><strong>Opening Statement</strong>: Professional introduction and expertise summary</li>
+<li><strong>Educational Background</strong>: Law school, relevant degrees, and honors</li>
+<li><strong>Professional Experience</strong>: Career progression and significant roles</li>
+<li><strong>Practice Areas</strong>: Detailed description of legal specializations</li>
+<li><strong>Achievements</strong>: Notable cases, awards, and professional recognition</li>
+<li><strong>Personal Touch</strong>: Appropriate personal interests and community involvement</li>
+</ol>
+<p><strong>Writing Guidelines</strong>:</p>
+<ul>
+<li>Professional tone appropriate for legal services</li>
+<li>Client-focused language emphasizing benefits</li>
+<li>Specific examples and achievements</li>
+<li>Quebec cultural sensitivity and bilingual considerations</li>
+<li>SEO optimization for relevant legal keywords</li>
+</ul>
+<h4 id="practice-area-descriptions">Practice Area Descriptions</h4><p><strong>Content Requirements</strong>:</p>
+<ul>
+<li>Minimum 150 words per practice area</li>
+<li>Clear explanation of services provided</li>
+<li>Typical client situations and case types</li>
+<li>Approach to handling cases in this area</li>
+<li>Relevant experience and success stories</li>
+</ul>
+<p><strong>Optimization Elements</strong>:</p>
+<ul>
+<li>Keyword integration for search visibility</li>
+<li>Client-friendly language avoiding legal jargon</li>
+<li>Specific examples and case studies</li>
+<li>Call-to-action statements for client engagement</li>
+<li>Regular updates reflecting current expertise</li>
+</ul>
+<h3 id="professional-photography-standards">Professional Photography Standards</h3><h4 id="headshot-requirements">Headshot Requirements</h4><p><strong>Technical Specifications</strong>:</p>
+<ul>
+<li>Minimum resolution: 1000x1000 pixels</li>
+<li>File format: JPEG or PNG</li>
+<li>File size: Maximum 2MB</li>
+<li>Aspect ratio: 1:1 (square) or 4:5 (portrait)</li>
+<li>Color profile: sRGB for web display</li>
+</ul>
+<p><strong>Professional Standards</strong>:</p>
+<ul>
+<li>Professional business attire</li>
+<li>Neutral or office background</li>
+<li>High-quality lighting and composition</li>
+<li>Confident and approachable expression</li>
+<li>Current photo (within 2 years)</li>
+</ul>
+<h4 id="office-and-practice-photography">Office and Practice Photography</h4><p><strong>Recommended Images</strong>:</p>
+<ul>
+<li>Professional office exterior and interior</li>
+<li>Meeting rooms and consultation areas</li>
+<li>Law library or research facilities</li>
+<li>Team photos (if applicable)</li>
+<li>Community involvement or event photos</li>
+</ul>
+<p><strong>Usage Guidelines</strong>:</p>
+<ul>
+<li>Consistent with professional image</li>
+<li>High resolution for various platform uses</li>
+<li>Appropriate permissions for team photos</li>
+<li>Regular updates to reflect current practice</li>
+<li>Compliance with client confidentiality requirements</li>
+</ul>
+<h3 id="profile-optimization-strategies">Profile Optimization Strategies</h3><h4 id="search-engine-optimization-seo-">Search Engine Optimization (SEO)</h4><p><strong>Keyword Strategy</strong>:</p>
+<ul>
+<li>Primary keywords: Practice area + location combinations</li>
+<li>Secondary keywords: Legal service descriptions and specializations</li>
+<li>Long-tail keywords: Specific client questions and concerns</li>
+<li>Local SEO: Quebec city and region-specific terms</li>
+</ul>
+<p><strong>Content Optimization</strong>:</p>
+<ul>
+<li>Natural keyword integration in profile text</li>
+<li>Optimized headings and subheadings</li>
+<li>Meta descriptions for profile pages</li>
+<li>Alt text for images and photos</li>
+<li>Regular content updates and additions</li>
+</ul>
+<h4 id="client-engagement-optimization">Client Engagement Optimization</h4><p><strong>Conversion Elements</strong>:</p>
+<ul>
+<li>Clear call-to-action statements</li>
+<li>Contact information prominently displayed</li>
+<li>Easy-to-find consultation booking options</li>
+<li>Client testimonials and success stories</li>
+<li>Transparent fee structure information</li>
+</ul>
+<p><strong>Trust Building Features</strong>:</p>
+<ul>
+<li>Professional credentials and certifications</li>
+<li>Client review and rating displays</li>
+<li>Awards and recognition highlights</li>
+<li>Professional association memberships</li>
+<li>Community involvement and volunteer work</li>
+</ul>
+<h3 id="review-and-rating-management">Review and Rating Management</h3><h4 id="client-review-system">Client Review System</h4><p><strong>Review Collection Process</strong>:</p>
+<ol>
+<li><strong>Automatic Invitations</strong>: Sent 48 hours after case completion</li>
+<li><strong>Follow-up Reminders</strong>: Gentle reminders after 1 week and 2 weeks</li>
+<li><strong>Incentive Programs</strong>: Optional incentives for honest feedback</li>
+<li><strong>Review Verification</strong>: Confirmation of attorney-client relationship</li>
+<li><strong>Content Moderation</strong>: Review of all submissions for appropriateness</li>
+</ol>
+<p><strong>Review Display Standards</strong>:</p>
+<ul>
+<li>Chronological order with most recent first</li>
+<li>Star rating system (1-5 stars)</li>
+<li>Written review excerpts (first 150 characters)</li>
+<li>Client initials only for privacy protection</li>
+<li>Response capability for attorney follow-up</li>
+</ul>
+<h4 id="rating-calculation-method">Rating Calculation Method</h4><p><strong>Overall Rating Formula</strong>:</p>
+<ul>
+<li>Weighted average of all client ratings</li>
+<li>Recent reviews (past 6 months) weighted 60%</li>
+<li>Older reviews (6+ months) weighted 40%</li>
+<li>Minimum 5 reviews required for public display</li>
+<li>Quarterly recalculation for accuracy</li>
+</ul>
+<p><strong>Quality Metrics</strong>:</p>
+<ul>
+<li>Communication quality (responsiveness, clarity)</li>
+<li>Professional competence (knowledge, skill)</li>
+<li>Case outcomes (results, satisfaction)</li>
+<li>Value for money (cost-effectiveness)</li>
+<li>Overall experience (would recommend)</li>
+</ul>
+<h3 id="profile-performance-analytics">Profile Performance Analytics</h3><h4 id="key-performance-indicators-kpis-">Key Performance Indicators (KPIs)</h4><p><strong>Visibility Metrics</strong>:</p>
+<ul>
+<li>Profile views per month</li>
+<li>Search ranking for relevant keywords</li>
+<li>Click-through rates from search results</li>
+<li>Time spent on profile page</li>
+<li>Bounce rate and engagement metrics</li>
+</ul>
+<p><strong>Conversion Metrics</strong>:</p>
+<ul>
+<li>Consultation requests generated</li>
+<li>Contact form submissions</li>
+<li>Phone call inquiries</li>
+<li>Email inquiries</li>
+<li>Actual client conversions</li>
+</ul>
+<p><strong>Quality Metrics</strong>:</p>
+<ul>
+<li>Client satisfaction ratings</li>
+<li>Review frequency and quality</li>
+<li>Profile completeness score</li>
+<li>Content freshness and updates</li>
+<li>Professional compliance status</li>
+</ul>
+<h4 id="performance-reporting">Performance Reporting</h4><p><strong>Monthly Reports</strong>:</p>
+<ul>
+<li>Profile performance dashboard</li>
+<li>Comparison to practice area benchmarks</li>
+<li>Improvement recommendations</li>
+<li>Market positioning analysis</li>
+<li>Competitive landscape overview</li>
+</ul>
+<p><strong>Quarterly Analysis</strong>:</p>
+<ul>
+<li>Comprehensive performance review</li>
+<li>ROI analysis for platform participation</li>
+<li>Strategic recommendations for improvement</li>
+<li>Market trend impact assessment</li>
+<li>Long-term growth planning</li>
+</ul>
+<h3 id="profile-maintenance-and-updates">Profile Maintenance and Updates</h3><h4 id="regular-maintenance-schedule">Regular Maintenance Schedule</h4><p><strong>Weekly Tasks</strong>:</p>
+<ul>
+<li>Review and respond to client inquiries</li>
+<li>Check for new client reviews and ratings</li>
+<li>Update availability and scheduling information</li>
+<li>Monitor profile performance metrics</li>
+<li>Address any technical issues or concerns</li>
+</ul>
+<p><strong>Monthly Tasks</strong>:</p>
+<ul>
+<li>Review and update practice area descriptions</li>
+<li>Refresh professional photography if needed</li>
+<li>Analyze performance metrics and trends</li>
+<li>Update professional credentials and certifications</li>
+<li>Plan content improvements and additions</li>
+</ul>
+<p><strong>Quarterly Tasks</strong>:</p>
+<ul>
+<li>Comprehensive profile audit and optimization</li>
+<li>Professional development and training updates</li>
+<li>Market positioning analysis and adjustment</li>
+<li>Strategic planning for profile enhancement</li>
+<li>Review and update fee structures</li>
+</ul>
+<h4 id="content-freshness-strategy">Content Freshness Strategy</h4><p><strong>Regular Content Updates</strong>:</p>
+<ul>
+<li>Monthly blog posts or articles</li>
+<li>Case study additions (with client permission)</li>
+<li>Professional achievement updates</li>
+<li>Industry trend commentary</li>
+<li>Legal education and insight sharing</li>
+</ul>
+<p><strong>Seasonal Content</strong>:</p>
+<ul>
+<li>Tax season legal advice (for relevant practice areas)</li>
+<li>Holiday business planning content</li>
+<li>Annual legal review and planning</li>
+<li>Industry-specific seasonal considerations</li>
+<li>Community event participation highlights</li>
+</ul>
+<h3 id="compliance-and-professional-standards">Compliance and Professional Standards</h3><h4 id="quebec-bar-association-requirements">Quebec Bar Association Requirements</h4><p><strong>Professional Conduct Compliance</strong>:</p>
+<ul>
+<li>Adherence to advertising and marketing rules</li>
+<li>Truthful and accurate representation of services</li>
+<li>Appropriate use of client testimonials</li>
+<li>Compliance with confidentiality requirements</li>
+<li>Professional liability insurance maintenance</li>
+</ul>
+<p><strong>Regulatory Compliance</strong>:</p>
+<ul>
+<li>Regular license status verification</li>
+<li>Continuing education requirement compliance</li>
+<li>Professional discipline history monitoring</li>
+<li>Ethical conduct standard adherence</li>
+<li>Consumer protection law compliance</li>
+</ul>
+<h4 id="platform-policy-compliance">Platform Policy Compliance</h4><p><strong>Content Standards</strong>:</p>
+<ul>
+<li>Professional and appropriate language</li>
+<li>Truthful and verifiable claims</li>
+<li>Respectful client testimonial usage</li>
+<li>Copyright compliance for all content</li>
+<li>Privacy protection for client information</li>
+</ul>
+<p><strong>Technical Standards</strong>:</p>
+<ul>
+<li>Image quality and size requirements</li>
+<li>Profile completeness standards</li>
+<li>Regular information updates</li>
+<li>Response time requirements</li>
+<li>Platform usage guidelines</li>
+</ul>
+<h3 id="training-and-support-programs">Training and Support Programs</h3><h4 id="attorney-onboarding-training">Attorney Onboarding Training</h4><p><strong>Profile Setup Workshop</strong>:</p>
+<ul>
+<li>Platform navigation and feature overview</li>
+<li>Profile optimization best practices</li>
+<li>Professional photography guidelines</li>
+<li>Content creation and SEO strategies</li>
+<li>Client communication and engagement</li>
+</ul>
+<p><strong>Ongoing Education</strong>:</p>
+<ul>
+<li>Monthly webinars on profile optimization</li>
+<li>Best practice sharing sessions</li>
+<li>Industry trend updates and implications</li>
+<li>Technology feature training</li>
+<li>Marketing and client development strategies</li>
+</ul>
+<h4 id="performance-improvement-support">Performance Improvement Support</h4><p><strong>Individual Coaching</strong>:</p>
+<ul>
+<li>One-on-one profile optimization sessions</li>
+<li>Personalized improvement recommendations</li>
+<li>Content creation assistance</li>
+<li>Photography coordination and guidance</li>
+<li>Performance analysis and strategic planning</li>
+</ul>
+<p><strong>Group Training Programs</strong>:</p>
+<ul>
+<li>Quarterly attorney success workshops</li>
+<li>Peer learning and networking sessions</li>
+<li>Industry expert guest presentations</li>
+<li>Technology training and updates</li>
+<li>Professional development opportunities</li>
+</ul>
+<h3 id="quality-assurance-and-monitoring">Quality Assurance and Monitoring</h3><h4 id="profile-quality-audits">Profile Quality Audits</h4><p><strong>Monthly Quality Reviews</strong>:</p>
+<ul>
+<li>Profile completeness assessment</li>
+<li>Content quality and accuracy verification</li>
+<li>Professional compliance checking</li>
+<li>Client feedback analysis</li>
+<li>Performance metric evaluation</li>
+</ul>
+<p><strong>Quarterly Comprehensive Audits</strong>:</p>
+<ul>
+<li>Full profile optimization review</li>
+<li>Competitive analysis and positioning</li>
+<li>Content freshness and relevance check</li>
+<li>Professional development assessment</li>
+<li>Strategic improvement planning</li>
+</ul>
+<h4 id="performance-monitoring">Performance Monitoring</h4><p><strong>Real-time Monitoring</strong>:</p>
+<ul>
+<li>Profile view tracking and analysis</li>
+<li>Client inquiry response monitoring</li>
+<li>Review and rating management</li>
+<li>Content update tracking</li>
+<li>Compliance status verification</li>
+</ul>
+<p><strong>Automated Alerts</strong>:</p>
+<ul>
+<li>Profile performance decline notifications</li>
+<li>Missing information alerts</li>
+<li>Compliance issue warnings</li>
+<li>Client review notifications</li>
+<li>Professional credential expiration reminders</li>
+</ul>
+<h3 id="technology-integration">Technology Integration</h3><h4 id="platform-features">Platform Features</h4><p><strong>Profile Management Dashboard</strong>:</p>
+<ul>
+<li>Centralized profile editing and management</li>
+<li>Performance analytics and reporting</li>
+<li>Client communication tools</li>
+<li>Review and rating management</li>
+<li>Content calendar and planning tools</li>
+</ul>
+<p><strong>Mobile Optimization</strong>:</p>
+<ul>
+<li>Responsive design for all devices</li>
+<li>Mobile-friendly profile editing</li>
+<li>On-the-go performance monitoring</li>
+<li>Push notifications for important updates</li>
+<li>Offline content synchronization</li>
+</ul>
+<h4 id="integration-capabilities">Integration Capabilities</h4><p><strong>Third-Party Integrations</strong>:</p>
+<ul>
+<li>Professional photography services</li>
+<li>Content creation and marketing tools</li>
+<li>Legal practice management systems</li>
+<li>Client relationship management (CRM)</li>
+<li>Social media and marketing platforms</li>
+</ul>
+<p><strong>API Development</strong>:</p>
+<ul>
+<li>Profile data synchronization</li>
+<li>Performance metric integration</li>
+<li>Client communication automation</li>
+<li>Content management workflows</li>
+<li>Professional credential verification</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Director of Attorney Relations</strong>: <a href="mailto:attorneyrelations@judge.ca">attorneyrelations@judge.ca</a><br><strong>Profile Support Team</strong>: <a href="mailto:profilesupport@judge.ca">profilesupport@judge.ca</a><br><strong>Technical Support</strong>: <a href="mailto:tech@judge.ca">tech@judge.ca</a><br><strong>Training and Development</strong>: <a href="mailto:training@judge.ca">training@judge.ca</a>  </p>
+<p><strong>Attorney Relations</strong>: 1-514-555-0123 ext. 600<br><strong>Profile Support</strong>: 1-514-555-0123 ext. 650  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

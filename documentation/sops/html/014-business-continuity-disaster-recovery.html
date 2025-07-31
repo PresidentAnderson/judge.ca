@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-014: Business Continuity and Disaster Recovery - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-014<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-014: Business Continuity and Disaster Recovery</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Operations & Risk Management</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Chief Operating Officer</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-014-business-continuity-and-disaster-recovery">SOP-014: Business Continuity and Disaster Recovery</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Operations &amp; Risk Management<br><strong>Owner:</strong> Chief Operating Officer  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive business continuity and disaster recovery protocols for Judge.ca, ensuring operational resilience, service continuity, and rapid recovery from disruptions while protecting clients, employees, and business assets.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All business operations and critical functions</li>
+<li>Technology systems and infrastructure</li>
+<li>Human resources and personnel management</li>
+<li>Client services and support operations</li>
+<li>Financial and accounting functions</li>
+<li>Legal and compliance requirements</li>
+<li>Vendor and partner relationships</li>
+</ul>
+<h2 id="business-continuity-framework">Business Continuity Framework</h2><h3 id="business-impact-analysis">Business Impact Analysis</h3><h4 id="critical-business-functions">Critical Business Functions</h4><p><strong>Core Service Delivery</strong>:</p>
+<ul>
+<li>Client intake and initial assessment</li>
+<li>Attorney matching and referral services</li>
+<li>Consultation scheduling and coordination</li>
+<li>Payment processing and financial transactions</li>
+<li>Client support and communication</li>
+</ul>
+<p><strong>Technology Operations</strong>:</p>
+<ul>
+<li>Platform availability and performance</li>
+<li>Database integrity and security</li>
+<li>User authentication and access control</li>
+<li>Data backup and recovery systems</li>
+<li>Third-party service integrations</li>
+</ul>
+<p><strong>Business Operations</strong>:</p>
+<ul>
+<li>Financial management and reporting</li>
+<li>Legal and compliance functions</li>
+<li>Human resources and payroll</li>
+<li>Marketing and client acquisition</li>
+<li>Vendor and partner management</li>
+</ul>
+<h4 id="impact-assessment-matrix">Impact Assessment Matrix</h4><p><strong>Service Disruption Tolerance</strong>:</p>
+<ul>
+<li><strong>Critical (0-2 hours)</strong>: Client emergency support, payment processing</li>
+<li><strong>High (2-8 hours)</strong>: Platform access, attorney matching, consultation booking</li>
+<li><strong>Medium (8-24 hours)</strong>: Marketing activities, non-urgent client communications</li>
+<li><strong>Low (24-72 hours)</strong>: Reporting, training, administrative functions</li>
+</ul>
+<p><strong>Financial Impact Assessment</strong>:</p>
+<ul>
+<li>Revenue loss calculations per hour of downtime</li>
+<li>Cost of alternative service provision</li>
+<li>Regulatory fines and penalties</li>
+<li>Reputation and customer retention impact</li>
+<li>Recovery and restoration costs</li>
+</ul>
+<h3 id="risk-assessment-and-management">Risk Assessment and Management</h3><h4 id="risk-identification">Risk Identification</h4><p><strong>Natural Disasters</strong>:</p>
+<ul>
+<li>Severe weather events (ice storms, flooding)</li>
+<li>Earthquakes and geological events</li>
+<li>Power outages and utility failures</li>
+<li>Transportation disruptions</li>
+<li>Communication network failures</li>
+</ul>
+<p><strong>Technology Risks</strong>:</p>
+<ul>
+<li>System failures and outages</li>
+<li>Cybersecurity attacks and breaches</li>
+<li>Data corruption and loss</li>
+<li>Software and hardware failures</li>
+<li>Third-party service disruptions</li>
+</ul>
+<p><strong>Human Resources Risks</strong>:</p>
+<ul>
+<li>Key personnel unavailability</li>
+<li>Pandemic and health emergencies</li>
+<li>Labor disputes and strikes</li>
+<li>Skill shortages and turnover</li>
+<li>Workplace incidents and emergencies</li>
+</ul>
+<p><strong>Business Risks</strong>:</p>
+<ul>
+<li>Supplier and vendor failures</li>
+<li>Regulatory changes and compliance issues</li>
+<li>Financial and economic disruptions</li>
+<li>Competitive threats and market changes</li>
+<li>Legal and litigation risks</li>
+</ul>
+<h4 id="risk-mitigation-strategies">Risk Mitigation Strategies</h4><p><strong>Preventive Measures</strong>:</p>
+<ul>
+<li>Redundant systems and infrastructure</li>
+<li>Regular maintenance and updates</li>
+<li>Staff training and preparedness</li>
+<li>Insurance coverage and protection</li>
+<li>Compliance monitoring and management</li>
+</ul>
+<p><strong>Response Capabilities</strong>:</p>
+<ul>
+<li>Emergency response procedures</li>
+<li>Alternative service delivery methods</li>
+<li>Communication and coordination protocols</li>
+<li>Resource mobilization and allocation</li>
+<li>Recovery and restoration planning</li>
+</ul>
+<h2 id="disaster-recovery-planning">Disaster Recovery Planning</h2><h3 id="recovery-objectives">Recovery Objectives</h3><h4 id="recovery-time-objectives-rto-">Recovery Time Objectives (RTO)</h4><p><strong>Critical Systems</strong>:</p>
+<ul>
+<li>Payment processing: 30 minutes</li>
+<li>User authentication: 1 hour</li>
+<li>Core platform functions: 2 hours</li>
+<li>Database systems: 4 hours</li>
+<li>Full service restoration: 8 hours</li>
+</ul>
+<p><strong>Business Functions</strong>:</p>
+<ul>
+<li>Client emergency support: 1 hour</li>
+<li>Regular client services: 4 hours</li>
+<li>Financial operations: 8 hours</li>
+<li>Administrative functions: 24 hours</li>
+<li>Non-critical activities: 72 hours</li>
+</ul>
+<h4 id="recovery-point-objectives-rpo-">Recovery Point Objectives (RPO)</h4><p><strong>Data Loss Tolerance</strong>:</p>
+<ul>
+<li>Financial transactions: 5 minutes</li>
+<li>Client data: 15 minutes</li>
+<li>System configurations: 1 hour</li>
+<li>Operational data: 4 hours</li>
+<li>Historical data: 24 hours</li>
+</ul>
+<h3 id="technology-disaster-recovery">Technology Disaster Recovery</h3><h4 id="infrastructure-recovery">Infrastructure Recovery</h4><p><strong>Primary Data Center</strong>:</p>
+<ul>
+<li>Location: Montreal, Quebec</li>
+<li>Redundancy: N+1 power and cooling</li>
+<li>Backup power: 48-hour generator capacity</li>
+<li>Network connectivity: Multiple ISP connections</li>
+<li>Security: 24/7 monitoring and access control</li>
+</ul>
+<p><strong>Secondary Data Center</strong>:</p>
+<ul>
+<li>Location: Toronto, Ontario</li>
+<li>Synchronization: Real-time data replication</li>
+<li>Activation: Automatic failover capability</li>
+<li>Capacity: 100% of primary site capacity</li>
+<li>Testing: Monthly failover testing</li>
+</ul>
+<h4 id="cloud-infrastructure-recovery">Cloud Infrastructure Recovery</h4><p><strong>AWS Multi-Region Deployment</strong>:</p>
+<ul>
+<li>Primary region: Canada Central (Montreal)</li>
+<li>Secondary region: Canada East (Toronto)</li>
+<li>Automatic failover: Route 53 health checks</li>
+<li>Data replication: Cross-region synchronization</li>
+<li>Scaling: Auto-scaling groups and load balancers</li>
+</ul>
+<p><strong>Backup and Recovery Systems</strong>:</p>
+<ul>
+<li>Automated daily backups</li>
+<li>Cross-region backup replication</li>
+<li>Point-in-time recovery capabilities</li>
+<li>Encryption at rest and in transit</li>
+<li>Regular recovery testing and validation</li>
+</ul>
+<h3 id="application-recovery-procedures">Application Recovery Procedures</h3><h4 id="database-recovery">Database Recovery</h4><p><strong>PostgreSQL Recovery Process</strong>:</p>
+<ol>
+<li><strong>Assessment</strong>: Determine extent of database damage</li>
+<li><strong>Isolation</strong>: Isolate affected database instances</li>
+<li><strong>Recovery</strong>: Restore from latest backup or replica</li>
+<li><strong>Validation</strong>: Verify data integrity and consistency</li>
+<li><strong>Switchover</strong>: Redirect traffic to recovered database</li>
+</ol>
+<p><strong>Recovery Testing</strong>:</p>
+<ul>
+<li>Monthly backup restoration testing</li>
+<li>Quarterly disaster recovery drills</li>
+<li>Annual comprehensive recovery testing</li>
+<li>Performance impact assessment</li>
+<li>Documentation and procedure updates</li>
+</ul>
+<h4 id="application-recovery">Application Recovery</h4><p><strong>Web Application Recovery</strong>:</p>
+<ol>
+<li><strong>Service Status</strong>: Assess application availability</li>
+<li><strong>Infrastructure</strong>: Verify server and network status</li>
+<li><strong>Deployment</strong>: Deploy application to backup infrastructure</li>
+<li><strong>Configuration</strong>: Update DNS and load balancer settings</li>
+<li><strong>Validation</strong>: Test all critical functions and features</li>
+</ol>
+<p><strong>API Recovery</strong>:</p>
+<ul>
+<li>Automated health checks and monitoring</li>
+<li>Failover to secondary API instances</li>
+<li>Database connection verification</li>
+<li>Third-party integration testing</li>
+<li>Performance and capacity validation</li>
+</ul>
+<h2 id="business-continuity-procedures">Business Continuity Procedures</h2><h3 id="emergency-response-team">Emergency Response Team</h3><h4 id="team-structure">Team Structure</h4><p><strong>Crisis Management Team</strong>:</p>
+<ul>
+<li>Crisis Commander: Chief Executive Officer</li>
+<li>Operations Lead: Chief Operating Officer</li>
+<li>Technology Lead: Chief Technology Officer</li>
+<li>Communications Lead: Chief Marketing Officer</li>
+<li>Legal/Compliance Lead: General Counsel</li>
+</ul>
+<p><strong>Response Team Roles</strong>:</p>
+<ul>
+<li><strong>Crisis Commander</strong>: Overall response coordination and decision-making</li>
+<li><strong>Operations Lead</strong>: Business process continuity and resource management</li>
+<li><strong>Technology Lead</strong>: IT systems recovery and technical support</li>
+<li><strong>Communications Lead</strong>: Internal and external communication coordination</li>
+<li><strong>Legal/Compliance Lead</strong>: Regulatory compliance and legal requirements</li>
+</ul>
+<h4 id="team-activation">Team Activation</h4><p><strong>Activation Triggers</strong>:</p>
+<ul>
+<li>System outages exceeding 30 minutes</li>
+<li>Security incidents affecting client data</li>
+<li>Natural disasters impacting operations</li>
+<li>Key personnel unavailability</li>
+<li>Regulatory or legal emergencies</li>
+</ul>
+<p><strong>Activation Process</strong>:</p>
+<ol>
+<li><strong>Alert</strong>: Automated or manual team notification</li>
+<li><strong>Assembly</strong>: Team members report to designated locations</li>
+<li><strong>Assessment</strong>: Situation evaluation and impact analysis</li>
+<li><strong>Decision</strong>: Response strategy and resource allocation</li>
+<li><strong>Execution</strong>: Implementation of response procedures</li>
+</ol>
+<h3 id="communication-protocols">Communication Protocols</h3><h4 id="internal-communication">Internal Communication</h4><p><strong>Employee Notification</strong>:</p>
+<ul>
+<li>Emergency notification system (SMS, email, phone)</li>
+<li>Regular status updates and progress reports</li>
+<li>Work-from-home and remote work instructions</li>
+<li>Safety and security information</li>
+<li>Return-to-work procedures and timelines</li>
+</ul>
+<p><strong>Management Communication</strong>:</p>
+<ul>
+<li>Executive team briefings and updates</li>
+<li>Board of directors notification</li>
+<li>Investor and stakeholder communication</li>
+<li>Department head coordination</li>
+<li>Resource allocation and decision-making</li>
+</ul>
+<h4 id="external-communication">External Communication</h4><p><strong>Client Communication</strong>:</p>
+<ul>
+<li>Service disruption notifications</li>
+<li>Alternative service access information</li>
+<li>Expected restoration timelines</li>
+<li>Compensation and remedy procedures</li>
+<li>Customer support and assistance</li>
+</ul>
+<p><strong>Stakeholder Communication</strong>:</p>
+<ul>
+<li>Vendor and partner notifications</li>
+<li>Regulatory authority reporting</li>
+<li>Media and public relations</li>
+<li>Professional association updates</li>
+<li>Community and local government liaison</li>
+</ul>
+<h3 id="alternative-service-delivery">Alternative Service Delivery</h3><h4 id="remote-work-capabilities">Remote Work Capabilities</h4><p><strong>Work-from-Home Infrastructure</strong>:</p>
+<ul>
+<li>Secure VPN access for all employees</li>
+<li>Cloud-based collaboration tools</li>
+<li>Video conferencing and communication platforms</li>
+<li>Remote access to core business systems</li>
+<li>Security protocols and monitoring</li>
+</ul>
+<p><strong>Remote Work Procedures</strong>:</p>
+<ul>
+<li>Employee safety and wellness checks</li>
+<li>Performance monitoring and management</li>
+<li>Communication and collaboration protocols</li>
+<li>Technology support and assistance</li>
+<li>Security and compliance requirements</li>
+</ul>
+<h4 id="alternative-service-channels">Alternative Service Channels</h4><p><strong>Client Service Alternatives</strong>:</p>
+<ul>
+<li>Phone-based consultation services</li>
+<li>Email and secure messaging platforms</li>
+<li>Video conferencing for meetings</li>
+<li>Mobile app functionality</li>
+<li>Paper-based backup processes</li>
+</ul>
+<p><strong>Payment Processing Alternatives</strong>:</p>
+<ul>
+<li>Manual credit card processing</li>
+<li>Bank transfer and wire payments</li>
+<li>Check processing and handling</li>
+<li>Alternative payment providers</li>
+<li>Deferred payment arrangements</li>
+</ul>
+<h2 id="recovery-procedures">Recovery Procedures</h2><h3 id="immediate-response-0-4-hours-">Immediate Response (0-4 Hours)</h3><h4 id="emergency-assessment">Emergency Assessment</h4><p><strong>Situation Analysis</strong>:</p>
+<ul>
+<li>Incident scope and impact assessment</li>
+<li>Resource availability evaluation</li>
+<li>Timeline and recovery estimation</li>
+<li>Risk and safety evaluation</li>
+<li>Stakeholder notification requirements</li>
+</ul>
+<p><strong>Initial Response Actions</strong>:</p>
+<ul>
+<li>Employee safety verification and support</li>
+<li>Critical system status assessment</li>
+<li>Emergency communication activation</li>
+<li>Resource mobilization and deployment</li>
+<li>Alternative service activation</li>
+</ul>
+<h4 id="crisis-management-activation">Crisis Management Activation</h4><p><strong>Team Mobilization</strong>:</p>
+<ul>
+<li>Crisis management team activation</li>
+<li>Emergency operations center setup</li>
+<li>Communication system establishment</li>
+<li>Resource allocation and coordination</li>
+<li>Status monitoring and reporting</li>
+</ul>
+<h3 id="short-term-recovery-4-24-hours-">Short-term Recovery (4-24 Hours)</h3><h4 id="service-restoration">Service Restoration</h4><p><strong>Priority Service Recovery</strong>:</p>
+<ul>
+<li>Critical business function restoration</li>
+<li>Key system and application recovery</li>
+<li>Essential communication restoration</li>
+<li>Priority client service resumption</li>
+<li>Financial transaction processing</li>
+</ul>
+<p><strong>Temporary Solutions</strong>:</p>
+<ul>
+<li>Workaround implementation</li>
+<li>Alternative service delivery</li>
+<li>Manual process activation</li>
+<li>Third-party service utilization</li>
+<li>Interim staffing arrangements</li>
+</ul>
+<h4 id="stakeholder-management">Stakeholder Management</h4><p><strong>Communication and Updates</strong>:</p>
+<ul>
+<li>Regular status updates to all stakeholders</li>
+<li>Client service and support coordination</li>
+<li>Vendor and partner communication</li>
+<li>Regulatory notification and compliance</li>
+<li>Media and public relations management</li>
+</ul>
+<h3 id="long-term-recovery-24-hours-">Long-term Recovery (24+ Hours)</h3><h4 id="full-service-restoration">Full Service Restoration</h4><p><strong>Complete Recovery Process</strong>:</p>
+<ul>
+<li>All systems and services restoration</li>
+<li>Normal operations resumption</li>
+<li>Quality assurance and validation</li>
+<li>Performance monitoring and optimization</li>
+<li>Lessons learned and improvement</li>
+</ul>
+<p><strong>Post-Incident Activities</strong>:</p>
+<ul>
+<li>Comprehensive incident analysis</li>
+<li>Root cause identification</li>
+<li>Process improvement implementation</li>
+<li>Training and preparedness updates</li>
+<li>Documentation and procedure revision</li>
+</ul>
+<h2 id="testing-and-maintenance">Testing and Maintenance</h2><h3 id="regular-testing-program">Regular Testing Program</h3><h4 id="monthly-testing-activities">Monthly Testing Activities</h4><p><strong>System Testing</strong>:</p>
+<ul>
+<li>Backup and recovery testing</li>
+<li>Failover system validation</li>
+<li>Communication system testing</li>
+<li>Alternative service delivery testing</li>
+<li>Security and access control verification</li>
+</ul>
+<p><strong>Process Testing</strong>:</p>
+<ul>
+<li>Emergency response procedure walkthrough</li>
+<li>Communication protocol testing</li>
+<li>Team coordination and decision-making</li>
+<li>Resource allocation and mobilization</li>
+<li>Documentation and checklist verification</li>
+</ul>
+<h4 id="quarterly-testing-exercises">Quarterly Testing Exercises</h4><p><strong>Tabletop Exercises</strong>:</p>
+<ul>
+<li>Scenario-based response planning</li>
+<li>Team coordination and communication</li>
+<li>Decision-making and problem-solving</li>
+<li>Resource allocation and management</li>
+<li>Stakeholder communication practice</li>
+</ul>
+<p><strong>Simulation Exercises</strong>:</p>
+<ul>
+<li>Partial system shutdown simulation</li>
+<li>Communication system failure testing</li>
+<li>Remote work capability validation</li>
+<li>Alternative service delivery testing</li>
+<li>Recovery procedure implementation</li>
+</ul>
+<h4 id="annual-testing-program">Annual Testing Program</h4><p><strong>Full-Scale Disaster Recovery Test</strong>:</p>
+<ul>
+<li>Complete system failure simulation</li>
+<li>Full recovery procedure implementation</li>
+<li>All team member participation</li>
+<li>Stakeholder communication testing</li>
+<li>Performance and timeline validation</li>
+</ul>
+<p><strong>Business Continuity Audit</strong>:</p>
+<ul>
+<li>Comprehensive plan review and assessment</li>
+<li>Procedure effectiveness evaluation</li>
+<li>Resource adequacy and availability</li>
+<li>Training and preparedness assessment</li>
+<li>Compliance and regulatory requirement verification</li>
+</ul>
+<h3 id="plan-maintenance-and-updates">Plan Maintenance and Updates</h3><h4 id="regular-review-process">Regular Review Process</h4><p><strong>Monthly Reviews</strong>:</p>
+<ul>
+<li>Contact information updates</li>
+<li>System configuration changes</li>
+<li>Process improvement identification</li>
+<li>Training need assessment</li>
+<li>Resource availability verification</li>
+</ul>
+<p><strong>Quarterly Updates</strong>:</p>
+<ul>
+<li>Plan content review and revision</li>
+<li>Technology and system updates</li>
+<li>Vendor and partner information updates</li>
+<li>Regulatory requirement changes</li>
+<li>Risk assessment and management updates</li>
+</ul>
+<p><strong>Annual Comprehensive Review</strong>:</p>
+<ul>
+<li>Complete plan assessment and overhaul</li>
+<li>Stakeholder feedback integration</li>
+<li>Industry best practice adoption</li>
+<li>Regulatory compliance verification</li>
+<li>Strategic alignment and improvement</li>
+</ul>
+<h2 id="training-and-awareness">Training and Awareness</h2><h3 id="staff-training-programs">Staff Training Programs</h3><h4 id="general-awareness-training">General Awareness Training</h4><p><strong>All Employee Training</strong>:</p>
+<ul>
+<li>Business continuity awareness and importance</li>
+<li>Individual roles and responsibilities</li>
+<li>Emergency response procedures</li>
+<li>Communication protocols and systems</li>
+<li>Safety and security procedures</li>
+</ul>
+<p><strong>Annual Training Requirements</strong>:</p>
+<ul>
+<li>Emergency response procedure training</li>
+<li>Communication system usage</li>
+<li>Remote work capability and security</li>
+<li>Alternative service delivery methods</li>
+<li>Personal preparedness and safety</li>
+</ul>
+<h4 id="specialized-training">Specialized Training</h4><p><strong>Crisis Management Team Training</strong>:</p>
+<ul>
+<li>Advanced crisis management techniques</li>
+<li>Decision-making under pressure</li>
+<li>Leadership and team coordination</li>
+<li>Communication and stakeholder management</li>
+<li>Regulatory compliance and legal requirements</li>
+</ul>
+<p><strong>Technical Team Training</strong>:</p>
+<ul>
+<li>System recovery and restoration procedures</li>
+<li>Database backup and recovery</li>
+<li>Network and infrastructure management</li>
+<li>Security incident response</li>
+<li>Vendor and supplier coordination</li>
+</ul>
+<h3 id="training-delivery-methods">Training Delivery Methods</h3><h4 id="formal-training-sessions">Formal Training Sessions</h4><p><strong>Classroom Training</strong>:</p>
+<ul>
+<li>Interactive workshops and seminars</li>
+<li>Scenario-based learning exercises</li>
+<li>Group discussion and collaboration</li>
+<li>Expert-led instruction and guidance</li>
+<li>Hands-on practice and application</li>
+</ul>
+<p><strong>Online Training Modules</strong>:</p>
+<ul>
+<li>Self-paced learning programs</li>
+<li>Interactive multimedia content</li>
+<li>Assessment and certification</li>
+<li>Progress tracking and reporting</li>
+<li>Mobile and remote access</li>
+</ul>
+<h4 id="practical-training-exercises">Practical Training Exercises</h4><p><strong>Drill and Simulation Exercises</strong>:</p>
+<ul>
+<li>Emergency response drills</li>
+<li>System recovery simulations</li>
+<li>Communication protocol practice</li>
+<li>Team coordination exercises</li>
+<li>Real-time decision-making scenarios</li>
+</ul>
+<p><strong>Cross-Training Programs</strong>:</p>
+<ul>
+<li>Multi-skilled capability development</li>
+<li>Backup role preparation</li>
+<li>Process understanding and improvement</li>
+<li>Team flexibility and adaptability</li>
+<li>Knowledge sharing and transfer</li>
+</ul>
+<h2 id="vendor-and-partner-management">Vendor and Partner Management</h2><h3 id="vendor-continuity-planning">Vendor Continuity Planning</h3><h4 id="critical-vendor-assessment">Critical Vendor Assessment</h4><p><strong>Vendor Classification</strong>:</p>
+<ul>
+<li>Critical vendors (essential for operations)</li>
+<li>Important vendors (significant impact)</li>
+<li>Standard vendors (limited impact)</li>
+<li>Non-essential vendors (minimal impact)</li>
+</ul>
+<p><strong>Vendor Evaluation Criteria</strong>:</p>
+<ul>
+<li>Service reliability and availability</li>
+<li>Financial stability and viability</li>
+<li>Geographic diversification</li>
+<li>Business continuity capabilities</li>
+<li>Recovery time and service levels</li>
+</ul>
+<h4 id="vendor-agreements-and-contracts">Vendor Agreements and Contracts</h4><p><strong>Service Level Agreements (SLAs)</strong>:</p>
+<ul>
+<li>Uptime and availability requirements</li>
+<li>Response time and resolution standards</li>
+<li>Business continuity and disaster recovery</li>
+<li>Communication and notification protocols</li>
+<li>Compensation and remedy provisions</li>
+</ul>
+<p><strong>Business Continuity Clauses</strong>:</p>
+<ul>
+<li>Vendor continuity plan requirements</li>
+<li>Alternative service delivery capabilities</li>
+<li>Emergency contact and escalation procedures</li>
+<li>Resource allocation and priority handling</li>
+<li>Regular testing and validation requirements</li>
+</ul>
+<h3 id="partner-coordination">Partner Coordination</h3><h4 id="partnership-agreements">Partnership Agreements</h4><p><strong>Mutual Support Arrangements</strong>:</p>
+<ul>
+<li>Resource sharing and assistance</li>
+<li>Alternative service delivery</li>
+<li>Communication and coordination</li>
+<li>Joint response and recovery</li>
+<li>Information sharing and collaboration</li>
+</ul>
+<p><strong>Professional Service Partnerships</strong>:</p>
+<ul>
+<li>Legal and compliance support</li>
+<li>Technical expertise and assistance</li>
+<li>Communication and public relations</li>
+<li>Financial and insurance services</li>
+<li>Emergency response and coordination</li>
+</ul>
+<h2 id="compliance-and-regulatory-requirements">Compliance and Regulatory Requirements</h2><h3 id="regulatory-compliance">Regulatory Compliance</h3><p><strong>Financial Services Regulations</strong>:</p>
+<ul>
+<li>Payment processing continuity requirements</li>
+<li>Financial record protection and access</li>
+<li>Regulatory reporting and notification</li>
+<li>Audit and examination continuity</li>
+<li>Consumer protection and communication</li>
+</ul>
+<p><strong>Privacy and Data Protection</strong>:</p>
+<ul>
+<li>Personal information protection during disruptions</li>
+<li>Data security and integrity maintenance</li>
+<li>Breach notification and reporting</li>
+<li>Individual rights and access preservation</li>
+<li>Compliance monitoring and documentation</li>
+</ul>
+<h3 id="professional-standards">Professional Standards</h3><p><strong>Legal Services Standards</strong>:</p>
+<ul>
+<li>Client service continuity requirements</li>
+<li>Professional competence and diligence</li>
+<li>Confidentiality and privilege protection</li>
+<li>Professional conduct and ethics</li>
+<li>Regulatory compliance and reporting</li>
+</ul>
+<p><strong>Industry Best Practices</strong>:</p>
+<ul>
+<li>Business continuity standard compliance</li>
+<li>Risk management and mitigation</li>
+<li>Quality assurance and improvement</li>
+<li>Stakeholder communication and engagement</li>
+<li>Continuous improvement and optimization</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Chief Operating Officer</strong>: <a href="mailto:operations@judge.ca">operations@judge.ca</a><br><strong>Emergency Response Team</strong>: <a href="mailto:emergency@judge.ca">emergency@judge.ca</a><br><strong>Crisis Management</strong>: <a href="mailto:crisis@judge.ca">crisis@judge.ca</a><br><strong>Business Continuity</strong>: <a href="mailto:continuity@judge.ca">continuity@judge.ca</a>  </p>
+<p><strong>Emergency Operations</strong>: 1-514-555-0123 ext. 911<br><strong>Crisis Management</strong>: 1-514-555-0123 ext. 999<br><strong>24/7 Emergency Line</strong>: 1-514-555-0123 ext. 000  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Confidential</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

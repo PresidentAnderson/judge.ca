@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-002: Attorney Verification Process - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-002<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-002: Attorney Verification Process</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Legal Compliance</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Director of Legal Affairs</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-002-attorney-verification-process">SOP-002: Attorney Verification Process</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Legal Compliance<br><strong>Owner:</strong> Director of Legal Affairs  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes the comprehensive verification process for attorneys joining the Judge.ca platform, ensuring all legal professionals meet our standards for licensing, ethics, and competence.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All attorney applications to the platform</li>
+<li>Legal compliance staff</li>
+<li>Platform administrators</li>
+<li>Customer service representatives handling attorney inquiries</li>
+</ul>
+<h2 id="legal-framework">Legal Framework</h2><p>This verification process complies with:</p>
+<ul>
+<li>Law Society of Quebec regulations</li>
+<li>Professional liability requirements</li>
+<li>Quebec professional services standards</li>
+<li>Judge.ca platform policies</li>
+</ul>
+<h2 id="verification-requirements">Verification Requirements</h2><h3 id="primary-documentation-required">Primary Documentation Required</h3><ol>
+<li><p><strong>Quebec Bar Membership Certificate</strong></p>
+<ul>
+<li>Current and valid membership</li>
+<li>No suspensions or restrictions</li>
+<li>Good standing verification</li>
+</ul>
+</li>
+<li><p><strong>Professional Liability Insurance</strong></p>
+<ul>
+<li>Minimum $1,000,000 coverage</li>
+<li>Current policy with valid dates</li>
+<li>Named insured verification</li>
+</ul>
+</li>
+<li><p><strong>Government-Issued Identification</strong></p>
+<ul>
+<li>Driver&#39;s license or passport</li>
+<li>Photo verification</li>
+<li>Address confirmation</li>
+</ul>
+</li>
+<li><p><strong>Professional References</strong></p>
+<ul>
+<li>Minimum 2 professional references</li>
+<li>Contact verification required</li>
+<li>Reference check completion</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-by-step-verification-process">Step-by-Step Verification Process</h2><h3 id="phase-1-initial-application-review-0-24-hours-">Phase 1: Initial Application Review (0-24 hours)</h3><h4 id="step-1-application-completeness-check">Step 1: Application Completeness Check</h4><ol>
+<li>Review submitted application form</li>
+<li>Verify all required fields completed</li>
+<li>Check for inconsistencies or red flags</li>
+<li>Flag incomplete applications</li>
+</ol>
+<p><strong>Completion Criteria:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Personal information complete</li>
+<li><input disabled="" type="checkbox"> Professional credentials submitted</li>
+<li><input disabled="" type="checkbox"> Contact information verified</li>
+<li><input disabled="" type="checkbox"> Practice area selections made</li>
+<li><input disabled="" type="checkbox"> Terms of service accepted</li>
+</ul>
+<h4 id="step-2-document-upload-verification">Step 2: Document Upload Verification</h4><ol>
+<li>Confirm all required documents uploaded</li>
+<li>Check file formats and readability</li>
+<li>Verify document authenticity markers</li>
+<li>Flag suspicious or altered documents</li>
+</ol>
+<p><strong>Required Documents Checklist:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Bar membership certificate</li>
+<li><input disabled="" type="checkbox"> Professional liability insurance policy</li>
+<li><input disabled="" type="checkbox"> Government-issued photo ID</li>
+<li><input disabled="" type="checkbox"> Professional headshot photo</li>
+<li><input disabled="" type="checkbox"> Practice area certifications (if applicable)</li>
+</ul>
+<h3 id="phase-2-credential-verification-1-3-business-days-">Phase 2: Credential Verification (1-3 business days)</h3><h4 id="step-3-bar-membership-verification">Step 3: Bar Membership Verification</h4><ol>
+<li>Contact Law Society of Quebec directly</li>
+<li>Verify current membership status</li>
+<li>Check for disciplinary actions</li>
+<li>Confirm practice areas and specializations</li>
+</ol>
+<p><strong>Verification Database Sources:</strong></p>
+<ul>
+<li>Law Society of Quebec member directory</li>
+<li>Disciplinary action records</li>
+<li>Specialty certification records</li>
+<li>Professional development requirements</li>
+</ul>
+<h4 id="step-4-insurance-verification">Step 4: Insurance Verification</h4><ol>
+<li>Contact insurance provider directly</li>
+<li>Verify policy validity and coverage amounts</li>
+<li>Confirm named insured status</li>
+<li>Check policy expiration dates</li>
+</ol>
+<p><strong>Insurance Requirements:</strong></p>
+<ul>
+<li>Professional liability: $1,000,000 minimum</li>
+<li>General liability: $500,000 minimum</li>
+<li>Valid for duration of platform participation</li>
+<li>Quebec-based or recognized insurer</li>
+</ul>
+<h4 id="step-5-reference-verification">Step 5: Reference Verification</h4><ol>
+<li>Contact provided professional references</li>
+<li>Verify relationship and duration</li>
+<li>Assess professional competence</li>
+<li>Document reference feedback</li>
+</ol>
+<p><strong>Reference Verification Questions:</strong></p>
+<ul>
+<li>Professional relationship duration</li>
+<li>Quality of legal work</li>
+<li>Client communication skills</li>
+<li>Ethical standards adherence</li>
+<li>Overall recommendation level</li>
+</ul>
+<h3 id="phase-3-background-and-compliance-check-2-5-business-days-">Phase 3: Background and Compliance Check (2-5 business days)</h3><h4 id="step-6-disciplinary-action-search">Step 6: Disciplinary Action Search</h4><ol>
+<li>Search Law Society disciplinary records</li>
+<li>Check federal court records</li>
+<li>Review provincial court databases</li>
+<li>Search civil litigation involvement</li>
+</ol>
+<p><strong>Search Criteria:</strong></p>
+<ul>
+<li>Professional misconduct</li>
+<li>Client complaints</li>
+<li>Financial irregularities</li>
+<li>Criminal convictions</li>
+<li>Civil malpractice claims</li>
+</ul>
+<h4 id="step-7-financial-standing-verification">Step 7: Financial Standing Verification</h4><ol>
+<li>Verify business registration status</li>
+<li>Check for bankruptcy or insolvency</li>
+<li>Review credit standing (with consent)</li>
+<li>Assess financial stability</li>
+</ol>
+<p><strong>Financial Criteria:</strong></p>
+<ul>
+<li>No recent bankruptcy</li>
+<li>Current business registrations</li>
+<li>Professional liability insurance current</li>
+<li>No outstanding professional fees</li>
+</ul>
+<h3 id="phase-4-final-approval-process-1-2-business-days-">Phase 4: Final Approval Process (1-2 business days)</h3><h4 id="step-8-compliance-review">Step 8: Compliance Review</h4><ol>
+<li>Compile verification results</li>
+<li>Review against platform standards</li>
+<li>Identify any concerns or red flags</li>
+<li>Make approval recommendation</li>
+</ol>
+<p><strong>Approval Criteria:</strong></p>
+<ul>
+<li>Valid Quebec bar membership</li>
+<li>Adequate insurance coverage</li>
+<li>Positive reference checks</li>
+<li>Clean disciplinary record</li>
+<li>Financial stability confirmed</li>
+</ul>
+<h4 id="step-9-platform-setup-and-notification">Step 9: Platform Setup and Notification</h4><ol>
+<li>Create attorney platform account</li>
+<li>Configure profile settings</li>
+<li>Send welcome and onboarding materials</li>
+<li>Schedule platform training session</li>
+</ol>
+<p><strong>Setup Tasks:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Account creation with verified credentials</li>
+<li><input disabled="" type="checkbox"> Profile photo and biography upload</li>
+<li><input disabled="" type="checkbox"> Practice area configuration</li>
+<li><input disabled="" type="checkbox"> Availability calendar setup</li>
+<li><input disabled="" type="checkbox"> Payment method configuration</li>
+</ul>
+<h2 id="quality-assurance">Quality Assurance</h2><h3 id="verification-standards">Verification Standards</h3><ul>
+<li>100% documentation requirement compliance</li>
+<li>Zero tolerance for falsified credentials</li>
+<li>Minimum 2 professional references required</li>
+<li>Full insurance coverage verification mandatory</li>
+</ul>
+<h3 id="review-process">Review Process</h3><ul>
+<li>Senior legal staff review all applications</li>
+<li>Random audit of 10% of approved attorneys</li>
+<li>Annual re-verification of all active attorneys</li>
+<li>Immediate investigation of any complaints</li>
+</ul>
+<h2 id="rejection-criteria">Rejection Criteria</h2><h3 id="automatic-rejection-reasons">Automatic Rejection Reasons</h3><ol>
+<li>Invalid or expired bar membership</li>
+<li>Insufficient insurance coverage</li>
+<li>Disciplinary action within last 5 years</li>
+<li>Falsified documentation</li>
+<li>Failed reference checks</li>
+<li>Criminal convictions related to legal practice</li>
+</ol>
+<h3 id="appeal-process">Appeal Process</h3><ol>
+<li>Written appeal submission required</li>
+<li>Additional documentation may be requested</li>
+<li>Independent review by legal committee</li>
+<li>Final decision within 30 days</li>
+</ol>
+<h2 id="ongoing-monitoring">Ongoing Monitoring</h2><h3 id="annual-re-verification">Annual Re-verification</h3><ol>
+<li>Confirm continued bar membership</li>
+<li>Verify insurance policy renewal</li>
+<li>Check for new disciplinary actions</li>
+<li>Update professional credentials</li>
+</ol>
+<h3 id="continuous-monitoring">Continuous Monitoring</h3><ul>
+<li>Monthly bar association updates review</li>
+<li>Quarterly insurance status checks</li>
+<li>Annual professional development verification</li>
+<li>Immediate investigation of client complaints</li>
+</ul>
+<h2 id="documentation-requirements">Documentation Requirements</h2><h3 id="verification-file-contents">Verification File Contents</h3><ul>
+<li>Complete application form</li>
+<li>All verification documents</li>
+<li>Reference check records</li>
+<li>Approval/rejection documentation</li>
+<li>Ongoing monitoring records</li>
+</ul>
+<h3 id="record-retention">Record Retention</h3><ul>
+<li>Approved attorneys: Duration of participation + 7 years</li>
+<li>Rejected applications: 5 years</li>
+<li>Disciplinary actions: Permanent</li>
+<li>Insurance records: 10 years</li>
+</ul>
+<h2 id="emergency-procedures">Emergency Procedures</h2><h3 id="immediate-suspension-criteria">Immediate Suspension Criteria</h3><ol>
+<li>Bar membership suspension or revocation</li>
+<li>Insurance policy cancellation</li>
+<li>Criminal charges filed</li>
+<li>Serious client complaints</li>
+<li>Platform policy violations</li>
+</ol>
+<h3 id="suspension-process">Suspension Process</h3><ol>
+<li>Immediate account deactivation</li>
+<li>Client notification and case transfer</li>
+<li>Investigation initiation</li>
+<li>Due process procedures</li>
+<li>Reinstatement or permanent removal</li>
+</ol>
+<h2 id="training-and-support">Training and Support</h2><h3 id="staff-training-requirements">Staff Training Requirements</h3><ul>
+<li>Legal compliance certification</li>
+<li>Verification procedure training</li>
+<li>Professional ethics education</li>
+<li>Platform technology training</li>
+</ul>
+<h3 id="attorney-support">Attorney Support</h3><ul>
+<li>Platform onboarding assistance</li>
+<li>Technical support availability</li>
+<li>Professional development resources</li>
+<li>Client management best practices</li>
+</ul>
+<h2 id="compliance-reporting">Compliance Reporting</h2><h3 id="monthly-reports">Monthly Reports</h3><ul>
+<li>New attorney applications processed</li>
+<li>Approval/rejection rates</li>
+<li>Verification timeline performance</li>
+<li>Quality assurance findings</li>
+</ul>
+<h3 id="annual-audit">Annual Audit</h3><ul>
+<li>Complete process review</li>
+<li>Regulatory compliance assessment</li>
+<li>Best practice evaluation</li>
+<li>Process improvement recommendations</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Verification Team Lead:</strong> Director of Legal Affairs<br><strong>Email:</strong> <a href="mailto:verification@judge.ca">verification@judge.ca</a><br><strong>Phone:</strong> 1-514-555-0123 ext. 301  </p>
+<p><strong>Law Society of Quebec:</strong> 1-844-954-3418<br><strong>Emergency Contact:</strong> <a href="mailto:emergency@judge.ca">emergency@judge.ca</a>  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Confidential</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

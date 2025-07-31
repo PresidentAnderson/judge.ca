@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-012: Legal Compliance and Regulatory Management - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-012<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-012: Legal Compliance and Regulatory Management</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Legal & Compliance</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">General Counsel</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-012-legal-compliance-and-regulatory-management">SOP-012: Legal Compliance and Regulatory Management</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Legal &amp; Compliance<br><strong>Owner:</strong> General Counsel  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive legal compliance and regulatory management protocols for Judge.ca, ensuring adherence to all applicable laws, regulations, and professional standards while maintaining operational excellence and business integrity.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All legal and regulatory compliance requirements</li>
+<li>Professional licensing and certification management</li>
+<li>Data privacy and protection compliance</li>
+<li>Consumer protection and advertising regulations</li>
+<li>Corporate governance and reporting requirements</li>
+<li>Risk management and mitigation strategies</li>
+<li>Audit and compliance monitoring procedures</li>
+</ul>
+<h2 id="legal-and-regulatory-framework">Legal and Regulatory Framework</h2><h3 id="applicable-laws-and-regulations">Applicable Laws and Regulations</h3><h4 id="federal-legislation">Federal Legislation</h4><p><strong>Personal Information Protection and Electronic Documents Act (PIPEDA)</strong>:</p>
+<ul>
+<li>Personal information collection, use, and disclosure</li>
+<li>Consent requirements and management</li>
+<li>Individual rights and access procedures</li>
+<li>Security safeguards and breach notification</li>
+<li>Compliance monitoring and reporting</li>
+</ul>
+<p><strong>Competition Act</strong>:</p>
+<ul>
+<li>Anti-competitive practices prevention</li>
+<li>Misleading advertising and representations</li>
+<li>Market dominance and abuse prevention</li>
+<li>Merger and acquisition regulations</li>
+<li>Compliance with competition policies</li>
+</ul>
+<p><strong>Income Tax Act</strong>:</p>
+<ul>
+<li>Corporate tax compliance and reporting</li>
+<li>GST/HST registration and remittance</li>
+<li>Employee tax obligations</li>
+<li>International tax considerations</li>
+<li>Record keeping and documentation</li>
+</ul>
+<h4 id="provincial-legislation-quebec-">Provincial Legislation (Quebec)</h4><p><strong>Act Respecting the Protection of Personal Information in the Private Sector</strong>:</p>
+<ul>
+<li>Quebec-specific privacy requirements</li>
+<li>Enhanced individual rights and protections</li>
+<li>Data localization and storage requirements</li>
+<li>Consent and notification procedures</li>
+<li>Compliance monitoring and enforcement</li>
+</ul>
+<p><strong>Consumer Protection Act</strong>:</p>
+<ul>
+<li>Consumer rights and protections</li>
+<li>Advertising and marketing regulations</li>
+<li>Contract terms and conditions</li>
+<li>Dispute resolution procedures</li>
+<li>Merchant obligations and responsibilities</li>
+</ul>
+<p><strong>Professional Code (Quebec)</strong>:</p>
+<ul>
+<li>Professional conduct standards</li>
+<li>Licensing and certification requirements</li>
+<li>Continuing education obligations</li>
+<li>Disciplinary procedures and sanctions</li>
+<li>Professional advertising regulations</li>
+</ul>
+<h3 id="professional-standards-compliance">Professional Standards Compliance</h3><h4 id="law-society-of-quebec-barreau-du-qu-bec-">Law Society of Quebec (Barreau du Québec)</h4><p><strong>Attorney Licensing Requirements</strong>:</p>
+<ul>
+<li>Current license verification and monitoring</li>
+<li>Professional liability insurance requirements</li>
+<li>Continuing legal education (CLE) compliance</li>
+<li>Professional conduct and ethics standards</li>
+<li>Disciplinary history and status monitoring</li>
+</ul>
+<p><strong>Professional Conduct Rules</strong>:</p>
+<ul>
+<li>Client confidentiality and privilege protection</li>
+<li>Conflict of interest identification and management</li>
+<li>Professional competence and diligence</li>
+<li>Communication and representation standards</li>
+<li>Fee arrangement and billing practices</li>
+</ul>
+<h4 id="professional-referral-service-standards">Professional Referral Service Standards</h4><p><strong>Referral Service Regulations</strong>:</p>
+<ul>
+<li>Referral criteria and qualification standards</li>
+<li>Quality assurance and monitoring requirements</li>
+<li>Client protection and safety measures</li>
+<li>Advertising and marketing compliance</li>
+<li>Record keeping and reporting obligations</li>
+</ul>
+<h2 id="compliance-management-system">Compliance Management System</h2><h3 id="compliance-governance-structure">Compliance Governance Structure</h3><h4 id="compliance-committee">Compliance Committee</h4><p><strong>Committee Composition</strong>:</p>
+<ul>
+<li>General Counsel (Chair)</li>
+<li>Chief Executive Officer</li>
+<li>Chief Operating Officer</li>
+<li>Chief Technology Officer</li>
+<li>External Legal Advisor (Quebec Bar member)</li>
+</ul>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Compliance policy development and oversight</li>
+<li>Risk assessment and mitigation planning</li>
+<li>Regulatory change monitoring and implementation</li>
+<li>Compliance training and awareness programs</li>
+<li>Incident response and investigation coordination</li>
+</ul>
+<h4 id="compliance-officer-roles">Compliance Officer Roles</h4><p><strong>General Counsel Responsibilities</strong>:</p>
+<ul>
+<li>Overall compliance program oversight</li>
+<li>Legal risk assessment and management</li>
+<li>Regulatory relationship management</li>
+<li>Policy development and implementation</li>
+<li>Training and education coordination</li>
+</ul>
+<p><strong>Department Compliance Coordinators</strong>:</p>
+<ul>
+<li>Department-specific compliance monitoring</li>
+<li>Policy implementation and enforcement</li>
+<li>Training delivery and assessment</li>
+<li>Incident reporting and investigation</li>
+<li>Continuous improvement initiatives</li>
+</ul>
+<h3 id="compliance-monitoring-and-reporting">Compliance Monitoring and Reporting</h3><h4 id="regular-compliance-assessments">Regular Compliance Assessments</h4><p><strong>Monthly Compliance Reviews</strong>:</p>
+<ul>
+<li>Policy adherence monitoring</li>
+<li>Regulatory update assessment</li>
+<li>Incident investigation and resolution</li>
+<li>Training needs identification</li>
+<li>Performance metric evaluation</li>
+</ul>
+<p><strong>Quarterly Compliance Audits</strong>:</p>
+<ul>
+<li>Comprehensive compliance assessment</li>
+<li>Risk evaluation and mitigation review</li>
+<li>Policy effectiveness analysis</li>
+<li>Training program evaluation</li>
+<li>Stakeholder communication and reporting</li>
+</ul>
+<p><strong>Annual Compliance Evaluation</strong>:</p>
+<ul>
+<li>Complete compliance program review</li>
+<li>Regulatory landscape analysis</li>
+<li>Risk management strategy assessment</li>
+<li>Policy and procedure updates</li>
+<li>Strategic planning and improvement</li>
+</ul>
+<h4 id="compliance-reporting-framework">Compliance Reporting Framework</h4><p><strong>Internal Reporting</strong>:</p>
+<ul>
+<li>Monthly compliance dashboards</li>
+<li>Quarterly executive reports</li>
+<li>Annual board presentations</li>
+<li>Incident investigation reports</li>
+<li>Training completion tracking</li>
+</ul>
+<p><strong>External Reporting</strong>:</p>
+<ul>
+<li>Regulatory filing requirements</li>
+<li>Professional body notifications</li>
+<li>Breach notification procedures</li>
+<li>Audit and inspection responses</li>
+<li>Stakeholder communication protocols</li>
+</ul>
+<h2 id="data-privacy-and-protection-compliance">Data Privacy and Protection Compliance</h2><h3 id="privacy-program-management">Privacy Program Management</h3><h4 id="privacy-policy-framework">Privacy Policy Framework</h4><p><strong>Privacy Policy Components</strong>:</p>
+<ul>
+<li>Personal information collection practices</li>
+<li>Use and disclosure limitations</li>
+<li>Consent management procedures</li>
+<li>Individual rights and access processes</li>
+<li>Security safeguards and protection measures</li>
+</ul>
+<p><strong>Policy Implementation</strong>:</p>
+<ul>
+<li>Staff training and awareness programs</li>
+<li>Process documentation and procedures</li>
+<li>Technology and security controls</li>
+<li>Monitoring and compliance verification</li>
+<li>Continuous improvement and updates</li>
+</ul>
+<h4 id="consent-management">Consent Management</h4><p><strong>Consent Requirements</strong>:</p>
+<ul>
+<li>Clear and understandable consent language</li>
+<li>Specific purpose identification</li>
+<li>Voluntary and informed consent verification</li>
+<li>Ongoing consent management and renewal</li>
+<li>Withdrawal procedures and processing</li>
+</ul>
+<p><strong>Consent Documentation</strong>:</p>
+<ul>
+<li>Consent form design and content</li>
+<li>Electronic consent capture and storage</li>
+<li>Consent verification and audit trails</li>
+<li>Consent renewal and update procedures</li>
+<li>Consent withdrawal processing and documentation</li>
+</ul>
+<h3 id="individual-rights-management">Individual Rights Management</h3><h4 id="access-rights-processing">Access Rights Processing</h4><p><strong>Access Request Procedures</strong>:</p>
+<ul>
+<li>Request receipt and acknowledgment</li>
+<li>Identity verification and authentication</li>
+<li>Information compilation and review</li>
+<li>Response preparation and delivery</li>
+<li>Follow-up and satisfaction monitoring</li>
+</ul>
+<p><strong>Information Disclosure Standards</strong>:</p>
+<ul>
+<li>Complete and accurate information provision</li>
+<li>Understandable format and presentation</li>
+<li>Timely response within regulatory timeframes</li>
+<li>Cost-effective processing and delivery</li>
+<li>Privacy protection during disclosure</li>
+</ul>
+<h4 id="correction-and-deletion-rights">Correction and Deletion Rights</h4><p><strong>Information Correction Procedures</strong>:</p>
+<ul>
+<li>Correction request assessment and validation</li>
+<li>Information accuracy verification</li>
+<li>Correction implementation and documentation</li>
+<li>Affected party notification and communication</li>
+<li>Quality assurance and verification</li>
+</ul>
+<p><strong>Deletion Request Processing</strong>:</p>
+<ul>
+<li>Deletion request evaluation and authorization</li>
+<li>Legal and business retention requirements</li>
+<li>Deletion implementation and verification</li>
+<li>Documentation and audit trail maintenance</li>
+<li>Stakeholder notification and communication</li>
+</ul>
+<h3 id="breach-management-and-notification">Breach Management and Notification</h3><h4 id="breach-detection-and-response">Breach Detection and Response</h4><p><strong>Breach Identification</strong>:</p>
+<ul>
+<li>Automated monitoring and alerting systems</li>
+<li>Staff reporting and escalation procedures</li>
+<li>Third-party notification and assessment</li>
+<li>Impact evaluation and classification</li>
+<li>Immediate containment and mitigation</li>
+</ul>
+<p><strong>Response Procedures</strong>:</p>
+<ul>
+<li>Breach assessment and investigation</li>
+<li>Containment and remediation measures</li>
+<li>Stakeholder notification and communication</li>
+<li>Regulatory reporting and compliance</li>
+<li>Recovery and prevention planning</li>
+</ul>
+<h4 id="notification-requirements">Notification Requirements</h4><p><strong>Regulatory Notifications</strong>:</p>
+<ul>
+<li>Privacy Commissioner notification timelines</li>
+<li>Required information and documentation</li>
+<li>Investigation cooperation and assistance</li>
+<li>Remediation reporting and updates</li>
+<li>Compliance monitoring and follow-up</li>
+</ul>
+<p><strong>Individual Notifications</strong>:</p>
+<ul>
+<li>Affected individual identification</li>
+<li>Notification content and format requirements</li>
+<li>Delivery methods and verification</li>
+<li>Support and assistance provision</li>
+<li>Follow-up and satisfaction monitoring</li>
+</ul>
+<h2 id="consumer-protection-compliance">Consumer Protection Compliance</h2><h3 id="advertising-and-marketing-compliance">Advertising and Marketing Compliance</h3><h4 id="advertising-standards">Advertising Standards</h4><p><strong>Truthful Advertising Requirements</strong>:</p>
+<ul>
+<li>Accurate and verifiable claims</li>
+<li>Clear and understandable language</li>
+<li>Appropriate substantiation and evidence</li>
+<li>Compliance with industry standards</li>
+<li>Regular review and verification</li>
+</ul>
+<p><strong>Disclosure Requirements</strong>:</p>
+<ul>
+<li>Material term and condition disclosure</li>
+<li>Fee structure and pricing transparency</li>
+<li>Service limitation and availability</li>
+<li>Privacy policy and data use notification</li>
+<li>Terms of service and user agreements</li>
+</ul>
+<h4 id="marketing-practice-compliance">Marketing Practice Compliance</h4><p><strong>Consent-Based Marketing</strong>:</p>
+<ul>
+<li>Opt-in consent for marketing communications</li>
+<li>Clear unsubscribe procedures and processing</li>
+<li>Preference management and customization</li>
+<li>Compliance with anti-spam legislation</li>
+<li>Regular list maintenance and verification</li>
+</ul>
+<p><strong>Content Standards</strong>:</p>
+<ul>
+<li>Professional and appropriate messaging</li>
+<li>Cultural sensitivity and inclusivity</li>
+<li>Legal accuracy and compliance</li>
+<li>Brand consistency and quality</li>
+<li>Regular review and approval processes</li>
+</ul>
+<h3 id="contract-and-service-terms">Contract and Service Terms</h3><h4 id="terms-of-service-development">Terms of Service Development</h4><p><strong>Contract Terms Requirements</strong>:</p>
+<ul>
+<li>Clear and understandable language</li>
+<li>Comprehensive service descriptions</li>
+<li>Appropriate limitation of liability</li>
+<li>Dispute resolution procedures</li>
+<li>Termination and cancellation rights</li>
+</ul>
+<p><strong>Regulatory Compliance</strong>:</p>
+<ul>
+<li>Consumer protection law adherence</li>
+<li>Unfair contract term avoidance</li>
+<li>Accessibility and language requirements</li>
+<li>Regular legal review and updates</li>
+<li>User notification of changes</li>
+</ul>
+<h4 id="service-level-agreements">Service Level Agreements</h4><p><strong>Performance Standards</strong>:</p>
+<ul>
+<li>Clear service level definitions</li>
+<li>Measurable performance metrics</li>
+<li>Remediation and compensation procedures</li>
+<li>Regular performance monitoring</li>
+<li>Continuous improvement and optimization</li>
+</ul>
+<h2 id="corporate-governance-and-reporting">Corporate Governance and Reporting</h2><h3 id="corporate-compliance-management">Corporate Compliance Management</h3><h4 id="corporate-structure-and-governance">Corporate Structure and Governance</h4><p><strong>Board of Directors Oversight</strong>:</p>
+<ul>
+<li>Compliance committee establishment</li>
+<li>Regular compliance reporting</li>
+<li>Policy approval and oversight</li>
+<li>Risk management and mitigation</li>
+<li>Strategic planning and direction</li>
+</ul>
+<p><strong>Executive Management Responsibilities</strong>:</p>
+<ul>
+<li>Compliance program implementation</li>
+<li>Resource allocation and support</li>
+<li>Performance monitoring and evaluation</li>
+<li>Culture and training development</li>
+<li>Stakeholder communication and engagement</li>
+</ul>
+<h4 id="record-keeping-and-documentation">Record Keeping and Documentation</h4><p><strong>Corporate Records Management</strong>:</p>
+<ul>
+<li>Corporate registration and licensing</li>
+<li>Board meeting minutes and resolutions</li>
+<li>Financial records and reporting</li>
+<li>Compliance documentation and evidence</li>
+<li>Audit and inspection preparation</li>
+</ul>
+<p><strong>Retention and Disposal</strong>:</p>
+<ul>
+<li>Legal retention requirements</li>
+<li>Systematic disposal procedures</li>
+<li>Secure storage and access controls</li>
+<li>Regular review and maintenance</li>
+<li>Audit trail documentation</li>
+</ul>
+<h3 id="financial-compliance-and-reporting">Financial Compliance and Reporting</h3><h4 id="financial-reporting-requirements">Financial Reporting Requirements</h4><p><strong>Monthly Financial Reports</strong>:</p>
+<ul>
+<li>Revenue and expense tracking</li>
+<li>Cash flow and liquidity analysis</li>
+<li>Budget variance and performance</li>
+<li>Key performance indicator monitoring</li>
+<li>Regulatory compliance verification</li>
+</ul>
+<p><strong>Annual Financial Statements</strong>:</p>
+<ul>
+<li>Comprehensive financial reporting</li>
+<li>Independent audit and verification</li>
+<li>Regulatory filing requirements</li>
+<li>Stakeholder communication and distribution</li>
+<li>Continuous improvement and optimization</li>
+</ul>
+<h4 id="tax-compliance-management">Tax Compliance Management</h4><p><strong>Corporate Tax Obligations</strong>:</p>
+<ul>
+<li>Income tax calculation and payment</li>
+<li>GST/HST registration and remittance</li>
+<li>Provincial tax requirements</li>
+<li>International tax considerations</li>
+<li>Record keeping and documentation</li>
+</ul>
+<p><strong>Payroll Tax Compliance</strong>:</p>
+<ul>
+<li>Employee tax deductions and remittances</li>
+<li>Benefits and compensation reporting</li>
+<li>Workers&#39; compensation and insurance</li>
+<li>Employment standards compliance</li>
+<li>Regular review and verification</li>
+</ul>
+<h2 id="risk-management-and-mitigation">Risk Management and Mitigation</h2><h3 id="legal-risk-assessment">Legal Risk Assessment</h3><h4 id="risk-identification-and-analysis">Risk Identification and Analysis</h4><p><strong>Legal Risk Categories</strong>:</p>
+<ul>
+<li>Regulatory compliance risks</li>
+<li>Professional liability exposure</li>
+<li>Data privacy and security risks</li>
+<li>Contract and service delivery risks</li>
+<li>Intellectual property and technology risks</li>
+</ul>
+<p><strong>Risk Assessment Methodology</strong>:</p>
+<ul>
+<li>Likelihood and impact evaluation</li>
+<li>Risk prioritization and ranking</li>
+<li>Mitigation strategy development</li>
+<li>Implementation planning and execution</li>
+<li>Monitoring and review procedures</li>
+</ul>
+<h4 id="risk-mitigation-strategies">Risk Mitigation Strategies</h4><p><strong>Preventive Measures</strong>:</p>
+<ul>
+<li>Policy and procedure development</li>
+<li>Training and awareness programs</li>
+<li>Technology and security controls</li>
+<li>Insurance and liability protection</li>
+<li>Regular monitoring and assessment</li>
+</ul>
+<p><strong>Responsive Measures</strong>:</p>
+<ul>
+<li>Incident response and investigation</li>
+<li>Remediation and correction procedures</li>
+<li>Stakeholder communication and management</li>
+<li>Legal counsel and expert consultation</li>
+<li>Continuous improvement and learning</li>
+</ul>
+<h3 id="insurance-and-liability-management">Insurance and Liability Management</h3><h4 id="professional-liability-insurance">Professional Liability Insurance</h4><p><strong>Coverage Requirements</strong>:</p>
+<ul>
+<li>Comprehensive professional liability protection</li>
+<li>Errors and omissions insurance</li>
+<li>Cyber liability and data breach coverage</li>
+<li>Directors and officers insurance</li>
+<li>General liability and property protection</li>
+</ul>
+<p><strong>Policy Management</strong>:</p>
+<ul>
+<li>Regular coverage review and assessment</li>
+<li>Claims management and reporting</li>
+<li>Premium optimization and cost management</li>
+<li>Renewal and policy updates</li>
+<li>Compliance monitoring and verification</li>
+</ul>
+<h4 id="liability-limitation-strategies">Liability Limitation Strategies</h4><p><strong>Contractual Protections</strong>:</p>
+<ul>
+<li>Appropriate limitation of liability clauses</li>
+<li>Indemnification and hold harmless provisions</li>
+<li>Insurance requirements for partners</li>
+<li>Dispute resolution and arbitration clauses</li>
+<li>Regular legal review and updates</li>
+</ul>
+<h2 id="training-and-awareness-programs">Training and Awareness Programs</h2><h3 id="compliance-training-framework">Compliance Training Framework</h3><h4 id="mandatory-training-programs">Mandatory Training Programs</h4><p><strong>New Employee Orientation</strong>:</p>
+<ul>
+<li>Company policies and procedures</li>
+<li>Legal and regulatory requirements</li>
+<li>Professional standards and ethics</li>
+<li>Data privacy and security protocols</li>
+<li>Incident reporting and response procedures</li>
+</ul>
+<p><strong>Annual Compliance Training</strong>:</p>
+<ul>
+<li>Regulatory update and changes</li>
+<li>Policy and procedure reviews</li>
+<li>Case study analysis and discussion</li>
+<li>Best practice sharing and development</li>
+<li>Assessment and certification requirements</li>
+</ul>
+<h4 id="specialized-training-programs">Specialized Training Programs</h4><p><strong>Role-Specific Training</strong>:</p>
+<ul>
+<li>Department-specific compliance requirements</li>
+<li>Professional development and certification</li>
+<li>Advanced legal and regulatory topics</li>
+<li>Technology and security training</li>
+<li>Leadership and management development</li>
+</ul>
+<p><strong>Continuous Education</strong>:</p>
+<ul>
+<li>Industry conference and seminar attendance</li>
+<li>Professional association participation</li>
+<li>Legal and regulatory publication subscriptions</li>
+<li>Expert consultation and advice</li>
+<li>Peer learning and collaboration</li>
+</ul>
+<h3 id="compliance-culture-development">Compliance Culture Development</h3><h4 id="culture-and-values-integration">Culture and Values Integration</h4><p><strong>Leadership Commitment</strong>:</p>
+<ul>
+<li>Executive modeling and demonstration</li>
+<li>Resource allocation and support</li>
+<li>Performance measurement and recognition</li>
+<li>Communication and transparency</li>
+<li>Continuous improvement and innovation</li>
+</ul>
+<p><strong>Employee Engagement</strong>:</p>
+<ul>
+<li>Regular communication and updates</li>
+<li>Feedback and suggestion programs</li>
+<li>Recognition and reward systems</li>
+<li>Career development and advancement</li>
+<li>Work-life balance and wellness support</li>
+</ul>
+<h2 id="audit-and-compliance-monitoring">Audit and Compliance Monitoring</h2><h3 id="internal-audit-program">Internal Audit Program</h3><h4 id="audit-planning-and-execution">Audit Planning and Execution</h4><p><strong>Annual Audit Plan</strong>:</p>
+<ul>
+<li>Risk-based audit planning</li>
+<li>Compliance focus areas identification</li>
+<li>Resource allocation and scheduling</li>
+<li>Stakeholder communication and coordination</li>
+<li>Performance measurement and evaluation</li>
+</ul>
+<p><strong>Audit Execution</strong>:</p>
+<ul>
+<li>Comprehensive audit procedures</li>
+<li>Evidence collection and analysis</li>
+<li>Finding identification and documentation</li>
+<li>Recommendation development and prioritization</li>
+<li>Report preparation and communication</li>
+</ul>
+<h4 id="audit-follow-up-and-improvement">Audit Follow-up and Improvement</h4><p><strong>Corrective Action Planning</strong>:</p>
+<ul>
+<li>Finding prioritization and resource allocation</li>
+<li>Implementation timeline and milestones</li>
+<li>Responsibility assignment and accountability</li>
+<li>Progress monitoring and reporting</li>
+<li>Verification and validation procedures</li>
+</ul>
+<h3 id="external-audit-and-inspection">External Audit and Inspection</h3><h4 id="regulatory-examinations">Regulatory Examinations</h4><p><strong>Examination Preparation</strong>:</p>
+<ul>
+<li>Documentation organization and preparation</li>
+<li>Staff training and briefing</li>
+<li>Communication and coordination protocols</li>
+<li>Response strategy development</li>
+<li>Continuous cooperation and assistance</li>
+</ul>
+<p><strong>Examination Response</strong>:</p>
+<ul>
+<li>Professional and cooperative approach</li>
+<li>Accurate and complete information provision</li>
+<li>Timely response and communication</li>
+<li>Issue resolution and remediation</li>
+<li>Follow-up and relationship management</li>
+</ul>
+<h4 id="third-party-audits">Third-Party Audits</h4><p><strong>Professional Audits</strong>:</p>
+<ul>
+<li>Independent audit and assessment</li>
+<li>Compliance verification and validation</li>
+<li>Best practice identification and implementation</li>
+<li>Continuous improvement and optimization</li>
+<li>Stakeholder communication and reporting</li>
+</ul>
+<h2 id="emergency-and-crisis-management">Emergency and Crisis Management</h2><h3 id="legal-crisis-response">Legal Crisis Response</h3><h4 id="crisis-identification-and-assessment">Crisis Identification and Assessment</h4><p><strong>Crisis Categories</strong>:</p>
+<ul>
+<li>Regulatory violation and enforcement action</li>
+<li>Professional conduct allegations</li>
+<li>Data breach and privacy violations</li>
+<li>Consumer complaint and media attention</li>
+<li>Litigation and legal proceedings</li>
+</ul>
+<p><strong>Response Team Activation</strong>:</p>
+<ul>
+<li>Crisis team notification and assembly</li>
+<li>Immediate assessment and evaluation</li>
+<li>Stakeholder communication and coordination</li>
+<li>Legal counsel and expert consultation</li>
+<li>Initial response and mitigation measures</li>
+</ul>
+<h4 id="crisis-communication-and-management">Crisis Communication and Management</h4><p><strong>Internal Communication</strong>:</p>
+<ul>
+<li>Executive team notification and briefing</li>
+<li>Employee communication and support</li>
+<li>Board and investor notification</li>
+<li>Partner and vendor communication</li>
+<li>Continuous update and coordination</li>
+</ul>
+<p><strong>External Communication</strong>:</p>
+<ul>
+<li>Regulatory authority notification</li>
+<li>Media and public relations management</li>
+<li>Client and customer communication</li>
+<li>Professional association notification</li>
+<li>Stakeholder and community engagement</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>General Counsel</strong>: <a href="mailto:legal@judge.ca">legal@judge.ca</a><br><strong>Compliance Officer</strong>: <a href="mailto:compliance@judge.ca">compliance@judge.ca</a><br><strong>Privacy Officer</strong>: <a href="mailto:privacy@judge.ca">privacy@judge.ca</a><br><strong>Risk Management</strong>: <a href="mailto:risk@judge.ca">risk@judge.ca</a>  </p>
+<p><strong>Legal Department</strong>: 1-514-555-0123 ext. 700<br><strong>Compliance Hotline</strong>: 1-514-555-0123 ext. 750<br><strong>Emergency Legal</strong>: 1-514-555-0123 ext. 911  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Confidential</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1010 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-011: Technology Platform Maintenance and Support - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-011<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-011: Technology Platform Maintenance and Support</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Information Technology</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Chief Technology Officer</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-011-technology-platform-maintenance-and-support">SOP-011: Technology Platform Maintenance and Support</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Information Technology<br><strong>Owner:</strong> Chief Technology Officer  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive technology platform maintenance and support protocols for Judge.ca, ensuring optimal system performance, security, reliability, and user experience while maintaining business continuity.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All technology infrastructure and platform components</li>
+<li>System monitoring and performance optimization</li>
+<li>Security updates and vulnerability management</li>
+<li>Database maintenance and optimization</li>
+<li>Third-party service integration and management</li>
+<li>Backup and disaster recovery procedures</li>
+<li>User support and technical assistance</li>
+</ul>
+<h2 id="technology-infrastructure-overview">Technology Infrastructure Overview</h2><h3 id="platform-architecture">Platform Architecture</h3><h4 id="frontend-application-stack">Frontend Application Stack</h4><p><strong>Primary Technologies</strong>:</p>
+<ul>
+<li>Next.js 14 (React framework)</li>
+<li>TypeScript for type safety</li>
+<li>Tailwind CSS for styling</li>
+<li>React Query for data management</li>
+<li>Next-i18next for internationalization</li>
+</ul>
+<p><strong>Performance Requirements</strong>:</p>
+<ul>
+<li>Page load times &lt;3 seconds</li>
+<li>First Contentful Paint &lt;1.5 seconds</li>
+<li>Time to Interactive &lt;3.5 seconds</li>
+<li>Lighthouse Performance Score &gt;90</li>
+</ul>
+<h4 id="backend-system-architecture">Backend System Architecture</h4><p><strong>Core Components</strong>:</p>
+<ul>
+<li>Node.js with Express.js framework</li>
+<li>PostgreSQL database with Knex.js ORM</li>
+<li>JWT authentication and authorization</li>
+<li>RESTful API architecture</li>
+<li>Winston logging framework</li>
+</ul>
+<p><strong>Performance Standards</strong>:</p>
+<ul>
+<li>API response times &lt;500ms (95th percentile)</li>
+<li>Database query response &lt;200ms average</li>
+<li>System uptime &gt;99.9%</li>
+<li>Concurrent user capacity 10,000+</li>
+</ul>
+<h4 id="infrastructure-and-hosting">Infrastructure and Hosting</h4><p><strong>Cloud Services</strong>:</p>
+<ul>
+<li>Primary hosting: AWS (Amazon Web Services)</li>
+<li>CDN: CloudFront for global content delivery</li>
+<li>Load balancing: Application Load Balancer</li>
+<li>Auto-scaling: EC2 Auto Scaling Groups</li>
+<li>Database: RDS PostgreSQL with Multi-AZ deployment</li>
+</ul>
+<h2 id="system-monitoring-and-performance">System Monitoring and Performance</h2><h3 id="real-time-monitoring">Real-Time Monitoring</h3><h4 id="application-performance-monitoring-apm-">Application Performance Monitoring (APM)</h4><p><strong>Primary Tool</strong>: New Relic APM</p>
+<ul>
+<li>Real-time application performance tracking</li>
+<li>Database query performance monitoring</li>
+<li>Error tracking and alerting</li>
+<li>User experience monitoring</li>
+<li>Custom dashboard creation</li>
+</ul>
+<p><strong>Key Metrics Monitored</strong>:</p>
+<ul>
+<li>Application response times</li>
+<li>Database performance metrics</li>
+<li>Error rates and exceptions</li>
+<li>Memory and CPU utilization</li>
+<li>User session analytics</li>
+</ul>
+<h4 id="infrastructure-monitoring">Infrastructure Monitoring</h4><p><strong>Primary Tool</strong>: AWS CloudWatch</p>
+<ul>
+<li>EC2 instance monitoring</li>
+<li>RDS database performance</li>
+<li>Load balancer health checks</li>
+<li>Auto-scaling metrics</li>
+<li>Cost optimization tracking</li>
+</ul>
+<p><strong>Alert Configuration</strong>:</p>
+<ul>
+<li>CPU utilization &gt;80% for 5 minutes</li>
+<li>Memory usage &gt;85% for 5 minutes</li>
+<li>Database connection &gt;90% capacity</li>
+<li>Error rate &gt;1% for 10 minutes</li>
+<li>Response time &gt;2 seconds for 5 minutes</li>
+</ul>
+<h3 id="performance-optimization">Performance Optimization</h3><h4 id="database-optimization">Database Optimization</h4><p><strong>Regular Maintenance Tasks</strong>:</p>
+<ul>
+<li>Daily query performance analysis</li>
+<li>Weekly index optimization review</li>
+<li>Monthly table statistics updates</li>
+<li>Quarterly database defragmentation</li>
+<li>Annual storage and archiving review</li>
+</ul>
+<p><strong>Performance Tuning</strong>:</p>
+<ul>
+<li>Query optimization and indexing</li>
+<li>Connection pooling configuration</li>
+<li>Cache strategy implementation</li>
+<li>Read replica utilization</li>
+<li>Partitioning for large tables</li>
+</ul>
+<h4 id="application-optimization">Application Optimization</h4><p><strong>Code Performance</strong>:</p>
+<ul>
+<li>Regular code review and refactoring</li>
+<li>Performance profiling and optimization</li>
+<li>Bundle size optimization</li>
+<li>Image and asset optimization</li>
+<li>Lazy loading implementation</li>
+</ul>
+<p><strong>Caching Strategy</strong>:</p>
+<ul>
+<li>Redis for session management</li>
+<li>CDN for static assets</li>
+<li>Database query caching</li>
+<li>API response caching</li>
+<li>Browser caching optimization</li>
+</ul>
+<h2 id="security-management">Security Management</h2><h3 id="security-monitoring">Security Monitoring</h3><h4 id="continuous-security-monitoring">Continuous Security Monitoring</h4><p><strong>Security Tools</strong>:</p>
+<ul>
+<li>AWS Security Hub for centralized monitoring</li>
+<li>GuardDuty for threat detection</li>
+<li>VPC Flow Logs for network monitoring</li>
+<li>WAF for web application protection</li>
+<li>Systems Manager for patch management</li>
+</ul>
+<p><strong>Security Metrics</strong>:</p>
+<ul>
+<li>Failed login attempts</li>
+<li>Suspicious IP addresses</li>
+<li>Malware detection events</li>
+<li>DDoS attack attempts</li>
+<li>Security policy violations</li>
+</ul>
+<h4 id="vulnerability-management">Vulnerability Management</h4><p><strong>Vulnerability Scanning</strong>:</p>
+<ul>
+<li>Daily automated vulnerability scans</li>
+<li>Weekly penetration testing</li>
+<li>Monthly security assessments</li>
+<li>Quarterly third-party security audits</li>
+<li>Annual comprehensive security review</li>
+</ul>
+<p><strong>Patch Management</strong>:</p>
+<ul>
+<li>Critical security patches within 24 hours</li>
+<li>High-priority patches within 72 hours</li>
+<li>Regular updates within 1 week</li>
+<li>System updates during maintenance windows</li>
+<li>Rollback procedures for failed updates</li>
+</ul>
+<h3 id="security-incident-response">Security Incident Response</h3><h4 id="incident-classification">Incident Classification</h4><p><strong>Severity Levels</strong>:</p>
+<ul>
+<li><strong>Critical</strong>: Active security breach or data exposure</li>
+<li><strong>High</strong>: Potential security vulnerability exploitation</li>
+<li><strong>Medium</strong>: Security policy violations or anomalies</li>
+<li><strong>Low</strong>: Routine security events or false positives</li>
+</ul>
+<h4 id="response-procedures">Response Procedures</h4><p><strong>Immediate Response (0-1 Hour)</strong>:</p>
+<ul>
+<li>Incident detection and alert notification</li>
+<li>Initial assessment and triage</li>
+<li>Security team activation</li>
+<li>Containment measures implementation</li>
+</ul>
+<p><strong>Short-term Response (1-8 Hours)</strong>:</p>
+<ul>
+<li>Detailed investigation and analysis</li>
+<li>Threat neutralization and remediation</li>
+<li>Stakeholder notification</li>
+<li>Evidence preservation and documentation</li>
+</ul>
+<p><strong>Long-term Response (8+ Hours)</strong>:</p>
+<ul>
+<li>Comprehensive forensic analysis</li>
+<li>System hardening and prevention</li>
+<li>Policy and procedure updates</li>
+<li>Training and awareness programs</li>
+</ul>
+<h2 id="backup-and-disaster-recovery">Backup and Disaster Recovery</h2><h3 id="backup-strategy">Backup Strategy</h3><h4 id="database-backup-procedures">Database Backup Procedures</h4><p><strong>Automated Backup Schedule</strong>:</p>
+<ul>
+<li>Hourly transaction log backups</li>
+<li>Daily full database backups</li>
+<li>Weekly differential backups</li>
+<li>Monthly archive backups</li>
+<li>Quarterly disaster recovery testing</li>
+</ul>
+<p><strong>Backup Verification</strong>:</p>
+<ul>
+<li>Daily backup completion verification</li>
+<li>Weekly backup integrity testing</li>
+<li>Monthly restore testing</li>
+<li>Quarterly disaster recovery drills</li>
+<li>Annual comprehensive backup audit</li>
+</ul>
+<h4 id="application-and-file-backup">Application and File Backup</h4><p><strong>Source Code Management</strong>:</p>
+<ul>
+<li>Git repository with daily commits</li>
+<li>Multiple remote repository mirrors</li>
+<li>Tagged releases and versioning</li>
+<li>Automated backup to cloud storage</li>
+<li>Local development environment backups</li>
+</ul>
+<p><strong>User Data and Files</strong>:</p>
+<ul>
+<li>Real-time file synchronization</li>
+<li>Daily incremental backups</li>
+<li>Weekly full system backups</li>
+<li>Monthly archive creation</li>
+<li>Quarterly backup verification</li>
+</ul>
+<h3 id="disaster-recovery-planning">Disaster Recovery Planning</h3><h4 id="recovery-time-objectives-rto-">Recovery Time Objectives (RTO)</h4><p><strong>Service Level Targets</strong>:</p>
+<ul>
+<li>Critical systems: 4 hours maximum downtime</li>
+<li>Database systems: 2 hours maximum downtime</li>
+<li>Web applications: 1 hour maximum downtime</li>
+<li>User authentication: 30 minutes maximum downtime</li>
+<li>Payment processing: 15 minutes maximum downtime</li>
+</ul>
+<h4 id="recovery-point-objectives-rpo-">Recovery Point Objectives (RPO)</h4><p><strong>Data Loss Tolerance</strong>:</p>
+<ul>
+<li>Critical data: 15 minutes maximum loss</li>
+<li>User profiles: 1 hour maximum loss</li>
+<li>Transaction data: 5 minutes maximum loss</li>
+<li>System logs: 24 hours maximum loss</li>
+<li>Analytics data: 4 hours maximum loss</li>
+</ul>
+<h4 id="disaster-recovery-procedures">Disaster Recovery Procedures</h4><p><strong>Activation Triggers</strong>:</p>
+<ul>
+<li>Complete system failure or unavailability</li>
+<li>Major security breach or data compromise</li>
+<li>Natural disasters affecting primary data center</li>
+<li>Extended infrastructure outages</li>
+<li>Regulatory compliance requirements</li>
+</ul>
+<p><strong>Recovery Process</strong>:</p>
+<ol>
+<li><strong>Assessment</strong>: Damage assessment and impact analysis</li>
+<li><strong>Activation</strong>: Disaster recovery team activation</li>
+<li><strong>Recovery</strong>: System restoration and data recovery</li>
+<li><strong>Testing</strong>: Functionality testing and validation</li>
+<li><strong>Communication</strong>: Stakeholder notification and updates</li>
+</ol>
+<h2 id="maintenance-procedures">Maintenance Procedures</h2><h3 id="scheduled-maintenance">Scheduled Maintenance</h3><h4 id="regular-maintenance-windows">Regular Maintenance Windows</h4><p><strong>Weekly Maintenance (Sundays 2:00-6:00 AM EST)</strong>:</p>
+<ul>
+<li>System updates and patches</li>
+<li>Database optimization and cleanup</li>
+<li>Performance monitoring and tuning</li>
+<li>Security scan and vulnerability assessment</li>
+<li>Backup verification and testing</li>
+</ul>
+<p><strong>Monthly Maintenance (First Sunday 12:00-8:00 AM EST)</strong>:</p>
+<ul>
+<li>Major system updates and upgrades</li>
+<li>Infrastructure optimization and scaling</li>
+<li>Security policy updates and enforcement</li>
+<li>Disaster recovery testing</li>
+<li>Performance benchmarking</li>
+</ul>
+<h4 id="maintenance-procedures">Maintenance Procedures</h4><p><strong>Pre-Maintenance Checklist</strong>:</p>
+<ul>
+<li>System backup verification</li>
+<li>Maintenance window communication</li>
+<li>Change management approval</li>
+<li>Rollback procedure preparation</li>
+<li>Stakeholder notification</li>
+</ul>
+<p><strong>During Maintenance</strong>:</p>
+<ul>
+<li>System performance monitoring</li>
+<li>Real-time error tracking</li>
+<li>Progress communication</li>
+<li>Issue escalation procedures</li>
+<li>Documentation updates</li>
+</ul>
+<p><strong>Post-Maintenance Validation</strong>:</p>
+<ul>
+<li>System functionality testing</li>
+<li>Performance verification</li>
+<li>Security validation</li>
+<li>User acceptance testing</li>
+<li>Stakeholder notification</li>
+</ul>
+<h3 id="emergency-maintenance">Emergency Maintenance</h3><h4 id="unscheduled-maintenance-triggers">Unscheduled Maintenance Triggers</h4><p><strong>Critical Issues</strong>:</p>
+<ul>
+<li>Security vulnerabilities requiring immediate patching</li>
+<li>System failures affecting user access</li>
+<li>Database corruption or integrity issues</li>
+<li>Performance degradation beyond acceptable limits</li>
+<li>Third-party service failures requiring intervention</li>
+</ul>
+<h4 id="emergency-response-procedures">Emergency Response Procedures</h4><p><strong>Immediate Response (0-30 Minutes)</strong>:</p>
+<ul>
+<li>Issue identification and assessment</li>
+<li>Emergency team activation</li>
+<li>Impact analysis and communication</li>
+<li>Immediate mitigation measures</li>
+</ul>
+<p><strong>Short-term Response (30 Minutes-4 Hours)</strong>:</p>
+<ul>
+<li>Root cause analysis and diagnosis</li>
+<li>Emergency maintenance implementation</li>
+<li>Continuous monitoring and adjustment</li>
+<li>Stakeholder communication and updates</li>
+</ul>
+<p><strong>Long-term Response (4+ Hours)</strong>:</p>
+<ul>
+<li>Comprehensive solution implementation</li>
+<li>System validation and testing</li>
+<li>Documentation and lessons learned</li>
+<li>Process improvement and prevention</li>
+</ul>
+<h2 id="third-party-service-management">Third-Party Service Management</h2><h3 id="service-integration-management">Service Integration Management</h3><h4 id="critical-third-party-services">Critical Third-Party Services</h4><p><strong>Payment Processing</strong>:</p>
+<ul>
+<li>Primary: Stripe payment gateway</li>
+<li>Backup: Moneris payment processing</li>
+<li>Monitoring: Real-time transaction tracking</li>
+<li>SLA: 99.9% uptime requirement</li>
+</ul>
+<p><strong>Email Services</strong>:</p>
+<ul>
+<li>Primary: SendGrid for transactional emails</li>
+<li>Backup: Amazon SES</li>
+<li>Monitoring: Delivery rate and bounce tracking</li>
+<li>SLA: 99.5% delivery rate requirement</li>
+</ul>
+<p><strong>Content Delivery Network (CDN)</strong>:</p>
+<ul>
+<li>Primary: AWS CloudFront</li>
+<li>Backup: Cloudflare</li>
+<li>Monitoring: Global performance tracking</li>
+<li>SLA: 99.9% availability requirement</li>
+</ul>
+<h4 id="service-level-agreement-sla-monitoring">Service Level Agreement (SLA) Monitoring</h4><p><strong>Performance Metrics</strong>:</p>
+<ul>
+<li>Service uptime and availability</li>
+<li>Response time and latency</li>
+<li>Error rates and failures</li>
+<li>Support response times</li>
+<li>Escalation procedures</li>
+</ul>
+<p><strong>Compliance Monitoring</strong>:</p>
+<ul>
+<li>Monthly SLA performance reviews</li>
+<li>Quarterly service assessments</li>
+<li>Annual vendor evaluations</li>
+<li>Continuous improvement planning</li>
+<li>Contract renegotiation planning</li>
+</ul>
+<h3 id="vendor-relationship-management">Vendor Relationship Management</h3><h4 id="vendor-assessment-and-selection">Vendor Assessment and Selection</h4><p><strong>Evaluation Criteria</strong>:</p>
+<ul>
+<li>Technical capabilities and performance</li>
+<li>Security and compliance standards</li>
+<li>Financial stability and reliability</li>
+<li>Support quality and responsiveness</li>
+<li>Cost-effectiveness and value</li>
+</ul>
+<p><strong>Due Diligence Process</strong>:</p>
+<ul>
+<li>Technical evaluation and testing</li>
+<li>Security assessment and validation</li>
+<li>Reference checks and verification</li>
+<li>Contract negotiation and approval</li>
+<li>Implementation planning and execution</li>
+</ul>
+<h4 id="ongoing-vendor-management">Ongoing Vendor Management</h4><p><strong>Regular Reviews</strong>:</p>
+<ul>
+<li>Monthly performance assessments</li>
+<li>Quarterly business reviews</li>
+<li>Annual contract evaluations</li>
+<li>Continuous improvement discussions</li>
+<li>Strategic partnership development</li>
+</ul>
+<h2 id="user-support-and-technical-assistance">User Support and Technical Assistance</h2><h3 id="support-structure">Support Structure</h3><h4 id="support-tiers">Support Tiers</h4><p><strong>Tier 1 - Basic Support</strong>:</p>
+<ul>
+<li>General platform questions and guidance</li>
+<li>Account setup and configuration assistance</li>
+<li>Basic troubleshooting and problem resolution</li>
+<li>Documentation and resource provision</li>
+</ul>
+<p><strong>Tier 2 - Technical Support</strong>:</p>
+<ul>
+<li>Advanced technical troubleshooting</li>
+<li>Integration and configuration issues</li>
+<li>Performance optimization assistance</li>
+<li>Custom solution development</li>
+</ul>
+<p><strong>Tier 3 - Engineering Support</strong>:</p>
+<ul>
+<li>Complex technical issues and bugs</li>
+<li>Platform development and customization</li>
+<li>System architecture and design</li>
+<li>Security and compliance requirements</li>
+</ul>
+<h4 id="support-channels">Support Channels</h4><p><strong>Primary Support Channels</strong>:</p>
+<ul>
+<li>Email support: <a href="mailto:support@judge.ca">support@judge.ca</a></li>
+<li>Phone support: 1-514-555-0123 ext. 800</li>
+<li>Live chat: Available 9 AM - 5 PM EST</li>
+<li>Help desk portal: help.judge.ca</li>
+</ul>
+<p><strong>Response Time Targets</strong>:</p>
+<ul>
+<li>Critical issues: 1 hour response</li>
+<li>High priority: 4 hours response</li>
+<li>Medium priority: 24 hours response</li>
+<li>Low priority: 72 hours response</li>
+</ul>
+<h3 id="technical-documentation">Technical Documentation</h3><h4 id="user-documentation">User Documentation</h4><p><strong>Platform Guides</strong>:</p>
+<ul>
+<li>Getting started and onboarding</li>
+<li>Feature tutorials and walkthroughs</li>
+<li>Best practices and optimization tips</li>
+<li>Troubleshooting and FAQ sections</li>
+</ul>
+<p><strong>API Documentation</strong>:</p>
+<ul>
+<li>Comprehensive API reference</li>
+<li>Integration guides and examples</li>
+<li>Authentication and security</li>
+<li>Rate limiting and usage policies</li>
+</ul>
+<h4 id="internal-documentation">Internal Documentation</h4><p><strong>System Documentation</strong>:</p>
+<ul>
+<li>Architecture diagrams and specifications</li>
+<li>Database schema and relationships</li>
+<li>API endpoints and functionality</li>
+<li>Security policies and procedures</li>
+</ul>
+<p><strong>Operational Procedures</strong>:</p>
+<ul>
+<li>Deployment and release procedures</li>
+<li>Monitoring and alerting configuration</li>
+<li>Backup and recovery procedures</li>
+<li>Incident response and escalation</li>
+</ul>
+<h2 id="change-management">Change Management</h2><h3 id="change-control-process">Change Control Process</h3><h4 id="change-request-management">Change Request Management</h4><p><strong>Change Categories</strong>:</p>
+<ul>
+<li>Emergency changes (security patches, critical fixes)</li>
+<li>Standard changes (routine updates, configurations)</li>
+<li>Normal changes (feature additions, enhancements)</li>
+<li>Major changes (system upgrades, architecture changes)</li>
+</ul>
+<p><strong>Approval Process</strong>:</p>
+<ul>
+<li>Change request submission and documentation</li>
+<li>Impact assessment and risk analysis</li>
+<li>Stakeholder review and approval</li>
+<li>Implementation planning and scheduling</li>
+<li>Post-implementation validation</li>
+</ul>
+<h4 id="release-management">Release Management</h4><p><strong>Release Planning</strong>:</p>
+<ul>
+<li>Feature development and testing</li>
+<li>Release candidate preparation</li>
+<li>Deployment planning and coordination</li>
+<li>Communication and training</li>
+<li>Rollback procedures and contingencies</li>
+</ul>
+<p><strong>Deployment Procedures</strong>:</p>
+<ul>
+<li>Automated deployment pipelines</li>
+<li>Blue-green deployment strategy</li>
+<li>Canary releases for major changes</li>
+<li>Real-time monitoring and validation</li>
+<li>Immediate rollback capabilities</li>
+</ul>
+<h3 id="quality-assurance">Quality Assurance</h3><h4 id="testing-procedures">Testing Procedures</h4><p><strong>Automated Testing</strong>:</p>
+<ul>
+<li>Unit tests for all code components</li>
+<li>Integration tests for API endpoints</li>
+<li>End-to-end tests for user workflows</li>
+<li>Performance tests for scalability</li>
+<li>Security tests for vulnerabilities</li>
+</ul>
+<p><strong>Manual Testing</strong>:</p>
+<ul>
+<li>User acceptance testing (UAT)</li>
+<li>Cross-browser compatibility testing</li>
+<li>Mobile device testing</li>
+<li>Accessibility testing</li>
+<li>Security penetration testing</li>
+</ul>
+<h4 id="code-quality-management">Code Quality Management</h4><p><strong>Code Review Process</strong>:</p>
+<ul>
+<li>Peer review for all code changes</li>
+<li>Automated code quality checks</li>
+<li>Security vulnerability scanning</li>
+<li>Performance impact assessment</li>
+<li>Documentation requirements</li>
+</ul>
+<h2 id="performance-metrics-and-reporting">Performance Metrics and Reporting</h2><h3 id="key-performance-indicators-kpis-">Key Performance Indicators (KPIs)</h3><h4 id="system-performance-metrics">System Performance Metrics</h4><p><strong>Availability Metrics</strong>:</p>
+<ul>
+<li>System uptime percentage</li>
+<li>Mean time between failures (MTBF)</li>
+<li>Mean time to recovery (MTTR)</li>
+<li>Service level agreement compliance</li>
+<li>Incident frequency and severity</li>
+</ul>
+<p><strong>Performance Metrics</strong>:</p>
+<ul>
+<li>Application response times</li>
+<li>Database query performance</li>
+<li>Page load speeds</li>
+<li>API response times</li>
+<li>Error rates and exceptions</li>
+</ul>
+<h4 id="user-experience-metrics">User Experience Metrics</h4><p><strong>User Satisfaction</strong>:</p>
+<ul>
+<li>User satisfaction surveys</li>
+<li>Net Promoter Score (NPS)</li>
+<li>Customer effort score (CES)</li>
+<li>Support ticket resolution rates</li>
+<li>Feature adoption rates</li>
+</ul>
+<h3 id="reporting-and-analytics">Reporting and Analytics</h3><h4 id="monthly-technology-reports">Monthly Technology Reports</h4><p><strong>Performance Summary</strong>:</p>
+<ul>
+<li>System uptime and availability</li>
+<li>Performance metrics and trends</li>
+<li>Security incidents and resolutions</li>
+<li>User support statistics</li>
+<li>Cost analysis and optimization</li>
+</ul>
+<h4 id="quarterly-strategic-reviews">Quarterly Strategic Reviews</h4><p><strong>Technology Assessment</strong>:</p>
+<ul>
+<li>Infrastructure scalability and capacity</li>
+<li>Security posture and compliance</li>
+<li>Performance optimization opportunities</li>
+<li>Technology roadmap and planning</li>
+<li>Vendor relationship and contract reviews</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Chief Technology Officer</strong>: <a href="mailto:cto@judge.ca">cto@judge.ca</a><br><strong>Technical Support Manager</strong>: <a href="mailto:techsupport@judge.ca">techsupport@judge.ca</a><br><strong>System Administrator</strong>: <a href="mailto:sysadmin@judge.ca">sysadmin@judge.ca</a><br><strong>Security Team</strong>: <a href="mailto:security@judge.ca">security@judge.ca</a>  </p>
+<p><strong>Technical Support</strong>: 1-514-555-0123 ext. 800<br><strong>Emergency Technical</strong>: 1-514-555-0123 ext. 911<br><strong>Security Incidents</strong>: 1-514-555-0123 ext. 999  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>

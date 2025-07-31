@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP-015: Vendor and Supplier Management - Judge.ca SOP</title>
+    <style>
+        :root {
+            --quebec-blue: #003f88;
+            --trust-blue: #1e40af;
+            --professional-gray: #374151;
+            --warm-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --success: #059669;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--professional-gray);
+            background-color: var(--background);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            min-height: 11in;
+        }
+
+        .header {
+            border-bottom: 3px solid var(--quebec-blue);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--quebec-blue);
+            margin-right: 1rem;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .document-title {
+            background: linear-gradient(135deg, var(--quebec-blue), var(--trust-blue));
+            color: white;
+            padding: 1.5rem;
+            margin: -1rem -1rem 2rem -1rem;
+            text-align: center;
+        }
+
+        .document-title h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metadata {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: var(--quebec-blue);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .metadata-value {
+            font-size: 14px;
+            color: var(--professional-gray);
+        }
+
+        .content {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--quebec-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+        h4 { font-size: 16px; }
+        h5 { font-size: 14px; }
+        h6 { font-size: 12px; }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid var(--warm-gray);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--quebec-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--trust-blue);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--quebec-blue);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--warm-gray);
+        }
+
+        code {
+            background: var(--light-gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+        }
+
+        pre {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--warm-gray);
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-size: 11px;
+            color: var(--warm-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0.5in;
+                margin: 0;
+                max-width: none;
+            }
+            
+            .document-title {
+                margin: -0.5in -0.5in 1rem -0.5in;
+            }
+            
+            body {
+                font-size: 12px;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* PDF download button */
+        .download-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-download {
+            background: var(--quebec-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 63, 136, 0.1);
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #002f66;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 63, 136, 0.2);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section no-print">
+        <button class="btn-download" onclick="downloadPDF()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+            </svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">Judge.ca</div>
+                <div class="company-info">
+                    Professional Legal Services Platform<br>
+                    Quebec, Canada
+                </div>
+            </div>
+            <div class="document-info">
+                SOP-015<br>
+                Version 1.0<br>
+                7/15/2025
+            </div>
+        </div>
+
+        <div class="document-title">
+            <h1>SOP-015: Vendor and Supplier Management</h1>
+            <div class="document-subtitle">Standard Operating Procedure</div>
+        </div>
+
+        <div class="content">
+            
+        <div class="metadata">
+            <div class="metadata-item">
+                <div class="metadata-label">Version</div>
+                <div class="metadata-value">1.0</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Effective Date</div>
+                <div class="metadata-value">January 1, 2024</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Review Date</div>
+                <div class="metadata-value">January 1, 2025</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Department</div>
+                <div class="metadata-value">Procurement & Operations</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Owner</div>
+                <div class="metadata-value">Chief Operating Officer</div>
+            </div>
+            <div class="metadata-item">
+                <div class="metadata-label">Generated</div>
+                <div class="metadata-value">7/15/2025</div>
+            </div>
+        </div>
+    <h1 id="sop-015-vendor-and-supplier-management">SOP-015: Vendor and Supplier Management</h1><p><strong>Version:</strong> 1.0<br><strong>Effective Date:</strong> January 1, 2024<br><strong>Review Date:</strong> January 1, 2025<br><strong>Department:</strong> Procurement &amp; Operations<br><strong>Owner:</strong> Chief Operating Officer  </p>
+<h2 id="purpose">Purpose</h2><p>This Standard Operating Procedure establishes comprehensive vendor and supplier management protocols for Judge.ca, ensuring strategic sourcing, effective relationship management, cost optimization, and risk mitigation while maintaining high standards of service quality and compliance.</p>
+<h2 id="scope">Scope</h2><p>This procedure applies to:</p>
+<ul>
+<li>All vendor and supplier relationships</li>
+<li>Procurement and sourcing activities</li>
+<li>Contract negotiation and management</li>
+<li>Performance monitoring and evaluation</li>
+<li>Risk assessment and mitigation</li>
+<li>Compliance and regulatory requirements</li>
+<li>Strategic partnership development</li>
+</ul>
+<h2 id="vendor-management-framework">Vendor Management Framework</h2><h3 id="vendor-classification-system">Vendor Classification System</h3><h4 id="classification-categories">Classification Categories</h4><p><strong>Critical Vendors</strong>:</p>
+<ul>
+<li>Essential for core business operations</li>
+<li>Significant impact if services disrupted</li>
+<li>Limited alternative suppliers available</li>
+<li>High switching costs and complexity</li>
+<li>Strategic importance to business success</li>
+</ul>
+<p><strong>Important Vendors</strong>:</p>
+<ul>
+<li>Significant impact on operations</li>
+<li>Moderate availability of alternatives</li>
+<li>Reasonable switching costs</li>
+<li>Important but not critical to operations</li>
+<li>Requires regular monitoring and management</li>
+</ul>
+<p><strong>Standard Vendors</strong>:</p>
+<ul>
+<li>Limited impact on operations</li>
+<li>Multiple alternative suppliers available</li>
+<li>Low switching costs</li>
+<li>Routine goods and services</li>
+<li>Standard monitoring and management</li>
+</ul>
+<p><strong>Non-Critical Vendors</strong>:</p>
+<ul>
+<li>Minimal impact on operations</li>
+<li>Easily replaceable suppliers</li>
+<li>Low cost and low risk</li>
+<li>Commodity goods and services</li>
+<li>Basic monitoring requirements</li>
+</ul>
+<h4 id="vendor-categorization-matrix">Vendor Categorization Matrix</h4><p><strong>Technology Vendors</strong>:</p>
+<ul>
+<li>Cloud infrastructure providers (AWS, Azure)</li>
+<li>Software licensing and SaaS platforms</li>
+<li>Cybersecurity and monitoring services</li>
+<li>Database and analytics providers</li>
+<li>Communication and collaboration tools</li>
+</ul>
+<p><strong>Business Service Vendors</strong>:</p>
+<ul>
+<li>Legal and professional services</li>
+<li>Accounting and financial services</li>
+<li>Marketing and advertising agencies</li>
+<li>Consulting and advisory services</li>
+<li>Training and development providers</li>
+</ul>
+<p><strong>Operational Support Vendors</strong>:</p>
+<ul>
+<li>Office space and facilities management</li>
+<li>IT hardware and equipment suppliers</li>
+<li>Telecommunications and internet services</li>
+<li>Office supplies and equipment</li>
+<li>Maintenance and support services</li>
+</ul>
+<h3 id="vendor-selection-process">Vendor Selection Process</h3><h4 id="sourcing-strategy-development">Sourcing Strategy Development</h4><p><strong>Requirements Analysis</strong>:</p>
+<ul>
+<li>Business need identification and documentation</li>
+<li>Technical specification development</li>
+<li>Service level requirement definition</li>
+<li>Budget and cost consideration</li>
+<li>Timeline and implementation planning</li>
+</ul>
+<p><strong>Market Research</strong>:</p>
+<ul>
+<li>Vendor landscape analysis</li>
+<li>Competitive benchmarking</li>
+<li>Technology and service trend assessment</li>
+<li>Pricing and cost structure analysis</li>
+<li>Risk and opportunity evaluation</li>
+</ul>
+<h4 id="request-for-proposal-rfp-process">Request for Proposal (RFP) Process</h4><p><strong>RFP Development</strong>:</p>
+<ul>
+<li>Comprehensive requirement documentation</li>
+<li>Technical specification and criteria</li>
+<li>Commercial terms and conditions</li>
+<li>Evaluation criteria and weighting</li>
+<li>Proposal submission requirements</li>
+</ul>
+<p><strong>Vendor Evaluation Criteria</strong>:</p>
+<ul>
+<li>Technical capability and expertise (30%)</li>
+<li>Financial stability and viability (20%)</li>
+<li>Service quality and reliability (20%)</li>
+<li>Cost-effectiveness and value (15%)</li>
+<li>Cultural fit and relationship potential (15%)</li>
+</ul>
+<h4 id="due-diligence-process">Due Diligence Process</h4><p><strong>Financial Assessment</strong>:</p>
+<ul>
+<li>Financial statement analysis</li>
+<li>Credit rating and stability evaluation</li>
+<li>Insurance coverage verification</li>
+<li>Bankruptcy and litigation history</li>
+<li>Revenue and profitability trends</li>
+</ul>
+<p><strong>Technical Evaluation</strong>:</p>
+<ul>
+<li>Solution demonstration and testing</li>
+<li>Reference customer verification</li>
+<li>Technical architecture assessment</li>
+<li>Security and compliance validation</li>
+<li>Implementation and support capability</li>
+</ul>
+<p><strong>Operational Assessment</strong>:</p>
+<ul>
+<li>Service delivery capability</li>
+<li>Geographic coverage and capacity</li>
+<li>Scalability and flexibility</li>
+<li>Quality assurance and control</li>
+<li>Business continuity and disaster recovery</li>
+</ul>
+<h2 id="contract-management">Contract Management</h2><h3 id="contract-development-and-negotiation">Contract Development and Negotiation</h3><h4 id="contract-structure-framework">Contract Structure Framework</h4><p><strong>Standard Contract Components</strong>:</p>
+<ul>
+<li>Statement of work and deliverables</li>
+<li>Service level agreements (SLAs)</li>
+<li>Terms and conditions</li>
+<li>Pricing and payment terms</li>
+<li>Termination and renewal provisions</li>
+</ul>
+<p><strong>Legal and Compliance Requirements</strong>:</p>
+<ul>
+<li>Regulatory compliance obligations</li>
+<li>Data privacy and security requirements</li>
+<li>Intellectual property protection</li>
+<li>Liability and indemnification</li>
+<li>Dispute resolution procedures</li>
+</ul>
+<h4 id="negotiation-strategy">Negotiation Strategy</h4><p><strong>Preparation Phase</strong>:</p>
+<ul>
+<li>Negotiation objective definition</li>
+<li>Alternative supplier identification</li>
+<li>Cost and pricing analysis</li>
+<li>Risk assessment and mitigation</li>
+<li>Stakeholder alignment and approval</li>
+</ul>
+<p><strong>Negotiation Process</strong>:</p>
+<ul>
+<li>Initial proposal and counteroffer</li>
+<li>Term and condition negotiation</li>
+<li>Service level agreement definition</li>
+<li>Pricing and payment term finalization</li>
+<li>Final contract review and approval</li>
+</ul>
+<h3 id="contract-administration">Contract Administration</h3><h4 id="contract-lifecycle-management">Contract Lifecycle Management</h4><p><strong>Contract Execution</strong>:</p>
+<ul>
+<li>Contract signature and execution</li>
+<li>Vendor onboarding and setup</li>
+<li>Service implementation and transition</li>
+<li>Performance baseline establishment</li>
+<li>Relationship manager assignment</li>
+</ul>
+<p><strong>Ongoing Management</strong>:</p>
+<ul>
+<li>Performance monitoring and reporting</li>
+<li>Service level compliance tracking</li>
+<li>Issue escalation and resolution</li>
+<li>Change management and amendments</li>
+<li>Invoice processing and payment</li>
+</ul>
+<p><strong>Contract Renewal and Termination</strong>:</p>
+<ul>
+<li>Contract renewal evaluation</li>
+<li>Renegotiation and improvement</li>
+<li>Termination planning and execution</li>
+<li>Knowledge transfer and transition</li>
+<li>Relationship closure and documentation</li>
+</ul>
+<h4 id="service-level-agreement-sla-management">Service Level Agreement (SLA) Management</h4><p><strong>SLA Definition and Metrics</strong>:</p>
+<ul>
+<li>Service availability and uptime requirements</li>
+<li>Performance and response time standards</li>
+<li>Quality and accuracy measurements</li>
+<li>Issue resolution and escalation procedures</li>
+<li>Reporting and communication requirements</li>
+</ul>
+<p><strong>SLA Monitoring and Enforcement</strong>:</p>
+<ul>
+<li>Regular performance measurement</li>
+<li>Non-compliance identification and reporting</li>
+<li>Corrective action and improvement planning</li>
+<li>Penalty and incentive application</li>
+<li>Continuous improvement and optimization</li>
+</ul>
+<h2 id="performance-management">Performance Management</h2><h3 id="performance-monitoring-framework">Performance Monitoring Framework</h3><h4 id="key-performance-indicators-kpis-">Key Performance Indicators (KPIs)</h4><p><strong>Service Quality Metrics</strong>:</p>
+<ul>
+<li>Service availability and uptime</li>
+<li>Response time and resolution speed</li>
+<li>Quality and accuracy measurements</li>
+<li>Customer satisfaction scores</li>
+<li>Error rates and defect levels</li>
+</ul>
+<p><strong>Financial Performance Metrics</strong>:</p>
+<ul>
+<li>Cost per unit of service</li>
+<li>Budget adherence and variance</li>
+<li>Invoice accuracy and timeliness</li>
+<li>Cost reduction and optimization</li>
+<li>Value for money assessment</li>
+</ul>
+<p><strong>Relationship Management Metrics</strong>:</p>
+<ul>
+<li>Vendor satisfaction and engagement</li>
+<li>Communication effectiveness</li>
+<li>Issue resolution time</li>
+<li>Innovation and improvement contribution</li>
+<li>Strategic partnership development</li>
+</ul>
+<h4 id="performance-reporting">Performance Reporting</h4><p><strong>Monthly Performance Reports</strong>:</p>
+<ul>
+<li>Service level compliance summary</li>
+<li>Key performance indicator tracking</li>
+<li>Issue and incident reporting</li>
+<li>Cost and budget analysis</li>
+<li>Improvement recommendations</li>
+</ul>
+<p><strong>Quarterly Business Reviews</strong>:</p>
+<ul>
+<li>Comprehensive performance assessment</li>
+<li>Trend analysis and forecasting</li>
+<li>Relationship health evaluation</li>
+<li>Strategic alignment review</li>
+<li>Future planning and goal setting</li>
+</ul>
+<p><strong>Annual Vendor Assessment</strong>:</p>
+<ul>
+<li>Complete performance evaluation</li>
+<li>Benchmark comparison analysis</li>
+<li>Relationship value assessment</li>
+<li>Strategic partnership evaluation</li>
+<li>Contract renewal recommendation</li>
+</ul>
+<h3 id="performance-improvement">Performance Improvement</h3><h4 id="continuous-improvement-process">Continuous Improvement Process</h4><p><strong>Performance Issue Identification</strong>:</p>
+<ul>
+<li>Regular performance monitoring</li>
+<li>Stakeholder feedback collection</li>
+<li>Root cause analysis and investigation</li>
+<li>Improvement opportunity identification</li>
+<li>Impact assessment and prioritization</li>
+</ul>
+<p><strong>Improvement Implementation</strong>:</p>
+<ul>
+<li>Corrective action plan development</li>
+<li>Resource allocation and support</li>
+<li>Implementation timeline and milestones</li>
+<li>Progress monitoring and adjustment</li>
+<li>Success measurement and validation</li>
+</ul>
+<h4 id="vendor-development-programs">Vendor Development Programs</h4><p><strong>Capability Enhancement</strong>:</p>
+<ul>
+<li>Training and knowledge transfer</li>
+<li>Best practice sharing and development</li>
+<li>Technology and tool provision</li>
+<li>Process improvement and optimization</li>
+<li>Innovation and creativity encouragement</li>
+</ul>
+<p><strong>Strategic Partnership Development</strong>:</p>
+<ul>
+<li>Joint planning and goal setting</li>
+<li>Collaborative problem-solving</li>
+<li>Innovation and development projects</li>
+<li>Market opportunity exploration</li>
+<li>Long-term relationship building</li>
+</ul>
+<h2 id="risk-management">Risk Management</h2><h3 id="vendor-risk-assessment">Vendor Risk Assessment</h3><h4 id="risk-identification-framework">Risk Identification Framework</h4><p><strong>Operational Risks</strong>:</p>
+<ul>
+<li>Service delivery failure or disruption</li>
+<li>Quality issues and defects</li>
+<li>Capacity constraints and limitations</li>
+<li>Technology and system failures</li>
+<li>Staff turnover and capability loss</li>
+</ul>
+<p><strong>Financial Risks</strong>:</p>
+<ul>
+<li>Financial instability and bankruptcy</li>
+<li>Pricing volatility and increases</li>
+<li>Hidden costs and charges</li>
+<li>Currency and exchange rate risks</li>
+<li>Economic and market disruptions</li>
+</ul>
+<p><strong>Compliance and Legal Risks</strong>:</p>
+<ul>
+<li>Regulatory non-compliance</li>
+<li>Data privacy and security breaches</li>
+<li>Intellectual property violations</li>
+<li>Contract breach and disputes</li>
+<li>Reputation and brand damage</li>
+</ul>
+<p><strong>Strategic Risks</strong>:</p>
+<ul>
+<li>Vendor dependency and concentration</li>
+<li>Technology obsolescence</li>
+<li>Market and competitive changes</li>
+<li>Relationship deterioration</li>
+<li>Strategic misalignment</li>
+</ul>
+<h4 id="risk-assessment-process">Risk Assessment Process</h4><p><strong>Risk Evaluation Matrix</strong>:</p>
+<ul>
+<li>Probability and likelihood assessment</li>
+<li>Impact and severity evaluation</li>
+<li>Risk ranking and prioritization</li>
+<li>Mitigation strategy development</li>
+<li>Monitoring and review procedures</li>
+</ul>
+<p><strong>Risk Monitoring and Reporting</strong>:</p>
+<ul>
+<li>Regular risk assessment updates</li>
+<li>Early warning indicator tracking</li>
+<li>Escalation and notification procedures</li>
+<li>Stakeholder communication and reporting</li>
+<li>Continuous risk management improvement</li>
+</ul>
+<h3 id="risk-mitigation-strategies">Risk Mitigation Strategies</h3><h4 id="preventive-measures">Preventive Measures</h4><p><strong>Vendor Diversification</strong>:</p>
+<ul>
+<li>Multiple vendor strategy implementation</li>
+<li>Geographic and capability diversification</li>
+<li>Backup vendor identification and preparation</li>
+<li>Capacity and resource redundancy</li>
+<li>Dependency reduction and management</li>
+</ul>
+<p><strong>Contract Protection</strong>:</p>
+<ul>
+<li>Service level agreement enforcement</li>
+<li>Performance guarantee and bonding</li>
+<li>Insurance and liability coverage</li>
+<li>Termination and exit provisions</li>
+<li>Dispute resolution and arbitration</li>
+</ul>
+<h4 id="risk-response-planning">Risk Response Planning</h4><p><strong>Contingency Planning</strong>:</p>
+<ul>
+<li>Alternative vendor identification</li>
+<li>Emergency response procedures</li>
+<li>Service restoration and recovery</li>
+<li>Communication and coordination protocols</li>
+<li>Resource mobilization and deployment</li>
+</ul>
+<p><strong>Crisis Management</strong>:</p>
+<ul>
+<li>Vendor failure response procedures</li>
+<li>Stakeholder communication and management</li>
+<li>Service continuity and restoration</li>
+<li>Legal and regulatory compliance</li>
+<li>Reputation and brand protection</li>
+</ul>
+<h2 id="compliance-and-governance">Compliance and Governance</h2><h3 id="regulatory-compliance">Regulatory Compliance</h3><h4 id="procurement-compliance">Procurement Compliance</h4><p><strong>Competitive Bidding Requirements</strong>:</p>
+<ul>
+<li>Fair and transparent procurement process</li>
+<li>Equal opportunity and non-discrimination</li>
+<li>Conflict of interest prevention</li>
+<li>Ethical sourcing and sustainability</li>
+<li>Documentation and audit trail maintenance</li>
+</ul>
+<p><strong>Financial Compliance</strong>:</p>
+<ul>
+<li>Budget approval and authorization</li>
+<li>Purchase order and invoice processing</li>
+<li>Payment terms and cash flow management</li>
+<li>Tax and regulatory reporting</li>
+<li>Financial control and oversight</li>
+</ul>
+<h4 id="data-privacy-and-security">Data Privacy and Security</h4><p><strong>Vendor Data Protection</strong>:</p>
+<ul>
+<li>Data privacy and security requirements</li>
+<li>Confidentiality and non-disclosure agreements</li>
+<li>Data handling and storage protocols</li>
+<li>Security audit and compliance verification</li>
+<li>Incident response and breach notification</li>
+</ul>
+<p><strong>Compliance Monitoring</strong>:</p>
+<ul>
+<li>Regular compliance assessment and audit</li>
+<li>Corrective action and improvement planning</li>
+<li>Training and awareness programs</li>
+<li>Documentation and record keeping</li>
+<li>Continuous improvement and optimization</li>
+</ul>
+<h3 id="governance-framework">Governance Framework</h3><h4 id="vendor-governance-committee">Vendor Governance Committee</h4><p><strong>Committee Structure</strong>:</p>
+<ul>
+<li>Chief Operating Officer (Chair)</li>
+<li>Chief Financial Officer</li>
+<li>Chief Technology Officer</li>
+<li>General Counsel</li>
+<li>Procurement Manager</li>
+</ul>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Vendor strategy and policy development</li>
+<li>Major vendor relationship oversight</li>
+<li>Risk management and mitigation</li>
+<li>Performance monitoring and evaluation</li>
+<li>Compliance and regulatory adherence</li>
+</ul>
+<h4 id="vendor-approval-process">Vendor Approval Process</h4><p><strong>Approval Authority Levels</strong>:</p>
+<ul>
+<li>Level 1: Department managers ($0-$25,000)</li>
+<li>Level 2: Directors ($25,001-$100,000)</li>
+<li>Level 3: Executive team ($100,001-$500,000)</li>
+<li>Level 4: Board approval (&gt;$500,000)</li>
+</ul>
+<p><strong>Approval Documentation</strong>:</p>
+<ul>
+<li>Business case and justification</li>
+<li>Vendor evaluation and comparison</li>
+<li>Risk assessment and mitigation</li>
+<li>Financial impact and budget approval</li>
+<li>Legal and compliance review</li>
+</ul>
+<h2 id="technology-and-tools">Technology and Tools</h2><h3 id="vendor-management-systems">Vendor Management Systems</h3><h4 id="vendor-management-platform">Vendor Management Platform</h4><p><strong>Primary System</strong>: Coupa Supplier Management</p>
+<ul>
+<li>Centralized vendor information database</li>
+<li>Contract management and tracking</li>
+<li>Performance monitoring and reporting</li>
+<li>Invoice processing and payment</li>
+<li>Compliance and audit capabilities</li>
+</ul>
+<p><strong>System Features</strong>:</p>
+<ul>
+<li>Vendor onboarding and qualification</li>
+<li>Contract lifecycle management</li>
+<li>Performance measurement and reporting</li>
+<li>Risk assessment and monitoring</li>
+<li>Supplier collaboration and communication</li>
+</ul>
+<h4 id="integration-capabilities">Integration Capabilities</h4><p><strong>ERP Integration</strong>:</p>
+<ul>
+<li>Financial system integration</li>
+<li>Purchase order and invoice processing</li>
+<li>Budget and cost tracking</li>
+<li>Reporting and analytics</li>
+<li>Compliance and audit support</li>
+</ul>
+<p><strong>Document Management</strong>:</p>
+<ul>
+<li>Contract storage and retrieval</li>
+<li>Version control and change management</li>
+<li>Approval workflow and authorization</li>
+<li>Audit trail and documentation</li>
+<li>Security and access control</li>
+</ul>
+<h3 id="analytics-and-reporting">Analytics and Reporting</h3><h4 id="performance-analytics">Performance Analytics</h4><p><strong>Dashboard and Reporting</strong>:</p>
+<ul>
+<li>Real-time performance monitoring</li>
+<li>Key performance indicator tracking</li>
+<li>Trend analysis and forecasting</li>
+<li>Benchmarking and comparison</li>
+<li>Exception and alert management</li>
+</ul>
+<p><strong>Business Intelligence</strong>:</p>
+<ul>
+<li>Data visualization and analysis</li>
+<li>Predictive analytics and modeling</li>
+<li>Cost optimization and savings tracking</li>
+<li>Risk assessment and monitoring</li>
+<li>Strategic decision support</li>
+</ul>
+<h4 id="vendor-scorecard-system">Vendor Scorecard System</h4><p><strong>Scorecard Components</strong>:</p>
+<ul>
+<li>Service quality and performance</li>
+<li>Financial and cost effectiveness</li>
+<li>Relationship and communication</li>
+<li>Innovation and improvement</li>
+<li>Compliance and risk management</li>
+</ul>
+<p><strong>Scoring Methodology</strong>:</p>
+<ul>
+<li>Weighted scoring system</li>
+<li>Objective and subjective measures</li>
+<li>Regular assessment and updates</li>
+<li>Benchmark comparison</li>
+<li>Improvement tracking and planning</li>
+</ul>
+<h2 id="training-and-development">Training and Development</h2><h3 id="procurement-team-training">Procurement Team Training</h3><h4 id="core-competency-development">Core Competency Development</h4><p><strong>Procurement Fundamentals</strong>:</p>
+<ul>
+<li>Sourcing strategy and planning</li>
+<li>Vendor selection and evaluation</li>
+<li>Contract negotiation and management</li>
+<li>Performance monitoring and improvement</li>
+<li>Risk management and mitigation</li>
+</ul>
+<p><strong>Advanced Skills Training</strong>:</p>
+<ul>
+<li>Strategic sourcing and category management</li>
+<li>Supplier relationship management</li>
+<li>Contract law and legal requirements</li>
+<li>Financial analysis and cost management</li>
+<li>Technology and digital procurement</li>
+</ul>
+<h4 id="continuous-learning-program">Continuous Learning Program</h4><p><strong>Internal Training</strong>:</p>
+<ul>
+<li>Monthly team meetings and updates</li>
+<li>Quarterly skills development sessions</li>
+<li>Annual procurement conference and training</li>
+<li>Peer learning and knowledge sharing</li>
+<li>Mentorship and coaching programs</li>
+</ul>
+<p><strong>External Training</strong>:</p>
+<ul>
+<li>Professional certification programs</li>
+<li>Industry conference and seminar attendance</li>
+<li>University and continuing education courses</li>
+<li>Professional association participation</li>
+<li>Expert consultation and advisory services</li>
+</ul>
+<h3 id="stakeholder-education">Stakeholder Education</h3><h4 id="department-training">Department Training</h4><p><strong>Procurement Process Training</strong>:</p>
+<ul>
+<li>Vendor selection and evaluation process</li>
+<li>Contract requirements and compliance</li>
+<li>Performance monitoring and management</li>
+<li>Issue escalation and resolution</li>
+<li>Best practice sharing and development</li>
+</ul>
+<p><strong>Compliance and Legal Training</strong>:</p>
+<ul>
+<li>Regulatory requirements and obligations</li>
+<li>Contract terms and conditions</li>
+<li>Data privacy and security requirements</li>
+<li>Ethical sourcing and sustainability</li>
+<li>Risk management and mitigation</li>
+</ul>
+<h4 id="leadership-development">Leadership Development</h4><p><strong>Executive Education</strong>:</p>
+<ul>
+<li>Strategic procurement and sourcing</li>
+<li>Vendor relationship management</li>
+<li>Performance optimization and improvement</li>
+<li>Risk management and governance</li>
+<li>Innovation and competitive advantage</li>
+</ul>
+<p><strong>Board Education</strong>:</p>
+<ul>
+<li>Vendor governance and oversight</li>
+<li>Strategic partnership development</li>
+<li>Risk assessment and management</li>
+<li>Performance monitoring and evaluation</li>
+<li>Compliance and regulatory requirements</li>
+</ul>
+<h2 id="continuous-improvement">Continuous Improvement</h2><h3 id="process-optimization">Process Optimization</h3><h4 id="performance-review-and-analysis">Performance Review and Analysis</h4><p><strong>Regular Assessment</strong>:</p>
+<ul>
+<li>Monthly performance review meetings</li>
+<li>Quarterly vendor assessment reports</li>
+<li>Annual strategic planning sessions</li>
+<li>Continuous improvement initiatives</li>
+<li>Best practice identification and sharing</li>
+</ul>
+<p><strong>Improvement Implementation</strong>:</p>
+<ul>
+<li>Process standardization and automation</li>
+<li>Technology enhancement and upgrade</li>
+<li>Training and skill development</li>
+<li>Resource optimization and allocation</li>
+<li>Innovation and creativity encouragement</li>
+</ul>
+<h4 id="vendor-feedback-integration">Vendor Feedback Integration</h4><p><strong>Feedback Collection</strong>:</p>
+<ul>
+<li>Regular vendor surveys and assessments</li>
+<li>Relationship manager feedback and input</li>
+<li>Stakeholder satisfaction measurement</li>
+<li>Performance improvement suggestions</li>
+<li>Innovation and development opportunities</li>
+</ul>
+<p><strong>Feedback Implementation</strong>:</p>
+<ul>
+<li>Process improvement and optimization</li>
+<li>Relationship enhancement and development</li>
+<li>Communication improvement and effectiveness</li>
+<li>Technology and tool enhancement</li>
+<li>Strategic partnership development</li>
+</ul>
+<h3 id="innovation-and-development">Innovation and Development</h3><h4 id="technology-innovation">Technology Innovation</h4><p><strong>Emerging Technology Adoption</strong>:</p>
+<ul>
+<li>Artificial intelligence and automation</li>
+<li>Blockchain and distributed ledger</li>
+<li>Internet of Things (IoT) integration</li>
+<li>Advanced analytics and reporting</li>
+<li>Mobile and cloud-based solutions</li>
+</ul>
+<p><strong>Digital Transformation</strong>:</p>
+<ul>
+<li>Process digitization and automation</li>
+<li>Data analytics and business intelligence</li>
+<li>Supplier portal and collaboration</li>
+<li>Electronic procurement and payment</li>
+<li>Artificial intelligence and machine learning</li>
+</ul>
+<h4 id="strategic-partnership-development">Strategic Partnership Development</h4><p><strong>Innovation Partnerships</strong>:</p>
+<ul>
+<li>Joint research and development projects</li>
+<li>Technology innovation and advancement</li>
+<li>Market opportunity exploration</li>
+<li>Competitive advantage development</li>
+<li>Long-term strategic collaboration</li>
+</ul>
+<p><strong>Value Creation Initiatives</strong>:</p>
+<ul>
+<li>Cost reduction and optimization</li>
+<li>Quality improvement and enhancement</li>
+<li>Service innovation and development</li>
+<li>Process improvement and efficiency</li>
+<li>Sustainability and social responsibility</li>
+</ul>
+<h2 id="contact-information">Contact Information</h2><p><strong>Chief Operating Officer</strong>: <a href="mailto:operations@judge.ca">operations@judge.ca</a><br><strong>Procurement Manager</strong>: <a href="mailto:procurement@judge.ca">procurement@judge.ca</a><br><strong>Vendor Relations</strong>: <a href="mailto:vendors@judge.ca">vendors@judge.ca</a><br><strong>Contract Management</strong>: <a href="mailto:contracts@judge.ca">contracts@judge.ca</a>  </p>
+<p><strong>Procurement Department</strong>: 1-514-555-0123 ext. 300<br><strong>Vendor Support</strong>: 1-514-555-0123 ext. 350<br><strong>Contract Issues</strong>: 1-514-555-0123 ext. 375  </p>
+<hr>
+<p><strong>Document Control:</strong></p>
+<ul>
+<li>Created: January 1, 2024</li>
+<li>Last Modified: January 1, 2024</li>
+<li>Next Review: January 1, 2025</li>
+<li>Classification: Internal Use Only</li>
+</ul>
+
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div><strong>Judge.ca Inc.</strong></div>
+                <div>123 St-Jacques Street, Montreal, QC H2Y 1L6</div>
+                <div>Phone: 1-514-555-0123 | Email: info@judge.ca</div>
+            </div>
+            <div class="footer-right">
+                <div><strong>Confidential Document</strong></div>
+                <div>Internal Use Only</div>
+                <div>© 2024 Judge.ca Inc.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Hide download button and trigger print dialog
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+            
+            // Add print-specific styles
+            document.body.classList.add('printing');
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore download button after print dialog closes
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+                document.body.classList.remove('printing');
+            }, 100);
+        }
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+P or Cmd+P for PDF download
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+
+        // Add table of contents generation
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTableOfContents();
+        });
+
+        function generateTableOfContents() {
+            const headings = document.querySelectorAll('h2, h3, h4');
+            if (headings.length === 0) return;
+
+            const toc = document.createElement('div');
+            toc.className = 'table-of-contents';
+            toc.innerHTML = '<h2>Table of Contents</h2>';
+
+            const tocList = document.createElement('ol');
+            tocList.style.listStyle = 'decimal';
+            tocList.style.paddingLeft = '1.5rem';
+
+            headings.forEach((heading, index) => {
+                // Create anchor
+                const anchor = 'section-' + index;
+                heading.id = anchor;
+
+                // Create TOC entry
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '0.5rem';
+                
+                const link = document.createElement('a');
+                link.href = '#' + anchor;
+                link.textContent = heading.textContent;
+                link.style.textDecoration = 'none';
+                link.style.color = 'var(--quebec-blue)';
+                
+                // Add indentation for h3, h4
+                if (heading.tagName === 'H3') {
+                    listItem.style.marginLeft = '1rem';
+                } else if (heading.tagName === 'H4') {
+                    listItem.style.marginLeft = '2rem';
+                }
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            toc.appendChild(tocList);
+            
+            // Insert TOC after metadata
+            const metadata = document.querySelector('.metadata');
+            if (metadata) {
+                metadata.parentNode.insertBefore(toc, metadata.nextSibling);
+            }
+        }
+    </script>
+</body>
+</html>
