@@ -1,0 +1,344 @@
+name: Emergency Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to rollback'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+      rollback_to:
+        description: 'Rollback to (deployment ID or "previous")'
+        required: false
+        default: 'previous'
+      reason:
+        description: 'Reason for rollback'
+        required: true
+      confirm_rollback:
+        description: 'Type "CONFIRM" to proceed with rollback'
+        required: true
+
+env:
+  NODE_VERSION: '18'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  # Validate rollback request
+  validate-rollback:
+    name: Validate Rollback Request
+    runs-on: ubuntu-latest
+    outputs:
+      is-valid: ${{ steps.validate.outputs.is-valid }}
+      target-deployment: ${{ steps.validate.outputs.target-deployment }}
+    
+    steps:
+      - name: Validate inputs
+        id: validate
+        run: |
+          echo "Validating rollback request..."
+          
+          # Check confirmation
+          if [ "${{ github.event.inputs.confirm_rollback }}" != "CONFIRM" ]; then
+            echo "❌ Rollback not confirmed. Please type 'CONFIRM' to proceed."
+            echo "is-valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          # Validate environment
+          if [[ ! "${{ github.event.inputs.environment }}" =~ ^(production|staging)$ ]]; then
+            echo "❌ Invalid environment specified."
+            echo "is-valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          # Validate reason
+          if [ -z "${{ github.event.inputs.reason }}" ]; then
+            echo "❌ Rollback reason is required."
+            echo "is-valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          echo "✅ Rollback request validated"
+          echo "is-valid=true" >> $GITHUB_OUTPUT
+          echo "target-deployment=${{ github.event.inputs.rollback_to }}" >> $GITHUB_OUTPUT
+
+      - name: Log rollback initiation
+        if: steps.validate.outputs.is-valid == 'true'
+        run: |
+          echo "🚨 ROLLBACK INITIATED"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Target: ${{ github.event.inputs.rollback_to }}"
+          echo "Reason: ${{ github.event.inputs.reason }}"
+          echo "Initiated by: ${{ github.actor }}"
+          echo "Time: $(date)"
+
+  # Pre-rollback backup
+  pre-rollback-backup:
+    name: Pre-Rollback Backup
+    runs-on: ubuntu-latest
+    needs: validate-rollback
+    if: needs.validate-rollback.outputs.is-valid == 'true'
+    
+    steps:
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Get current deployment info
+        id: current
+        run: |
+          echo "Getting current deployment information..."
+          
+          # Get current production deployment
+          CURRENT_DEPLOYMENT=$(vercel ls --token=${{ secrets.VERCEL_TOKEN }} | grep "judge.ca" | head -1 | awk '{print $1}')
+          CURRENT_URL=$(vercel ls --token=${{ secrets.VERCEL_TOKEN }} | grep "judge.ca" | head -1 | awk '{print $2}')
+          
+          echo "current-deployment=$CURRENT_DEPLOYMENT" >> $GITHUB_OUTPUT
+          echo "current-url=$CURRENT_URL" >> $GITHUB_OUTPUT
+          
+          echo "Current deployment: $CURRENT_DEPLOYMENT"
+          echo "Current URL: $CURRENT_URL"
+
+      - name: Create deployment snapshot
+        run: |
+          echo "Creating deployment snapshot..."
+          echo "Current deployment ID: ${{ steps.current.outputs.current-deployment }}"
+          echo "Snapshot created at: $(date)" > rollback-snapshot.txt
+          echo "Pre-rollback deployment: ${{ steps.current.outputs.current-deployment }}" >> rollback-snapshot.txt
+
+      - name: Upload snapshot
+        uses: actions/upload-artifact@v3
+        with:
+          name: rollback-snapshot-${{ github.run_id }}
+          path: rollback-snapshot.txt
+          retention-days: 30
+
+  # Execute rollback
+  execute-rollback:
+    name: Execute Rollback
+    runs-on: ubuntu-latest
+    needs: [validate-rollback, pre-rollback-backup]
+    if: needs.validate-rollback.outputs.is-valid == 'true'
+    environment:
+      name: ${{ github.event.inputs.environment }}
+    
+    steps:
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Identify target deployment
+        id: target
+        run: |
+          echo "Identifying target deployment..."
+          
+          if [ "${{ github.event.inputs.rollback_to }}" = "previous" ]; then
+            # Get the previous deployment (second in the list)
+            TARGET_DEPLOYMENT=$(vercel ls --token=${{ secrets.VERCEL_TOKEN }} | grep "judge.ca" | head -2 | tail -1 | awk '{print $1}')
+          else
+            # Use specified deployment ID
+            TARGET_DEPLOYMENT="${{ github.event.inputs.rollback_to }}"
+          fi
+          
+          echo "target-deployment=$TARGET_DEPLOYMENT" >> $GITHUB_OUTPUT
+          echo "Target deployment: $TARGET_DEPLOYMENT"
+          
+          # Verify deployment exists
+          if ! vercel inspect $TARGET_DEPLOYMENT --token=${{ secrets.VERCEL_TOKEN }} >/dev/null 2>&1; then
+            echo "❌ Target deployment not found: $TARGET_DEPLOYMENT"
+            exit 1
+          fi
+
+      - name: Execute rollback
+        id: rollback
+        run: |
+          echo "🔄 Executing rollback..."
+          
+          TARGET_DEPLOYMENT="${{ steps.target.outputs.target-deployment }}"
+          
+          if [ "${{ github.event.inputs.environment }}" = "production" ]; then
+            # Promote to production
+            vercel promote $TARGET_DEPLOYMENT --token=${{ secrets.VERCEL_TOKEN }}
+            echo "✅ Rollback to production completed"
+          else
+            # For staging, alias the deployment
+            vercel alias $TARGET_DEPLOYMENT staging.judge.ca --token=${{ secrets.VERCEL_TOKEN }}
+            echo "✅ Rollback to staging completed"
+          fi
+          
+          echo "rollback-completed=true" >> $GITHUB_OUTPUT
+
+      - name: Wait for rollback to propagate
+        run: |
+          echo "Waiting for rollback to propagate..."
+          sleep 60
+
+  # Verify rollback
+  verify-rollback:
+    name: Verify Rollback
+    runs-on: ubuntu-latest
+    needs: execute-rollback
+    
+    steps:
+      - name: Health check after rollback
+        id: health
+        run: |
+          echo "Running health check after rollback..."
+          
+          if [ "${{ github.event.inputs.environment }}" = "production" ]; then
+            TARGET_URL="https://judge.ca"
+          else
+            TARGET_URL="https://staging.judge.ca"
+          fi
+          
+          # Health check
+          if curl -f -s $TARGET_URL/api/health >/dev/null 2>&1; then
+            echo "health-status=healthy" >> $GITHUB_OUTPUT
+            echo "✅ Health check passed"
+          else
+            echo "health-status=unhealthy" >> $GITHUB_OUTPUT
+            echo "❌ Health check failed"
+            exit 1
+          fi
+          
+          # Basic functionality check
+          if curl -f -s $TARGET_URL/ >/dev/null 2>&1; then
+            echo "site-status=accessible" >> $GITHUB_OUTPUT
+            echo "✅ Site is accessible"
+          else
+            echo "site-status=inaccessible" >> $GITHUB_OUTPUT
+            echo "❌ Site is not accessible"
+            exit 1
+          fi
+
+      - name: Performance check
+        run: |
+          echo "Running performance check..."
+          
+          if [ "${{ github.event.inputs.environment }}" = "production" ]; then
+            TARGET_URL="https://judge.ca"
+          else
+            TARGET_URL="https://staging.judge.ca"
+          fi
+          
+          START_TIME=$(date +%s%N)
+          curl -s $TARGET_URL/ > /dev/null
+          END_TIME=$(date +%s%N)
+          RESPONSE_TIME=$(( (END_TIME - START_TIME) / 1000000 ))
+          
+          echo "Response time: ${RESPONSE_TIME}ms"
+          
+          if [ $RESPONSE_TIME -gt 5000 ]; then
+            echo "⚠️ Warning: Response time is over 5 seconds"
+          else
+            echo "✅ Response time is acceptable"
+          fi
+
+  # Post-rollback notifications
+  notify-rollback:
+    name: Notify Rollback Completion
+    runs-on: ubuntu-latest
+    needs: [execute-rollback, verify-rollback]
+    if: always()
+    
+    steps:
+      - name: Determine rollback status
+        id: status
+        run: |
+          if [ "${{ needs.execute-rollback.result }}" = "success" ] && \
+             [ "${{ needs.verify-rollback.result }}" = "success" ]; then
+            echo "status=success" >> $GITHUB_OUTPUT
+            echo "message=✅ Rollback completed successfully and verified" >> $GITHUB_OUTPUT
+          else
+            echo "status=failure" >> $GITHUB_OUTPUT
+            echo "message=❌ Rollback failed or verification issues detected" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Slack notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ steps.status.outputs.status }}
+          text: |
+            🚨 **EMERGENCY ROLLBACK EXECUTED**
+            
+            ${{ steps.status.outputs.message }}
+            
+            **Environment:** ${{ github.event.inputs.environment }}
+            **Target:** ${{ github.event.inputs.rollback_to }}
+            **Reason:** ${{ github.event.inputs.reason }}
+            **Executed by:** ${{ github.actor }}
+            **Time:** $(date)
+            
+            **Next Steps:**
+            1. Investigate root cause
+            2. Fix underlying issue
+            3. Plan forward deployment
+            4. Update incident documentation
+            
+            View workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Create incident issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const now = new Date().toISOString();
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Emergency Rollback Executed - ${{ github.event.inputs.environment }} - ${now}`,
+              body: `## Emergency Rollback Incident
+              
+              **Time:** ${now}
+              **Environment:** ${{ github.event.inputs.environment }}
+              **Target Deployment:** ${{ github.event.inputs.rollback_to }}
+              **Reason:** ${{ github.event.inputs.reason }}
+              **Executed by:** ${{ github.actor }}
+              **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              
+              ### Rollback Status
+              - **Execution:** ${{ needs.execute-rollback.result }}
+              - **Verification:** ${{ needs.verify-rollback.result }}
+              
+              ### Timeline
+              - **Initiated:** ${now}
+              - **Completed:** TBD
+              
+              ### Root Cause Analysis
+              - [ ] Identify root cause
+              - [ ] Document issue
+              - [ ] Implement fix
+              - [ ] Create prevention measures
+              
+              ### Recovery Plan
+              - [ ] Monitor system stability
+              - [ ] Plan forward deployment
+              - [ ] Update deployment procedures
+              - [ ] Conduct post-incident review
+              
+              ### Communication
+              - [ ] Notify stakeholders
+              - [ ] Update status page
+              - [ ] Document lessons learned
+              
+              Auto-generated by emergency rollback workflow.`,
+              labels: ['incident', 'rollback', ${{ github.event.inputs.environment }}, 'critical'],
+              assignees: ['${{ github.actor }}']
+            })
+
+      - name: Update deployment record
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: '${{ github.event.inputs.environment }}',
+              description: 'Emergency rollback: ${{ github.event.inputs.reason }}',
+              auto_merge: false
+            })

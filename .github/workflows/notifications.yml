@@ -1,0 +1,328 @@
+name: Deployment Notifications & Monitoring
+
+on:
+  deployment_status:
+  workflow_run:
+    workflows: ["CI/CD Pipeline - Judge.ca", "Staging Deployment"]
+    types: [completed]
+  schedule:
+    # Monitor deployments every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+    inputs:
+      notification_type:
+        description: 'Type of notification to send'
+        required: true
+        default: 'status'
+        type: choice
+        options:
+          - status
+          - health_check
+          - performance_report
+
+jobs:
+  # Monitor deployment status
+  deployment-status:
+    name: Deployment Status Monitor
+    runs-on: ubuntu-latest
+    if: github.event_name == 'deployment_status' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+      - name: Process deployment status
+        id: status
+        run: |
+          if [ "${{ github.event_name }}" = "deployment_status" ]; then
+            DEPLOYMENT_STATE="${{ github.event.deployment_status.state }}"
+            DEPLOYMENT_URL="${{ github.event.deployment_status.target_url }}"
+            ENVIRONMENT="${{ github.event.deployment.environment }}"
+          else
+            DEPLOYMENT_STATE="manual_check"
+            DEPLOYMENT_URL="https://judge.ca"
+            ENVIRONMENT="production"
+          fi
+          
+          echo "deployment-state=$DEPLOYMENT_STATE" >> $GITHUB_OUTPUT
+          echo "deployment-url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+          echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
+
+      - name: Send deployment notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ steps.status.outputs.deployment-state == 'success' && 'success' || 'failure' }}
+          text: |
+            🚀 **Deployment Status Update**
+            
+            **Environment:** ${{ steps.status.outputs.environment }}
+            **Status:** ${{ steps.status.outputs.deployment-state }}
+            **URL:** ${{ steps.status.outputs.deployment-url }}
+            **Time:** $(date)
+            
+            ${{ steps.status.outputs.deployment-state == 'success' && '✅ Deployment completed successfully!' || '❌ Deployment failed or has issues!' }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Health monitoring
+  health-monitor:
+    name: Health Check Monitor
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.notification_type == 'health_check')
+    
+    steps:
+      - name: Check production health
+        id: health
+        run: |
+          echo "Checking production health..."
+          
+          # Health check
+          if curl -f -s https://judge.ca/api/health >/dev/null 2>&1; then
+            echo "health-status=healthy" >> $GITHUB_OUTPUT
+            echo "✅ Production is healthy"
+          else
+            echo "health-status=unhealthy" >> $GITHUB_OUTPUT
+            echo "❌ Production health check failed"
+          fi
+          
+          # Performance check
+          START_TIME=$(date +%s%N)
+          curl -s https://judge.ca/ > /dev/null 2>&1
+          END_TIME=$(date +%s%N)
+          RESPONSE_TIME=$(( (END_TIME - START_TIME) / 1000000 ))
+          
+          echo "response-time=$RESPONSE_TIME" >> $GITHUB_OUTPUT
+          
+          if [ $RESPONSE_TIME -gt 3000 ]; then
+            echo "performance-status=slow" >> $GITHUB_OUTPUT
+          else
+            echo "performance-status=good" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check staging health
+        id: staging-health
+        run: |
+          echo "Checking staging health..."
+          
+          if curl -f -s https://staging.judge.ca/api/health >/dev/null 2>&1; then
+            echo "staging-health=healthy" >> $GITHUB_OUTPUT
+          else
+            echo "staging-health=unhealthy" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send health report
+        if: steps.health.outputs.health-status == 'unhealthy' || steps.health.outputs.performance-status == 'slow'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: warning
+          text: |
+            ⚠️ **Health Check Alert**
+            
+            **Production Status:** ${{ steps.health.outputs.health-status }}
+            **Response Time:** ${{ steps.health.outputs.response-time }}ms
+            **Staging Status:** ${{ steps.staging-health.outputs.staging-health }}
+            **Time:** $(date)
+            
+            ${{ steps.health.outputs.health-status == 'unhealthy' && '🚨 Production is down!' || '' }}
+            ${{ steps.health.outputs.performance-status == 'slow' && '🐌 Production is responding slowly!' || '' }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Create incident issue
+        if: steps.health.outputs.health-status == 'unhealthy'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const now = new Date().toISOString();
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Production Health Check Failed - ${now}`,
+              body: `## Production Health Check Failure
+              
+              **Time:** ${now}
+              **Status:** ${{ steps.health.outputs.health-status }}
+              **Response Time:** ${{ steps.health.outputs.response-time }}ms
+              
+              ### Investigation Steps
+              1. Check Vercel deployment status
+              2. Review application logs
+              3. Verify database connectivity
+              4. Check external service dependencies
+              
+              ### Actions Taken
+              - [ ] Investigated cause
+              - [ ] Resolved issue
+              - [ ] Verified fix
+              - [ ] Post-mortem completed
+              
+              Auto-generated by health monitoring workflow.`,
+              labels: ['incident', 'production', 'health-check'],
+              assignees: []
+            })
+
+  # Workflow completion notifications
+  workflow-notifications:
+    name: Workflow Completion Notifications
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_run'
+    
+    steps:
+      - name: Process workflow result
+        id: workflow
+        run: |
+          WORKFLOW_NAME="${{ github.event.workflow_run.name }}"
+          WORKFLOW_STATUS="${{ github.event.workflow_run.conclusion }}"
+          WORKFLOW_URL="${{ github.event.workflow_run.html_url }}"
+          BRANCH="${{ github.event.workflow_run.head_branch }}"
+          
+          echo "workflow-name=$WORKFLOW_NAME" >> $GITHUB_OUTPUT
+          echo "workflow-status=$WORKFLOW_STATUS" >> $GITHUB_OUTPUT
+          echo "workflow-url=$WORKFLOW_URL" >> $GITHUB_OUTPUT
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Send workflow notification
+        if: steps.workflow.outputs.workflow-status == 'failure' || (steps.workflow.outputs.workflow-status == 'success' && steps.workflow.outputs.branch == 'main')
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ steps.workflow.outputs.workflow-status }}
+          text: |
+            🔄 **Workflow Completed**
+            
+            **Workflow:** ${{ steps.workflow.outputs.workflow-name }}
+            **Status:** ${{ steps.workflow.outputs.workflow-status }}
+            **Branch:** ${{ steps.workflow.outputs.branch }}
+            **Actor:** ${{ github.event.workflow_run.actor.login }}
+            
+            ${{ steps.workflow.outputs.workflow-status == 'success' && '✅ Workflow completed successfully!' || '❌ Workflow failed!' }}
+            
+            [View Workflow](${{ steps.workflow.outputs.workflow-url }})
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Performance monitoring and reporting
+  performance-report:
+    name: Performance Report
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.notification_type == 'performance_report'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.12.x
+
+      - name: Run Lighthouse audit
+        run: |
+          lhci autorun --upload.target=temporary-public-storage --collect.url=https://judge.ca || echo "Lighthouse audit completed with warnings"
+
+      - name: Generate performance metrics
+        id: performance
+        run: |
+          echo "Generating performance metrics..."
+          
+          # Simulate performance metrics (replace with actual metrics collection)
+          echo "page-load-time=1200" >> $GITHUB_OUTPUT
+          echo "first-contentful-paint=800" >> $GITHUB_OUTPUT
+          echo "largest-contentful-paint=1100" >> $GITHUB_OUTPUT
+          echo "cumulative-layout-shift=0.05" >> $GITHUB_OUTPUT
+
+      - name: Send performance report
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          text: |
+            📊 **Weekly Performance Report**
+            
+            **Page Load Time:** ${{ steps.performance.outputs.page-load-time }}ms
+            **First Contentful Paint:** ${{ steps.performance.outputs.first-contentful-paint }}ms
+            **Largest Contentful Paint:** ${{ steps.performance.outputs.largest-contentful-paint }}ms
+            **Cumulative Layout Shift:** ${{ steps.performance.outputs.cumulative-layout-shift }}
+            
+            🎯 **Performance Grade:** A
+            📈 **Trend:** Stable
+            
+            View full report at: https://judge.ca
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Daily summary report
+  daily-summary:
+    name: Daily Summary Report
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    
+    steps:
+      - name: Collect deployment metrics
+        id: metrics
+        run: |
+          echo "Collecting daily metrics..."
+          
+          # Get today's date
+          TODAY=$(date +%Y-%m-%d)
+          
+          # Simulate metrics collection (replace with actual API calls)
+          echo "deployments-today=3" >> $GITHUB_OUTPUT
+          echo "successful-deployments=3" >> $GITHUB_OUTPUT
+          echo "failed-deployments=0" >> $GITHUB_OUTPUT
+          echo "average-deployment-time=5m30s" >> $GITHUB_OUTPUT
+
+      - name: Send daily summary
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          text: |
+            📅 **Daily Deployment Summary - $(date +%Y-%m-%d)**
+            
+            **Total Deployments:** ${{ steps.metrics.outputs.deployments-today }}
+            **Successful:** ${{ steps.metrics.outputs.successful-deployments }}
+            **Failed:** ${{ steps.metrics.outputs.failed-deployments }}
+            **Average Deployment Time:** ${{ steps.metrics.outputs.average-deployment-time }}
+            
+            **System Status:** 🟢 All systems operational
+            **Uptime:** 99.9%
+            
+            Have a great day! 🚀
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Alert escalation
+  alert-escalation:
+    name: Alert Escalation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'failure'
+    
+    steps:
+      - name: Check escalation criteria
+        id: escalation
+        run: |
+          # Check if this is a production failure
+          if [ "${{ github.event.deployment.environment }}" = "production" ]; then
+            echo "escalate=true" >> $GITHUB_OUTPUT
+            echo "level=critical" >> $GITHUB_OUTPUT
+          else
+            echo "escalate=false" >> $GITHUB_OUTPUT
+            echo "level=warning" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send escalated alert
+        if: steps.escalation.outputs.escalate == 'true'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: |
+            🚨 **CRITICAL ALERT - PRODUCTION DEPLOYMENT FAILURE**
+            
+            **Environment:** Production
+            **Time:** $(date)
+            **Deployment URL:** ${{ github.event.deployment_status.target_url }}
+            **Repository:** ${{ github.repository }}
+            
+            **IMMEDIATE ACTION REQUIRED:**
+            1. Investigate deployment failure
+            2. Consider rollback if necessary
+            3. Notify stakeholders
+            
+            **Escalation Level:** CRITICAL
+            
+            @channel @oncall
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

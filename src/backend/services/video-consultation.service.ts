@@ -565,7 +565,7 @@ export class VideoConsultationService {
           recordingPolicy: 'optional',
           cancellationPolicy: {
             allowUserCancellation: true,
-            freeCancel­lationHours: 24,
+            freeCancellationHours: 24,
             cancellationFeePercentage: 25
           }
         };
@@ -723,7 +723,7 @@ export class VideoConsultationService {
       return consultation.cost_amount; // Full refund if attorney cancels
     }
 
-    if (hoursUntil >= preferences.cancellationPolicy.freeCancel­lationHours) {
+    if (hoursUntil >= preferences.cancellationPolicy.freeCancellationHours) {
       return consultation.cost_amount; // Full refund if cancelled with enough notice
     }
 

@@ -1,0 +1,133 @@
+{
+  "name": "Judge.ca CDN Configuration",
+  "description": "Cloudflare configuration for judge.ca performance optimization",
+  "zones": [
+    {
+      "name": "judge.ca",
+      "settings": {
+        "always_online": "on",
+        "always_use_https": "on",
+        "automatic_https_rewrites": "on",
+        "brotli": "on",
+        "browser_cache_ttl": 14400,
+        "browser_check": "on",
+        "cache_level": "aggressive",
+        "development_mode": "off",
+        "email_obfuscation": "on",
+        "hotlink_protection": "off",
+        "ip_geolocation": "on",
+        "ipv6": "on",
+        "minify": {
+          "css": "on",
+          "html": "on",
+          "js": "on"
+        },
+        "mirage": "on",
+        "mobile_redirect": "off",
+        "opportunistic_encryption": "on",
+        "polish": "lossless",
+        "prefetch_preload": "on",
+        "pseudo_ipv4": "off",
+        "response_buffering": "on",
+        "rocket_loader": "on",
+        "security_level": "medium",
+        "server_side_exclude": "on",
+        "sort_query_string_for_cache": "off",
+        "ssl": "strict",
+        "tls_1_3": "on",
+        "true_client_ip_header": "on",
+        "waf": "on",
+        "webp": "on",
+        "websockets": "on"
+      }
+    }
+  ],
+  "page_rules": [
+    {
+      "targets": [
+        {
+          "target": "url",
+          "constraint": {
+            "operator": "matches",
+            "value": "judge.ca/api/*"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "cache_level",
+          "value": "bypass"
+        }
+      ]
+    },
+    {
+      "targets": [
+        {
+          "target": "url",
+          "constraint": {
+            "operator": "matches",
+            "value": "judge.ca/static/*"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "cache_level",
+          "value": "cache_everything"
+        },
+        {
+          "id": "edge_cache_ttl",
+          "value": 2592000
+        }
+      ]
+    },
+    {
+      "targets": [
+        {
+          "target": "url",
+          "constraint": {
+            "operator": "matches",
+            "value": "judge.ca/images/*"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "cache_level",
+          "value": "cache_everything"
+        },
+        {
+          "id": "edge_cache_ttl",
+          "value": 2592000
+        }
+      ]
+    },
+    {
+      "targets": [
+        {
+          "target": "url",
+          "constraint": {
+            "operator": "matches",
+            "value": "judge.ca/_next/static/*"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "cache_level",
+          "value": "cache_everything"
+        },
+        {
+          "id": "edge_cache_ttl",
+          "value": 31536000
+        }
+      ]
+    }
+  ],
+  "workers": [
+    {
+      "script": "edge-cache-worker",
+      "route": "judge.ca/*"
+    }
+  ]
+}
