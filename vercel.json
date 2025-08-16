@@ -5,23 +5,6 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["iad1"],
-  "env": {
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "@stripe_publishable_key",
-    "NEXT_PUBLIC_WEBSOCKET_URL": "@websocket_url",
-    "NEXT_PUBLIC_GA_ID": "@ga_id",
-    "NEXT_PUBLIC_FB_PIXEL_ID": "@fb_pixel_id"
-  },
-  "build": {
-    "env": {
-      "DATABASE_URL": "@database_url",
-      "JWT_SECRET": "@jwt_secret",
-      "STRIPE_SECRET_KEY": "@stripe_secret_key",
-      "REDIS_URL": "@redis_url",
-      "SENDGRID_API_KEY": "@sendgrid_api_key",
-      "TWILIO_ACCOUNT_SID": "@twilio_account_sid",
-      "TWILIO_AUTH_TOKEN": "@twilio_auth_token"
-    }
-  },
   "functions": {
     "pages/api/**/*.ts": {
       "maxDuration": 30

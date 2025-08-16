@@ -1,45 +1,28 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { AppError } from './errorHandler';
 
-export interface AuthRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-    role: 'user' | 'attorney' | 'admin';
-  };
-}
-
-export const authenticate = async (
-  req: AuthRequest,
-  res: Response,
-  next: NextFunction
-) => {
+export const authenticate = (req: Request, res: Response, next: NextFunction) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'No token provided' });
+  }
+  
   try {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
-
-    if (!token) {
-      throw new AppError('Please authenticate', 401);
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
-    req.user = {
-      id: decoded.id,
-      email: decoded.email,
-      role: decoded.role
-    };
-
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
+    (req as any).user = decoded;
     next();
   } catch (error) {
-    next(new AppError('Please authenticate', 401));
+    return res.status(401).json({ error: 'Invalid token' });
   }
 };
 
-export const authorize = (...roles: string[]) => {
-  return (req: AuthRequest, res: Response, next: NextFunction) => {
-    if (!req.user || !roles.includes(req.user.role)) {
-      return next(new AppError('Access denied', 403));
+export const requireAuth = authenticate;
+export const requireUser = authenticate;
+export const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
+  authenticate(req, res, () => {
+    if ((req as any).user?.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
     }
     next();
-  };
+  });
 };
