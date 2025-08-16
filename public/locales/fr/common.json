@@ -10,7 +10,104 @@
     "register": "S'inscrire",
     "dashboard": "Tableau de bord",
     "profile": "Profil",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "portal": "Portail client",
+    "messages": "Messages",
+    "calendar": "Calendrier",
+    "billing": "Facturation"
+  },
+  "home": {
+    "hero": {
+      "title": "Trouvez l'aide juridique appropriée au Canada",
+      "subtitle": "Connectez-vous avec des avocats vérifiés dans toutes les provinces. Obtenez des conseils juridiques experts adaptés à vos besoins.",
+      "findAttorney": "Trouver un avocat",
+      "joinAttorney": "Rejoindre comme avocat"
+    },
+    "features": {
+      "title": "Pourquoi choisir Judge.ca",
+      "subtitle": "Votre plateforme de confiance pour les services juridiques au Canada",
+      "smartMatching": {
+        "title": "Jumelage intelligent",
+        "description": "Notre système alimenté par l'IA vous met en relation avec l'avocat parfait en fonction de vos besoins juridiques, de votre emplacement et de votre budget."
+      },
+      "verifiedAttorneys": {
+        "title": "Avocats vérifiés",
+        "description": "Tous les avocats sont vérifiés auprès des barreaux provinciaux et font l'objet de vérifications approfondies des antécédents."
+      },
+      "transparentPricing": {
+        "title": "Tarification transparente",
+        "description": "Connaître les coûts à l'avance. Comparez les tarifs et obtenez des devis avant de vous engager dans des services juridiques."
+      }
+    }
+  },
+  "search": {
+    "title": "Trouver un avocat",
+    "placeholder": "Rechercher par nom, spécialisation ou mot-clé...",
+    "filters": "Filtres",
+    "results": "{{count}} avocats trouvés selon vos critères",
+    "noResults": "Aucun avocat trouvé",
+    "clearFilters": "Effacer les filtres",
+    "sortBy": "Trier par",
+    "relevance": "Plus pertinent",
+    "rating": "Mieux noté",
+    "priceLow": "Prix: Bas à élevé",
+    "priceHigh": "Prix: Élevé à bas",
+    "experience": "Plus expérimenté"
+  },
+  "attorney": {
+    "profile": {
+      "verified": "Vérifié",
+      "yearsExp": "{{years}} ans d'exp.",
+      "languages": "Langues",
+      "rate": "{{rate}}/h",
+      "bookConsultation": "Réserver une consultation",
+      "sendMessage": "Envoyer un message"
+    },
+    "reviews": {
+      "title": "Avis clients",
+      "writeReview": "Écrire un avis",
+      "rating": "Évaluation",
+      "noReviews": "Aucun avis pour le moment"
+    }
+  },
+  "portal": {
+    "title": "Portail client",
+    "subtitle": "Gérez vos dossiers, documents et communications",
+    "tabs": {
+      "overview": "Aperçu",
+      "documents": "Documents",
+      "tasks": "Tâches",
+      "billing": "Facturation",
+      "activity": "Activité"
+    },
+    "case": {
+      "status": {
+        "open": "Ouvert",
+        "inProgress": "En cours",
+        "pending": "En attente",
+        "closed": "Fermé",
+        "onHold": "En pause"
+      },
+      "priority": {
+        "low": "Faible",
+        "medium": "Moyen",
+        "high": "Élevé",
+        "urgent": "Urgent"
+      }
+    }
+  },
+  "chat": {
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "typing": "En train d'écrire...",
+    "sendMessage": "Tapez un message...",
+    "noMessages": "Aucun message. Commencez la conversation!"
+  },
+  "calendar": {
+    "bookAppointment": "Prendre rendez-vous",
+    "yourSchedule": "Votre horaire",
+    "availableTimes": "Heures disponibles",
+    "noSlots": "Aucun créneau disponible pour cette date"
   },
   "buttons": {
     "submit": "Soumettre",
@@ -54,13 +151,13 @@
     "cancelled": "Annulé",
     "available": "Disponible",
     "busy": "Occupé",
-    "unavailable": "Indisponible"
+    "unavailable": "Non disponible"
   },
   "messages": {
     "success": "Opération réussie",
-    "error": "Une erreur est survenue",
+    "error": "Une erreur s'est produite",
     "noResults": "Aucun résultat trouvé",
-    "loading": "Chargement en cours...",
+    "loading": "Chargement...",
     "saved": "Enregistré avec succès",
     "deleted": "Supprimé avec succès",
     "updated": "Mis à jour avec succès",
@@ -68,9 +165,9 @@
     "unsavedChanges": "Vous avez des modifications non enregistrées"
   },
   "footer": {
-    "tagline": "Connecter les Québécois avec les meilleurs avocats",
+    "tagline": "Connecter les Canadiens avec les meilleurs avocats",
     "clients": "Clients",
-    "legalCommunity": "Communauté légale",
+    "legalCommunity": "Communauté juridique",
     "language": "Langue",
     "services": "Services",
     "findAttorney": "Trouver un avocat",
@@ -85,8 +182,8 @@
     "contact": "Contact",
     "legal": "Légal",
     "privacy": "Confidentialité",
-    "terms": "Conditions d'utilisation",
-    "disclaimers": "Avis de non-responsabilité",
+    "terms": "Conditions",
+    "disclaimers": "Avertissements",
     "support": "Support",
     "accessibility": "Accessibilité",
     "newsletter": {
@@ -100,7 +197,7 @@
     "secure": "Sécurisé et confidentiel",
     "corporate": {
       "hr": "Ressources humaines",
-      "investors": "Relations investisseurs",
+      "investors": "Relations avec les investisseurs",
       "partners": "Partenaires",
       "media": "Médias"
     }
@@ -118,8 +215,8 @@
   "legal": {
     "terms": "Conditions d'utilisation",
     "privacy": "Politique de confidentialité",
-    "disclaimer": "Avis de non-responsabilité",
-    "cookies": "Politique des témoins",
+    "disclaimer": "Avertissement",
+    "cookies": "Politique de cookies",
     "consent": "J'accepte les conditions d'utilisation",
     "dataConsent": "J'accepte le traitement de mes données personnelles"
   }

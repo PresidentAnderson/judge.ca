@@ -10,7 +10,104 @@
     "register": "Register",
     "dashboard": "Dashboard",
     "profile": "Profile",
-    "logout": "Logout"
+    "logout": "Logout",
+    "portal": "Client Portal",
+    "messages": "Messages",
+    "calendar": "Calendar",
+    "billing": "Billing"
+  },
+  "home": {
+    "hero": {
+      "title": "Find the Right Legal Help in Canada",
+      "subtitle": "Connect with verified attorneys across all provinces. Get expert legal advice tailored to your needs.",
+      "findAttorney": "Find an Attorney",
+      "joinAttorney": "Join as Attorney"
+    },
+    "features": {
+      "title": "Why Choose Judge.ca",
+      "subtitle": "Your trusted platform for legal services across Canada",
+      "smartMatching": {
+        "title": "Smart Matching",
+        "description": "Our AI-powered system matches you with the perfect attorney based on your legal needs, location, and budget."
+      },
+      "verifiedAttorneys": {
+        "title": "Verified Attorneys",
+        "description": "All attorneys are verified with the provincial bar associations and undergo thorough background checks."
+      },
+      "transparentPricing": {
+        "title": "Transparent Pricing",
+        "description": "Know the costs upfront. Compare rates and get quotes before committing to legal services."
+      }
+    }
+  },
+  "search": {
+    "title": "Find an Attorney",
+    "placeholder": "Search by name, specialization, or keyword...",
+    "filters": "Filters",
+    "results": "Found {{count}} attorneys matching your criteria",
+    "noResults": "No attorneys found",
+    "clearFilters": "Clear Filters",
+    "sortBy": "Sort by",
+    "relevance": "Most Relevant",
+    "rating": "Highest Rated",
+    "priceLow": "Price: Low to High",
+    "priceHigh": "Price: High to Low",
+    "experience": "Most Experienced"
+  },
+  "attorney": {
+    "profile": {
+      "verified": "Verified",
+      "yearsExp": "{{years}} years exp.",
+      "languages": "Languages",
+      "rate": "{{rate}}/hr",
+      "bookConsultation": "Book Consultation",
+      "sendMessage": "Send Message"
+    },
+    "reviews": {
+      "title": "Client Reviews",
+      "writeReview": "Write a Review",
+      "rating": "Rating",
+      "noReviews": "No reviews yet"
+    }
+  },
+  "portal": {
+    "title": "Client Portal",
+    "subtitle": "Manage your cases, documents, and communications",
+    "tabs": {
+      "overview": "Overview",
+      "documents": "Documents",
+      "tasks": "Tasks",
+      "billing": "Billing",
+      "activity": "Activity"
+    },
+    "case": {
+      "status": {
+        "open": "Open",
+        "inProgress": "In Progress",
+        "pending": "Pending",
+        "closed": "Closed",
+        "onHold": "On Hold"
+      },
+      "priority": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      }
+    }
+  },
+  "chat": {
+    "online": "Online",
+    "offline": "Offline",
+    "typing": "Typing...",
+    "sendMessage": "Type a message...",
+    "noMessages": "No messages yet. Start the conversation!"
+  },
+  "calendar": {
+    "bookAppointment": "Book an Appointment",
+    "yourSchedule": "Your Schedule",
+    "availableTimes": "Available Times",
+    "noSlots": "No available slots for this date"
   },
   "buttons": {
     "submit": "Submit",

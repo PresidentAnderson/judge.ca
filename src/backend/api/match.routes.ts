@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { authenticate, AuthRequest } from '../middleware/auth';
 import { MatchingService } from '../services/matching.service';
-import { db } from '../utils/database';
+import db from '../utils/database';
 import { AppError } from '../middleware/errorHandler';
 import { validateRequest } from '../middleware/validation';
 import { z } from 'zod';

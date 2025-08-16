@@ -21,7 +21,7 @@ export default async function handler(
     const validatedData = loginSchema.parse(req.body);
     
     // Find user (mock implementation)
-    const user = await db.users.findByEmail(validatedData.email);
+    const user = await db.users.findByEmail(validatedData.email) as any;
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }

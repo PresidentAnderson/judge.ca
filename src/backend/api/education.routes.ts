@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { db } from '../utils/database';
+import db from '../utils/database';
 import { AppError } from '../middleware/errorHandler';
 
 const router = Router();

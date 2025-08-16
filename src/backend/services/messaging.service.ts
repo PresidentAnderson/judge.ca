@@ -40,6 +40,196 @@ export class MessagingService {
   private readonly ENCRYPTION_ALGORITHM = 'aes-256-gcm';
   private readonly KEY_LENGTH = 32;
 
+  async userHasAccessToConversation(userId: string, conversationId: string): Promise<boolean> {
+    try {
+      const conversation = await db('conversations')
+        .where({ id: conversationId })
+        .andWhere(function() {
+          this.where({ user_id: userId }).orWhere({ attorney_id: userId });
+        })
+        .first();
+      
+      return !!conversation;
+    } catch (error) {
+      console.error('Error checking conversation access:', error);
+      return false;
+    }
+  }
+
+  async getConversation(conversationId: string): Promise<Conversation> {
+    const conversation = await db('conversations')
+      .where({ id: conversationId })
+      .first();
+    
+    if (!conversation) {
+      throw new Error('Conversation not found');
+    }
+    
+    return {
+      id: conversation.id,
+      userId: conversation.user_id,
+      attorneyId: conversation.attorney_id,
+      matchId: conversation.match_id,
+      title: conversation.title,
+      status: conversation.status,
+      lastMessageAt: conversation.last_message_at,
+      encryptionKey: conversation.encryption_key,
+      createdAt: conversation.created_at,
+      updatedAt: conversation.updated_at
+    };
+  }
+
+  async getMessage(messageId: string): Promise<Message | null> {
+    try {
+      const message = await db('messages')
+        .where({ id: messageId })
+        .first();
+      
+      if (!message) return null;
+      
+      return {
+        id: message.id,
+        conversationId: message.conversation_id,
+        senderId: message.sender_id,
+        senderType: message.sender_type,
+        recipientId: message.recipient_id,
+        recipientType: message.recipient_type,
+        content: message.content,
+        encryptedContent: message.encrypted_content,
+        messageType: message.message_type,
+        fileUrl: message.file_url,
+        fileName: message.file_name,
+        fileSize: message.file_size,
+        isRead: message.is_read,
+        isDeleted: message.is_deleted,
+        editedAt: message.edited_at,
+        replyToId: message.reply_to_id,
+        createdAt: message.created_at,
+        updatedAt: message.updated_at
+      };
+    } catch (error) {
+      console.error('Error getting message:', error);
+      return null;
+    }
+  }
+
+  async markMessagesAsRead(messageIds: string[], userId: string): Promise<void> {
+    try {
+      await db('messages')
+        .whereIn('id', messageIds)
+        .where({ recipient_id: userId })
+        .update({
+          is_read: true,
+          updated_at: new Date()
+        });
+    } catch (error) {
+      console.error('Error marking messages as read:', error);
+      throw error;
+    }
+  }
+
+  async deleteMessage(messageId: string): Promise<void> {
+    try {
+      await db('messages')
+        .where({ id: messageId })
+        .update({
+          is_deleted: true,
+          content: '[Message deleted]',
+          encrypted_content: '',
+          updated_at: new Date()
+        });
+    } catch (error) {
+      console.error('Error deleting message:', error);
+      throw error;
+    }
+  }
+
+  async sendMessage(data: {
+    conversationId: string;
+    senderId: string;
+    senderType: 'user' | 'attorney';
+    content: string;
+    messageType: 'text' | 'file' | 'voice';
+    fileUrl?: string;
+    fileName?: string;
+    fileSize?: number;
+  }): Promise<Message> {
+    try {
+      // Get conversation to determine recipient
+      const conversation = await this.getConversation(data.conversationId);
+      const recipientId = data.senderType === 'user' ? conversation.attorneyId : conversation.userId;
+      const recipientType = data.senderType === 'user' ? 'attorney' : 'user';
+      
+      // Encrypt content
+      const encryptedContent = await this.encryptMessage(data.content, conversation.encryptionKey);
+      
+      // Create message
+      const messageId = uuidv4();
+      const now = new Date();
+      
+      await db('messages').insert({
+        id: messageId,
+        conversation_id: data.conversationId,
+        sender_id: data.senderId,
+        sender_type: data.senderType,
+        recipient_id: recipientId,
+        recipient_type: recipientType,
+        content: data.content,
+        encrypted_content: encryptedContent,
+        message_type: data.messageType,
+        file_url: data.fileUrl,
+        file_name: data.fileName,
+        file_size: data.fileSize,
+        is_read: false,
+        is_deleted: false,
+        created_at: now,
+        updated_at: now
+      });
+      
+      // Update conversation last message time
+      await db('conversations')
+        .where({ id: data.conversationId })
+        .update({
+          last_message_at: now,
+          updated_at: now
+        });
+      
+      return {
+        id: messageId,
+        conversationId: data.conversationId,
+        senderId: data.senderId,
+        senderType: data.senderType,
+        recipientId,
+        recipientType,
+        content: data.content,
+        encryptedContent,
+        messageType: data.messageType,
+        fileUrl: data.fileUrl,
+        fileName: data.fileName,
+        fileSize: data.fileSize,
+        isRead: false,
+        isDeleted: false,
+        createdAt: now,
+        updatedAt: now
+      };
+    } catch (error) {
+      console.error('Error sending message:', error);
+      throw error;
+    }
+  }
+
+  private async encryptMessage(content: string, key: string): Promise<string> {
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv(this.ENCRYPTION_ALGORITHM, Buffer.from(key, 'hex'), iv);
+    
+    let encrypted = cipher.update(content, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    
+    const authTag = cipher.getAuthTag();
+    
+    return iv.toString('hex') + ':' + authTag.toString('hex') + ':' + encrypted;
+  }
+
   async createConversation(userId: string, attorneyId: string, matchId?: string): Promise<Conversation> {
     try {
       // Check if conversation already exists
