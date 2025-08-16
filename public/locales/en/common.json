@@ -1,6 +1,9 @@
 {
   "navigation": {
     "home": "Home",
+    "services": "Services",
+    "attorneys": "Attorneys",
+    "resources": "Resources",
     "findAttorney": "Find Attorney",
     "forAttorneys": "For Attorneys",
     "education": "Education",
@@ -15,6 +18,189 @@
     "messages": "Messages",
     "calendar": "Calendar",
     "billing": "Billing"
+  },
+  "auth": {
+    "login": "Sign In",
+    "register": "Get Started"
+  },
+  "hero": {
+    "badge": "Trusted by 2,500+ Legal Professionals",
+    "title": "Premium Legal Services",
+    "titleHighlight": "Made Simple",
+    "subtitle": "Connect with Quebec's most qualified attorneys through our AI-powered matching platform. Get expert legal advice with complete transparency and trust.",
+    "features": {
+      "ai": "AI-Powered Attorney Matching",
+      "secure": "Bank-Level Security & Privacy",
+      "quebec": "Licensed Quebec Legal Network",
+      "support": "24/7 Professional Support"
+    },
+    "cta": {
+      "primary": "Find Your Attorney",
+      "secondary": "Join as Attorney"
+    },
+    "stats": {
+      "attorneys": "Verified Attorneys",
+      "satisfaction": "Client Satisfaction",
+      "support": "Support Available",
+      "verified": "Success Rate"
+    },
+    "interface": {
+      "title": "Smart Legal Matching",
+      "match": "Perfect Match Found",
+      "confidence": "95% Confidence Score"
+    }
+  },
+  "features": {
+    "title": "Advanced Legal Technology",
+    "titleHighlight": "For Modern Law Practice",
+    "subtitle": "Experience the future of legal services with our cutting-edge platform designed for both clients and attorneys.",
+    "ai": {
+      "title": "AI-Powered Matching",
+      "description": "Our advanced algorithm analyzes your legal needs, location, budget, and preferences to connect you with the perfect attorney."
+    },
+    "security": {
+      "title": "Bank-Level Security",
+      "description": "End-to-end encryption, secure document sharing, and compliance with all Canadian privacy regulations protect your sensitive information."
+    },
+    "speed": {
+      "title": "Instant Connections",
+      "description": "Get matched with qualified attorneys in minutes, not days. Schedule consultations and start working on your case immediately."
+    },
+    "network": {
+      "title": "Verified Network",
+      "description": "All attorneys are verified with the Barreau du Québec and undergo comprehensive background checks and performance reviews."
+    },
+    "documents": {
+      "title": "Smart Document Management",
+      "description": "Upload, share, and manage all your legal documents securely with version control and real-time collaboration features."
+    },
+    "consultation": {
+      "title": "Video Consultations",
+      "description": "Meet with your attorney face-to-face through our secure video platform, available 24/7 from anywhere in Quebec."
+    },
+    "mobile": {
+      "title": "Mobile Ready",
+      "description": "Access all features on-the-go"
+    },
+    "certified": {
+      "title": "Quebec Certified",
+      "description": "Approved by legal authorities"
+    },
+    "cta": "Explore All Features",
+    "ctaSubtext": "No commitment required"
+  },
+  "trust": {
+    "title": "Trusted by Legal Professionals Across Quebec",
+    "subtitle": "Our platform meets the highest standards of security, compliance, and professional excellence.",
+    "metrics": {
+      "attorneys": "Verified Attorneys",
+      "attorneysDesc": "Licensed legal professionals",
+      "security": "Security Uptime",
+      "securityDesc": "Bank-level protection",
+      "rating": "Average Rating",
+      "ratingDesc": "From satisfied clients",
+      "support": "Support Available",
+      "supportDesc": "Professional assistance"
+    },
+    "certifications": {
+      "title": "Certifications & Compliance",
+      "subtitle": "Meeting the highest professional and security standards",
+      "quebec": "Quebec Bar Certified",
+      "quebecDesc": "Approved by the Barreau du Québec for attorney referral services",
+      "security": "Security Compliant",
+      "securityDesc": "ISO 27001 certified with end-to-end encryption",
+      "compliance": "Privacy Compliant",
+      "complianceDesc": "Full GDPR and PIPEDA compliance for data protection"
+    },
+    "partners": {
+      "title": "Trusted Partners & Recognition"
+    },
+    "guarantee": {
+      "title": "100% Satisfaction Guarantee",
+      "description": "If you're not completely satisfied with our service, we'll make it right or provide a full refund."
+    }
+  },
+  "testimonials": {
+    "title": "What Our Clients",
+    "titleHighlight": "Are Saying",
+    "subtitle": "Discover why thousands of Quebecers trust Judge.ca for their legal needs.",
+    "stats": {
+      "satisfaction": "Client Satisfaction",
+      "rating": "Average Rating",
+      "reviews": "Verified Reviews"
+    },
+    "clients": {
+      "title": "Client Success Stories"
+    },
+    "client1": {
+      "role": "Small Business Owner",
+      "content": "Judge.ca helped me find the perfect corporate attorney for my startup. The matching process was incredibly accurate, and I was connected with someone who truly understood my industry within hours.",
+      "highlight": "Found the perfect attorney in hours, not weeks"
+    },
+    "client2": {
+      "role": "Family Law Client",
+      "content": "Going through a divorce was stressful enough, but Judge.ca made finding legal help simple and transparent. My attorney was professional, compassionate, and got me the results I needed.",
+      "highlight": "Professional, transparent, and effective legal help"
+    },
+    "client3": {
+      "role": "Immigration Law Client",
+      "content": "The immigration process seemed overwhelming until I found my attorney through Judge.ca. The platform made it easy to compare lawyers and find someone with exactly the expertise I needed.",
+      "highlight": "Made complex immigration law simple to navigate"
+    },
+    "attorneys": {
+      "title": "Attorney Testimonials"
+    },
+    "attorney1": {
+      "content": "Judge.ca has transformed my practice. The quality of client matches is exceptional, and the platform's tools help me serve my clients more effectively than ever before."
+    },
+    "attorney2": {
+      "content": "The referral quality from Judge.ca is outstanding. I only receive clients who are genuinely good fits for my practice, which means better outcomes for everyone involved."
+    },
+    "cta": {
+      "title": "Ready to Experience Excellence?",
+      "subtitle": "Join thousands of satisfied clients who found their perfect attorney",
+      "button": "Get Started Today"
+    }
+  },
+  "cta": {
+    "title": "Ready to Find Your",
+    "titleHighlight": "Perfect Attorney?",
+    "subtitle": "Get matched with qualified Quebec legal professionals in minutes. No commitment required.",
+    "benefits": {
+      "free": "Free attorney matching service",
+      "fast": "Get matched in under 15 minutes",
+      "verified": "All attorneys are verified and licensed",
+      "support": "24/7 customer support available"
+    },
+    "primary": "Find My Attorney Now",
+    "secondary": "Join as Attorney",
+    "trust": {
+      "secure": "Secure & Confidential",
+      "fast": "Fast Matching",
+      "verified": "Verified Professionals"
+    },
+    "contact": {
+      "title": "Need Help? Contact Us",
+      "subtitle": "Our legal matching experts are here to assist you",
+      "phone": {
+        "title": "Call Us",
+        "description": "Speak with a legal advisor"
+      },
+      "email": {
+        "title": "Email Us",
+        "description": "Get help via email"
+      }
+    },
+    "emergency": {
+      "title": "Legal Emergency?",
+      "description": "For urgent legal matters, call our 24/7 emergency line"
+    },
+    "responseTime": "Average response time: 15 minutes",
+    "stats": {
+      "responseTime": "Average Response",
+      "availability": "Support Available",
+      "satisfaction": "Client Satisfaction"
+    }
   },
   "home": {
     "hero": {
@@ -165,42 +351,50 @@
     "unsavedChanges": "You have unsaved changes"
   },
   "footer": {
-    "tagline": "Connecting Quebecers with the best attorneys",
-    "clients": "Clients",
-    "legalCommunity": "Legal Community",
-    "language": "Language",
-    "services": "Services",
-    "findAttorney": "Find Attorney",
-    "joinAttorneys": "Join Attorneys",
-    "legalEducation": "Legal Education",
-    "howItWorks": "How It Works",
-    "company": "Company",
-    "about": "About",
-    "careers": "Careers",
-    "investors": "Investors",
-    "press": "Press",
-    "contact": "Contact",
-    "legal": "Legal",
-    "privacy": "Privacy",
-    "terms": "Terms",
-    "disclaimers": "Disclaimers",
-    "support": "Support",
-    "accessibility": "Accessibility",
-    "newsletter": {
-      "title": "Stay informed",
-      "description": "Get legal tips and updates",
-      "placeholder": "Your email address",
-      "subscribe": "Subscribe"
+    "description": "Quebec's most trusted platform for connecting clients with verified legal professionals. Experience premium legal services with complete transparency and security.",
+    "services": {
+      "title": "Legal Services",
+      "matching": "Attorney Matching",
+      "consultation": "Legal Consultation",
+      "documents": "Document Review",
+      "case": "Case Management"
     },
-    "copyright": "All rights reserved.",
-    "quebec": "Proudly Quebec",
-    "secure": "Secure and confidential",
-    "corporate": {
-      "hr": "Human Resources",
-      "investors": "Investor Relations",
-      "partners": "Partners",
-      "media": "Media"
-    }
+    "attorneys": {
+      "title": "For Attorneys",
+      "join": "Join Our Network",
+      "dashboard": "Attorney Dashboard",
+      "resources": "Practice Resources",
+      "verification": "Get Verified"
+    },
+    "resources": {
+      "title": "Legal Resources",
+      "guides": "Legal Guides",
+      "faq": "FAQ",
+      "blog": "Legal Blog",
+      "dictionary": "Legal Dictionary"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "contact": "Contact",
+      "careers": "Careers",
+      "press": "Press & Media"
+    },
+    "trust": {
+      "security": "Bank-Level Security",
+      "securityDesc": "Your data is protected with enterprise-grade encryption",
+      "verified": "Verified Professionals",
+      "verifiedDesc": "All attorneys are licensed and background-checked",
+      "support": "24/7 Support",
+      "supportDesc": "Expert assistance whenever you need it",
+      "quebec": "Quebec Focused",
+      "quebecDesc": "Specialized knowledge of Quebec legal system"
+    },
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "language": "Language"
   },
   "time": {
     "hours": "hours",

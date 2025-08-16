@@ -3,13 +3,56 @@ module.exports = {
   content: [
     './src/frontend/pages/**/*.{js,ts,jsx,tsx}',
     './src/frontend/components/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        // Quebec Professional Color Palette
-        'quebec-blue': '#003f88',
-        'trust-blue': '#1e40af',
+        // Premium Legal Platform Color Palette
+        navy: {
+          50: '#f0f4ff',
+          100: '#e0ebff',
+          200: '#c7d7ff',
+          300: '#a5b9ff',
+          400: '#8190ff',
+          500: '#5c6cfa',
+          600: '#4f46e5',
+          700: '#4338ca',
+          800: '#3730a3',
+          900: '#1e1b4b',
+          950: '#0f0a2e',
+        },
+        gold: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+        },
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
+        
+        // Legacy colors for backward compatibility
+        'quebec-blue': '#1e1b4b',
+        'trust-blue': '#4338ca',
         'heritage-gold': '#fbbf24',
         
         // Professional Gray Scale
@@ -165,6 +208,17 @@ module.exports = {
       },
       
       boxShadow: {
+        'premium-sm': '0 1px 2px 0 rgba(30, 27, 75, 0.05)',
+        'premium-md': '0 4px 6px -1px rgba(30, 27, 75, 0.1), 0 2px 4px -1px rgba(30, 27, 75, 0.06)',
+        'premium-lg': '0 10px 15px -3px rgba(30, 27, 75, 0.1), 0 4px 6px -2px rgba(30, 27, 75, 0.05)',
+        'premium-xl': '0 20px 25px -5px rgba(30, 27, 75, 0.1), 0 10px 10px -5px rgba(30, 27, 75, 0.04)',
+        'premium-2xl': '0 25px 50px -12px rgba(30, 27, 75, 0.25)',
+        'premium-inner': 'inset 0 2px 4px 0 rgba(30, 27, 75, 0.06)',
+        'glow': '0 0 20px rgba(251, 191, 36, 0.3)',
+        'glow-lg': '0 0 40px rgba(251, 191, 36, 0.4)',
+        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        // Legacy
         'quebec-sm': '0 1px 2px 0 rgba(0, 63, 136, 0.05)',
         'quebec-md': '0 4px 6px -1px rgba(0, 63, 136, 0.1), 0 2px 4px -1px rgba(0, 63, 136, 0.06)',
         'quebec-lg': '0 10px 15px -3px rgba(0, 63, 136, 0.1), 0 4px 6px -2px rgba(0, 63, 136, 0.05)',
@@ -175,16 +229,28 @@ module.exports = {
       
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
+        'fade-in-up': 'fadeInUp 0.6s ease-out',
         'slide-up': 'slideUp 0.3s ease-out',
         'slide-down': 'slideDown 0.3s ease-out',
+        'slide-left': 'slideLeft 0.3s ease-out',
+        'slide-right': 'slideRight 0.3s ease-out',
         'scale-in': 'scaleIn 0.2s ease-out',
+        'scale-in-bounce': 'scaleInBounce 0.4s ease-out',
         'pulse-quebec': 'pulseQuebec 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
@@ -194,8 +260,21 @@ module.exports = {
           '0%': { transform: 'translateY(-10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        slideLeft: {
+          '0%': { transform: 'translateX(10px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        slideRight: {
+          '0%': { transform: 'translateX(-10px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
         scaleIn: {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        scaleInBounce: {
+          '0%': { transform: 'scale(0.8)', opacity: '0' },
+          '50%': { transform: 'scale(1.05)', opacity: '0.8' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
         pulseQuebec: {
@@ -208,13 +287,39 @@ module.exports = {
             transform: 'scale(1.05)',
           },
         },
+        pulseGlow: {
+          '0%, 100%': { 
+            boxShadow: '0 0 20px rgba(251, 191, 36, 0.3)',
+          },
+          '50%': { 
+            boxShadow: '0 0 40px rgba(251, 191, 36, 0.6)',
+          },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        bounceSubtle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
       
       backgroundImage: {
+        'gradient-navy': 'linear-gradient(135deg, #1e1b4b 0%, #0f0a2e 100%)',
+        'gradient-navy-soft': 'linear-gradient(135deg, #4338ca 0%, #1e1b4b 100%)',
+        'gradient-gold': 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)',
+        'gradient-premium': 'linear-gradient(135deg, #1e1b4b 0%, #4338ca 50%, #fbbf24 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #0f0a2e 0%, #1e1b4b 50%, #4338ca 100%)',
+        'gradient-subtle': 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+        'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
+        // Legacy
         'gradient-quebec': 'linear-gradient(135deg, #003f88 0%, #1e40af 100%)',
         'gradient-success': 'linear-gradient(135deg, #059669 0%, #047857 100%)',
-        'gradient-subtle': 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)',
-        'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
       },
       
       scale: {
