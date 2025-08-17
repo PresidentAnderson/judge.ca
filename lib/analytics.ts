@@ -1,3 +1,4 @@
+import React from 'react';
 import * as gtag from 'gtag';
 import TagManager from 'react-gtm-module';
 import * as Sentry from '@sentry/nextjs';

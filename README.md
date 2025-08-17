@@ -1,4 +1,16 @@
-# Judge.ca - Attorney Referral Platform for Quebec
+# Judge.ca - Legal Platform for Quebec
+
+[![CI/CD Pipeline](https://github.com/judge-ca/judge.ca/workflows/CI%2FCD%20Pipeline%20-%20Judge.ca/badge.svg)](https://github.com/judge-ca/judge.ca/actions)
+[![Security Scanning](https://github.com/judge-ca/judge.ca/workflows/Security%20Scanning%20%26%20Monitoring/badge.svg)](https://github.com/judge-ca/judge.ca/actions)
+[![Deployment Status](https://img.shields.io/badge/deployment-automated-brightgreen)](https://judge.ca)
+
+A comprehensive attorney referral service and advertising platform designed specifically for Quebec's legal market. Judge.ca connects clients with qualified attorneys while providing a robust platform for legal professionals to manage their practice and reach new clients.
+
+## 🌐 Live Environments
+
+- **Production**: [https://judge.ca](https://judge.ca)
+- **Staging**: [https://staging.judge.ca](https://staging.judge.ca)
+- **API Documentation**: [https://judge.ca/api/docs](https://judge.ca/api/docs)
 
 ## Project Overview
 
@@ -262,7 +274,7 @@ The platform supports full bilingual operation:
 - `/public/locales/en/` - English translations
 - Organized by feature area (common, onboarding, dashboard, etc.)
 
-## Testing
+## 🧪 Testing
 
 ### Test Coverage
 - Unit tests for business logic
@@ -271,29 +283,76 @@ The platform supports full bilingual operation:
 - Security and compliance testing
 
 ### Running Tests
+
 ```bash
-npm test              # Run all tests
-npm run test:unit     # Unit tests only
-npm run test:e2e      # End-to-end tests
-npm run test:coverage # Coverage report
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run integration tests
+npm run test:integration
+
+# Run E2E tests
+npm run test:e2e
 ```
 
-## Deployment
+### Test Structure
+- **Unit Tests**: Component and function testing with Jest
+- **Integration Tests**: API endpoint and database testing
+- **E2E Tests**: Full user workflow testing with Playwright
+
+## 🚀 Deployment
+
+### Automatic Deployment
+
+The project uses GitHub Actions for automated CI/CD:
+
+- **Pull Requests**: Automatic preview deployments
+- **Staging**: Auto-deploy from `develop` branch
+- **Production**: Auto-deploy from `main` branch after all checks pass
+
+### Manual Deployment
+
+```bash
+# Deploy to staging
+npm run deploy:staging
+
+# Deploy to production
+npm run deploy:production
+
+# Rollback if needed
+npm run rollback
+```
+
+### Deployment Checklist
+
+- [ ] All tests passing
+- [ ] Code reviewed and approved
+- [ ] Environment variables configured
+- [ ] Database migrations applied
+- [ ] Security scan completed
+- [ ] Performance benchmarks met
 
 ### Production Environment
-- Docker containerization
-- PostgreSQL database
-- Redis caching layer
-- SSL/TLS encryption
-- CDN for static assets
+- **Hosting**: Vercel for frontend and serverless functions
+- **Database**: PostgreSQL (production and staging)
+- **CDN**: Vercel Edge Network
+- **Monitoring**: Winston logging with error tracking
+- **Security**: Helmet.js, CORS, rate limiting
 
 ### Environment Configuration
 ```bash
 NODE_ENV=production
 DATABASE_URL=postgresql://...
-REDIS_URL=redis://...
 JWT_SECRET=your-secret-key
 STRIPE_SECRET_KEY=sk_live_...
+NEXTAUTH_URL=https://judge.ca
+NEXTAUTH_SECRET=nextauth_secret
 ```
 
 ## Security Measures

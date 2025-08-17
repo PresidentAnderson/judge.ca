@@ -1,0 +1,213 @@
+name: Performance Monitoring
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    # Run performance tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  lighthouse-ci:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          
+      - name: Start server
+        run: |
+          npm run start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          PORT: 3000
+          
+      - name: Run Lighthouse CI
+        run: npm run lighthouse:ci
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          retention-days: 30
+
+  bundle-analysis:
+    name: Bundle Size Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Analyze bundle
+        run: npm run analyze
+        env:
+          ANALYZE: true
+          
+      - name: Upload bundle analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: .next/analyze/
+          retention-days: 30
+
+  performance-budget:
+    name: Performance Budget Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build application
+        run: npm run build
+        
+      - name: Start server
+        run: |
+          npm run start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          PORT: 3000
+          
+      - name: Check performance budget
+        run: npm run perf:budget
+        
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Read lighthouse results if available
+            let comment = '## 🚀 Performance Results\n\n';
+            
+            try {
+              // Add performance metrics to comment
+              comment += '### Core Web Vitals\n';
+              comment += '- ✅ Performance budget checks completed\n';
+              comment += '- 📊 Detailed reports available in artifacts\n\n';
+              
+              comment += '### Quick Tips for Optimization\n';
+              comment += '- Use `npm run analyze` to analyze bundle size\n';
+              comment += '- Run `npm run perf:audit` for detailed performance audit\n';
+              comment += '- Check lighthouse reports in CI artifacts\n';
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not create performance comment:', error);
+            }
+
+  web-vitals-monitoring:
+    name: Web Vitals Monitoring
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build and test production build
+        run: |
+          npm run build
+          npm run start &
+          sleep 10
+        env:
+          NODE_ENV: production
+          
+      - name: Run comprehensive performance audit
+        run: |
+          # Run multiple lighthouse audits for more accurate results
+          mkdir -p performance-reports
+          
+          # Desktop audit
+          lighthouse http://localhost:3000 \
+            --preset=desktop \
+            --output=json \
+            --output-path=./performance-reports/desktop-report.json \
+            --chrome-flags="--headless --no-sandbox"
+            
+          # Mobile audit
+          lighthouse http://localhost:3000 \
+            --preset=mobile \
+            --output=json \
+            --output-path=./performance-reports/mobile-report.json \
+            --chrome-flags="--headless --no-sandbox"
+            
+          # Critical pages audit
+          lighthouse http://localhost:3000/attorney/profile \
+            --output=json \
+            --output-path=./performance-reports/attorney-profile.json \
+            --chrome-flags="--headless --no-sandbox"
+            
+        continue-on-error: true
+        
+      - name: Upload performance reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: comprehensive-performance-reports
+          path: performance-reports/
+          retention-days: 90
+          
+      - name: Performance regression check
+        run: |
+          # You can add custom scripts here to:
+          # 1. Compare current results with baseline
+          # 2. Send alerts if performance degrades
+          # 3. Update performance dashboards
+          echo "Performance monitoring completed"

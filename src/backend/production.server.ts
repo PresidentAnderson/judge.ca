@@ -14,6 +14,8 @@ import matchRoutes from './api/match.routes';
 import reviewRoutes from './api/review.routes';
 import educationRoutes from './api/education.routes';
 import adminRoutes from './api/admin.routes';
+import healthRoutes from './api/health.routes';
+import { monitoringService } from './middleware/monitoring';
 
 dotenv.config();
 
@@ -89,6 +91,10 @@ app.use('/api', limiter);
 // Trust proxy for Railway
 app.set('trust proxy', 1);
 
+// Add monitoring middleware
+app.use(monitoringService.requestTracker);
+app.use(monitoringService.errorTracker);
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/attorneys', attorneyRoutes);
@@ -98,33 +104,8 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/education', educationRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Health check endpoints
-app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    environment: process.env.NODE_ENV,
-    version: process.env.npm_package_version || '1.0.0'
-  });
-});
-
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    service: 'api',
-    timestamp: new Date().toISOString() 
-  });
-});
-
-// WebSocket health check
-app.get('/ws/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    service: 'websocket',
-    timestamp: new Date().toISOString() 
-  });
-});
+// Health check routes
+app.use('/health', healthRoutes);
 
 // Initialize WebSocket server
 const chatServer = new ChatWebSocketServer(httpServer);

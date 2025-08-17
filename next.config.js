@@ -168,15 +168,64 @@ const nextConfig = {
   },
 };
 
-// Only add PWA in production
+// Sentry configuration
+const sentryWebpackPluginOptions = {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  widenClientFileUpload: true,
+  hideSourceMaps: true,
+  disableLogger: true,
+  tunnelRoute: '/monitoring/tunnel',
+};
+
+// Apply configurations based on environment
+let finalConfig = nextConfig;
+
+// Add PWA in production
 if (process.env.NODE_ENV === 'production') {
   const withPWA = require('next-pwa')({
     dest: 'public',
     register: true,
     skipWaiting: true,
     disable: false,
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'google-fonts-webfonts',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+          },
+        },
+      },
+      {
+        urlPattern: /\/api\/analytics\/.*/i,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'analytics-api',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60, // 1 hour
+          },
+        },
+      },
+    ],
   });
-  module.exports = withPWA(nextConfig);
-} else {
-  module.exports = nextConfig;
+  finalConfig = withPWA(nextConfig);
 }
+
+// Add Sentry configuration if available
+if (process.env.SENTRY_DSN) {
+  try {
+    const { withSentryConfig } = require('@sentry/nextjs');
+    finalConfig = withSentryConfig(finalConfig, sentryWebpackPluginOptions);
+  } catch (e) {
+    console.log('Sentry not installed, skipping configuration');
+  }
+}
+
+module.exports = finalConfig;

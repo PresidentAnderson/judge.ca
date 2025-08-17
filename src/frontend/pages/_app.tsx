@@ -2,9 +2,12 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { appWithTranslation } from 'next-i18next';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { useEffect } from 'react';
 import { Layout } from '../components/Layout';
 import { initializeWebVitals, measureResourceLoading } from '../../../lib/performance';
+import { analytics, trackError } from '../../../lib/analytics';
+import ConsentManager from '../../../components/analytics/ConsentManager';
 import '../styles/globals.css';
 
 const queryClient = new QueryClient({
@@ -23,6 +26,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     initializeWebVitals();
     measureResourceLoading();
     
+    // Initialize analytics after consent check
+    const initAnalytics = async () => {
+      try {
+        // Check if user has given consent
+        const hasConsent = localStorage.getItem('analytics-consent') === 'true';
+        if (hasConsent) {
+          await analytics.initialize();
+        }
+      } catch (error) {
+        console.error('Failed to initialize analytics:', error);
+        trackError(error as Error, 'analytics_initialization');
+      }
+    };
+
+    initAnalytics();
+    
     // Preload critical resources
     if (typeof window !== 'undefined') {
       // Preload fonts
@@ -39,8 +58,24 @@ function MyApp({ Component, pageProps }: AppProps) {
       if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
         navigator.serviceWorker.register('/sw.js').catch(console.error);
       }
+
+      // Global error handler for unhandled errors
+      window.addEventListener('error', (event) => {
+        trackError(event.error, 'unhandled_error');
+      });
+
+      // Global error handler for unhandled promise rejections
+      window.addEventListener('unhandledrejection', (event) => {
+        trackError(new Error(event.reason), 'unhandled_promise_rejection');
+      });
     }
   }, []);
+
+  const handleConsentChange = (consent: boolean) => {
+    if (consent) {
+      analytics.initialize();
+    }
+  };
 
   return (
     <>
@@ -49,7 +84,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </QueryClientProvider>
+      <ConsentManager onConsentChange={handleConsentChange} />
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
