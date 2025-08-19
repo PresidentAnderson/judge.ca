@@ -7,12 +7,13 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+RUN npm ci --only=production --ignore-scripts
 
 # Stage 2: Builder
 FROM node:18-alpine AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY package.json package-lock.json* ./
+RUN npm ci --ignore-scripts
 COPY . .
 
 # Set environment variables for build
