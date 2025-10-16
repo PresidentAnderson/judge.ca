@@ -1,0 +1,57 @@
+{
+  "name": "wisdomos-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Next.js 15 web application for wisdom tracking and journaling with React 19, TypeScript, Tailwind CSS, and Neon database integration",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:seed": "tsx prisma/seed.ts",
+    "prisma:studio": "prisma studio"
+  },
+  "dependencies": {
+    "next": "15.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@tanstack/react-query": "^5.56.2",
+    "jsonwebtoken": "^9.0.2",
+    "jose": "^5.9.6",
+    "zod": "^3.23.8",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "tailwindcss": "^4.0.0-alpha.25",
+    "@tailwindcss/typography": "^0.5.15",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.0.0",
+    "tsx": "^4.19.1",
+    "prisma": "^5.20.0",
+    "@prisma/client": "^5.20.0"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "next.js",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "wisdom",
+    "journaling",
+    "habit-tracking",
+    "neon",
+    "stack-auth"
+  ]
+}
