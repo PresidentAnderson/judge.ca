@@ -15,8 +15,8 @@ interface JournalEntry {
   updated_at: string;
 }
 
-export default async function EditJournalPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id: entryId } = await params;
+export default function EditJournalPage({ params }: { params: Promise<{ id: string }> }) {
+  const [entryId, setEntryId] = useState<string | null>(null);
   const [entry, setEntry] = useState<JournalEntry | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -40,7 +40,13 @@ export default async function EditJournalPage({ params }: { params: Promise<{ id
     { value: '10', label: '10 - Amazing' },
   ];
 
+  // Resolve async params
   useEffect(() => {
+    params.then(({ id }) => setEntryId(id));
+  }, [params]);
+
+  useEffect(() => {
+    if (!entryId) return;
     const loadEntry = async () => {
       try {
         setIsLoading(true);

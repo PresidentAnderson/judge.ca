@@ -23,8 +23,8 @@ interface LifeArea {
   color?: string;
 }
 
-export default async function EditHabitPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id: habitId } = await params;
+export default function EditHabitPage({ params }: { params: Promise<{ id: string }> }) {
+  const [habitId, setHabitId] = useState<string | null>(null);
   const [habit, setHabit] = useState<Habit | null>(null);
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
@@ -43,7 +43,13 @@ export default async function EditHabitPage({ params }: { params: Promise<{ id: 
     { value: 'monthly', label: 'Monthly' },
   ];
 
+  // Resolve async params
   useEffect(() => {
+    params.then(({ id }) => setHabitId(id));
+  }, [params]);
+
+  useEffect(() => {
+    if (!habitId) return;
     const loadData = async () => {
       try {
         setIsLoading(true);

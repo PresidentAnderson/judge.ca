@@ -15,8 +15,8 @@ interface LifeArea {
   updated_at: string;
 }
 
-export default async function EditLifeAreaPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id: areaId } = await params;
+export default function EditLifeAreaPage({ params }: { params: Promise<{ id: string }> }) {
+  const [areaId, setAreaId] = useState<string | null>(null);
   const [lifeArea, setLifeArea] = useState<LifeArea | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -39,7 +39,13 @@ export default async function EditLifeAreaPage({ params }: { params: Promise<{ i
     '#6B7280', // Gray
   ];
 
+  // Resolve async params
   useEffect(() => {
+    params.then(({ id }) => setAreaId(id));
+  }, [params]);
+
+  useEffect(() => {
+    if (!areaId) return;
     const loadLifeArea = async () => {
       try {
         setIsLoading(true);

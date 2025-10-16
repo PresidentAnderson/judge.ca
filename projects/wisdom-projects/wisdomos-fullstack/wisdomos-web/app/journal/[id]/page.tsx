@@ -15,14 +15,20 @@ interface JournalEntry {
   updated_at: string;
 }
 
-export default async function JournalEntryPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id: entryId } = await params;
+export default function JournalEntryPage({ params }: { params: Promise<{ id: string }> }) {
+  const [entryId, setEntryId] = useState<string | null>(null);
   const [entry, setEntry] = useState<JournalEntry | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const router = useRouter();
 
+  // Resolve async params
   useEffect(() => {
+    params.then(({ id }) => setEntryId(id));
+  }, [params]);
+
+  useEffect(() => {
+    if (!entryId) return;
     const loadEntry = async () => {
       try {
         setIsLoading(true);
