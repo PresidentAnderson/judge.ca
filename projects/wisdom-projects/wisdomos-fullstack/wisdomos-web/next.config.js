@@ -19,6 +19,10 @@ const nextConfig = {
       },
     ],
   },
+  // For Netlify deployment with API routes
+  trailingSlash: false,
+  compress: true,
+  poweredByHeader: false,
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
