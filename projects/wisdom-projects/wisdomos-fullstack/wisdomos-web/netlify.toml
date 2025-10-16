@@ -2,29 +2,20 @@
   publish = ".next"
   command = "npm run build"
 
-# Required for Next.js 15 with app directory
-[build.processing]
-  skip_processing = false
+# Next.js runtime
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
-[build.processing.css]
-  bundle = true
-  minify = true
+# Environment variables
+[build.environment]
+  NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1"
 
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[functions]
-  directory = ".netlify/functions"
-
+# SPA fallback for client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  NODE_ENV = "production"
-  NEXT_TELEMETRY_DISABLED = "1"
 
 # Header rules for security and performance
 [[headers]]
