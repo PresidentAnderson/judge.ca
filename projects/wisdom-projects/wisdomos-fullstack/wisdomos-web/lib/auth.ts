@@ -2,15 +2,16 @@ import { jwtVerify, createRemoteJWKSet } from 'jose';
 import { cookies } from 'next/headers';
 
 // Stack Auth configuration
-const STACK_AUTH_PROJECT_ID = process.env.STACK_AUTH_PROJECT_ID!;
-const STACK_AUTH_JWKS_URL = process.env.STACK_AUTH_JWKS_URL!;
+const STACK_AUTH_PROJECT_ID = process.env.NEXT_PUBLIC_STACK_PROJECT_ID!;
+const STACK_SECRET_SERVER_KEY = process.env.STACK_SECRET_SERVER_KEY!;
+const STACK_AUTH_JWKS_URL = `https://api.stack-auth.com/api/v1/projects/${STACK_AUTH_PROJECT_ID}/.well-known/jwks.json`;
 
 if (!STACK_AUTH_PROJECT_ID) {
-  throw new Error('STACK_AUTH_PROJECT_ID environment variable is required');
+  throw new Error('NEXT_PUBLIC_STACK_PROJECT_ID environment variable is required');
 }
 
-if (!STACK_AUTH_JWKS_URL) {
-  throw new Error('STACK_AUTH_JWKS_URL environment variable is required');
+if (!STACK_SECRET_SERVER_KEY) {
+  throw new Error('STACK_SECRET_SERVER_KEY environment variable is required');
 }
 
 // JWT verification using Stack Auth JWKS
@@ -109,6 +110,10 @@ export const authHelpers = {
       .find(row => row.startsWith('stack-auth-token='))
       ?.split('=')[1];
     
-    return token ? { Authorization: `Bearer ${token}` } : {};
+    const headers: HeadersInit = {};
+    if (token) {
+      (headers as Record<string, string>).Authorization = `Bearer ${token}`;
+    }
+    return headers;
   }
 };
