@@ -11,11 +11,7 @@
   NODE_ENV = "production"
   NEXT_TELEMETRY_DISABLED = "1"
 
-# SPA fallback for client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Next.js handles routing, no manual redirects needed
 
 # Header rules for security and performance
 [[headers]]
