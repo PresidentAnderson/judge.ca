@@ -1,0 +1,57 @@
+{
+  "name": "wisdomos-blockchain-protection",
+  "version": "1.0.0",
+  "description": "Military-grade blockchain IP protection system for WisdomOS Web",
+  "main": "scripts/code-fingerprint.js",
+  "scripts": {
+    "fingerprint": "node scripts/code-fingerprint.js",
+    "sign": "node scripts/digital-signature.js --sign",
+    "verify": "node scripts/verify-integrity.js",
+    "register": "node scripts/blockchain-registry.js --register",
+    "deploy-contract": "node scripts/blockchain-registry.js --deploy",
+    "ipfs-store": "node scripts/ipfs-storage.js",
+    "monitor": "node tools/monitor.js",
+    "full-protection": "npm run fingerprint && npm run sign && npm run ipfs-store && npm run register",
+    "verify-all": "npm run fingerprint -- --verify && npm run sign -- --verify",
+    "report": "node scripts/digital-signature.js --report",
+    "certificate": "node scripts/digital-signature.js --certificate"
+  },
+  "keywords": [
+    "blockchain",
+    "ip-protection",
+    "digital-signatures",
+    "rsa-4096",
+    "sha-256",
+    "merkle-tree",
+    "smart-contracts",
+    "ipfs",
+    "copyright",
+    "anti-piracy"
+  ],
+  "author": "WisdomOS Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "web3": "^4.2.0",
+    "ethers": "^6.8.0",
+    "ipfs-http-client": "^60.0.1",
+    "merkletreejs": "^0.3.11",
+    "node-rsa": "^1.1.1",
+    "@openzeppelin/contracts": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "eslint": "^8.50.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PresidentAnderson/judge.ca.git",
+    "directory": "wisdomos-web/blockchain-protection"
+  },
+  "bugs": {
+    "url": "https://github.com/PresidentAnderson/judge.ca/issues"
+  },
+  "homepage": "https://github.com/PresidentAnderson/judge.ca#readme"
+}
