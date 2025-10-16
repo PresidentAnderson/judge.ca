@@ -11,14 +11,15 @@ const updateHabitSchema = z.object({
   life_area_id: z.string().optional(),
 });
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const habit = await HabitModel.findById(params.id);
+    const resolvedParams = await params;
+    const habit = await HabitModel.findById(resolvedParams.id);
     if (!habit) {
       return NextResponse.json({ error: 'Habit not found' }, { status: 404 });
     }
@@ -35,7 +36,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
@@ -43,7 +44,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     // First check if habit exists and belongs to user
-    const existingHabit = await HabitModel.findById(params.id);
+    const resolvedParams = await params;
+    const existingHabit = await HabitModel.findById(resolvedParams.id);
     if (!existingHabit) {
       return NextResponse.json({ error: 'Habit not found' }, { status: 404 });
     }
@@ -55,7 +57,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     const body = await request.json();
     const validatedData = updateHabitSchema.parse(body);
 
-    const updatedHabit = await HabitModel.update(params.id, validatedData);
+    const updatedHabit = await HabitModel.update(resolvedParams.id, validatedData);
     return NextResponse.json({ data: updatedHabit });
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -67,7 +69,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
@@ -75,7 +77,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     // First check if habit exists and belongs to user
-    const existingHabit = await HabitModel.findById(params.id);
+    const resolvedParams = await params;
+    const existingHabit = await HabitModel.findById(resolvedParams.id);
     if (!existingHabit) {
       return NextResponse.json({ error: 'Habit not found' }, { status: 404 });
     }
@@ -84,7 +87,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    await HabitModel.delete(params.id);
+    await HabitModel.delete(resolvedParams.id);
     return NextResponse.json({ message: 'Habit deleted successfully' });
   } catch (error) {
     console.error('Error deleting habit:', error);

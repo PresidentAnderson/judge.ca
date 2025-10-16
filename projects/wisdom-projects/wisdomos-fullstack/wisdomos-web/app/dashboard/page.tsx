@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, Button, LoadingSpinner } from '@/components/ui';
-import { getCurrentUser, type AuthUser } from '@/lib/auth';
-import { authHelpers } from '@/lib/auth';
+import { getCurrentUserFromToken, authHelpers, type AuthUser } from '@/lib/auth';
 
 interface DashboardStats {
   totalJournalEntries: number;
@@ -27,7 +26,7 @@ export default function DashboardPage() {
         setIsLoading(true);
         
         // Get current user
-        const currentUser = await getCurrentUser();
+        const currentUser = getCurrentUserFromToken();
         if (!currentUser) {
           window.location.href = '/auth/login';
           return;

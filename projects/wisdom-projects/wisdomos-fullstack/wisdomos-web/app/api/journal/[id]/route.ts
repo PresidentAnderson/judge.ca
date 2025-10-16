@@ -9,14 +9,15 @@ const updateJournalEntrySchema = z.object({
   mood_rating: z.number().min(1).max(10).optional(),
 });
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const entry = await JournalModel.findById(params.id);
+    const resolvedParams = await params;
+    const entry = await JournalModel.findById(resolvedParams.id);
     if (!entry) {
       return NextResponse.json({ error: 'Journal entry not found' }, { status: 404 });
     }
@@ -33,7 +34,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
@@ -41,7 +42,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     // First check if entry exists and belongs to user
-    const existingEntry = await JournalModel.findById(params.id);
+    const resolvedParams = await params;
+    const existingEntry = await JournalModel.findById(resolvedParams.id);
     if (!existingEntry) {
       return NextResponse.json({ error: 'Journal entry not found' }, { status: 404 });
     }
@@ -53,7 +55,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     const body = await request.json();
     const validatedData = updateJournalEntrySchema.parse(body);
 
-    const updatedEntry = await JournalModel.update(params.id, validatedData);
+    const updatedEntry = await JournalModel.update(resolvedParams.id, validatedData);
     return NextResponse.json({ data: updatedEntry });
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -65,7 +67,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
@@ -73,7 +75,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     // First check if entry exists and belongs to user
-    const existingEntry = await JournalModel.findById(params.id);
+    const resolvedParams = await params;
+    const existingEntry = await JournalModel.findById(resolvedParams.id);
     if (!existingEntry) {
       return NextResponse.json({ error: 'Journal entry not found' }, { status: 404 });
     }
@@ -82,7 +85,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    await JournalModel.delete(params.id);
+    await JournalModel.delete(resolvedParams.id);
     return NextResponse.json({ message: 'Journal entry deleted successfully' });
   } catch (error) {
     console.error('Error deleting journal entry:', error);

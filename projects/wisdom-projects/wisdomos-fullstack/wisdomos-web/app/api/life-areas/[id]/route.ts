@@ -9,14 +9,15 @@ const updateLifeAreaSchema = z.object({
   color: z.string().optional(),
 });
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const lifeArea = await LifeAreaModel.findById(params.id);
+    const resolvedParams = await params;
+    const lifeArea = await LifeAreaModel.findById(resolvedParams.id);
     if (!lifeArea) {
       return NextResponse.json({ error: 'Life area not found' }, { status: 404 });
     }
@@ -33,7 +34,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
@@ -41,7 +42,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     }
 
     // First check if life area exists and belongs to user
-    const existingLifeArea = await LifeAreaModel.findById(params.id);
+    const resolvedParams = await params;
+    const existingLifeArea = await LifeAreaModel.findById(resolvedParams.id);
     if (!existingLifeArea) {
       return NextResponse.json({ error: 'Life area not found' }, { status: 404 });
     }
@@ -53,7 +55,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     const body = await request.json();
     const validatedData = updateLifeAreaSchema.parse(body);
 
-    const updatedLifeArea = await LifeAreaModel.update(params.id, validatedData);
+    const updatedLifeArea = await LifeAreaModel.update(resolvedParams.id, validatedData);
     return NextResponse.json({ data: updatedLifeArea });
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -65,7 +67,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = getUserFromHeaders(request);
     if (!user) {
@@ -73,7 +75,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     // First check if life area exists and belongs to user
-    const existingLifeArea = await LifeAreaModel.findById(params.id);
+    const resolvedParams = await params;
+    const existingLifeArea = await LifeAreaModel.findById(resolvedParams.id);
     if (!existingLifeArea) {
       return NextResponse.json({ error: 'Life area not found' }, { status: 404 });
     }
@@ -82,7 +85,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    await LifeAreaModel.delete(params.id);
+    await LifeAreaModel.delete(resolvedParams.id);
     return NextResponse.json({ message: 'Life area deleted successfully' });
   } catch (error) {
     console.error('Error deleting life area:', error);

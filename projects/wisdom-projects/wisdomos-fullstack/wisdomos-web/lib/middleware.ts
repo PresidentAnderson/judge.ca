@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyJWT } from './auth';
+import { verifyJWT } from './auth-server';
 
 // Routes that don't require authentication
 const publicRoutes = [

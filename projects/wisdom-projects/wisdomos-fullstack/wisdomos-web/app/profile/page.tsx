@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, Button, Input, LoadingSpinner } from '@/components/ui';
-import { getCurrentUser, authHelpers, type AuthUser } from '@/lib/auth';
+import { getCurrentUserFromToken, authHelpers, type AuthUser } from '@/lib/auth';
 
 interface UserProfile {
   id: string;
@@ -28,7 +28,7 @@ export default function ProfilePage() {
         setIsLoading(true);
         
         // Get current user from auth
-        const currentUser = await getCurrentUser();
+        const currentUser = getCurrentUserFromToken();
         if (!currentUser) {
           window.location.href = '/auth/login';
           return;

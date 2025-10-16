@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui';
-import { authHelpers, type AuthUser, getCurrentUser } from '@/lib/auth';
+import { authHelpers, type AuthUser, getCurrentUserFromToken } from '@/lib/auth';
 
 export default function Navbar() {
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -15,7 +15,7 @@ export default function Navbar() {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const currentUser = await getCurrentUser();
+        const currentUser = getCurrentUserFromToken();
         setUser(currentUser);
       } catch (error) {
         console.error('Error loading user:', error);
