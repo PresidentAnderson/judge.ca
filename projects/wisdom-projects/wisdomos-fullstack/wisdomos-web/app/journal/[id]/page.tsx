@@ -15,7 +15,8 @@ interface JournalEntry {
   updated_at: string;
 }
 
-export default function JournalEntryPage({ params }: { params: { id: string } }) {
+export default async function JournalEntryPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: entryId } = await params;
   const [entry, setEntry] = useState<JournalEntry | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -26,7 +27,7 @@ export default function JournalEntryPage({ params }: { params: { id: string } })
       try {
         setIsLoading(true);
         const headers = authHelpers.getAuthHeaders();
-        const response = await fetch(`/api/journal/${params.id}`, { headers });
+        const response = await fetch(`/api/journal/${entryId}`, { headers });
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -48,7 +49,7 @@ export default function JournalEntryPage({ params }: { params: { id: string } })
     };
 
     loadEntry();
-  }, [params.id]);
+  }, [entryId]);
 
   const handleDeleteEntry = async () => {
     if (!confirm('Are you sure you want to delete this journal entry?')) {
@@ -57,7 +58,7 @@ export default function JournalEntryPage({ params }: { params: { id: string } })
 
     try {
       const headers = authHelpers.getAuthHeaders();
-      const response = await fetch(`/api/journal/${params.id}`, {
+      const response = await fetch(`/api/journal/${entryId}`, {
         method: 'DELETE',
         headers,
       });

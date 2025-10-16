@@ -23,7 +23,8 @@ interface LifeArea {
   color?: string;
 }
 
-export default function EditHabitPage({ params }: { params: { id: string } }) {
+export default async function EditHabitPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: habitId } = await params;
   const [habit, setHabit] = useState<Habit | null>(null);
   const [lifeAreas, setLifeAreas] = useState<LifeArea[]>([]);
   const [name, setName] = useState('');
@@ -49,7 +50,7 @@ export default function EditHabitPage({ params }: { params: { id: string } }) {
         const headers = authHelpers.getAuthHeaders();
         
         const [habitRes, lifeAreasRes] = await Promise.all([
-          fetch(`/api/habits/${params.id}`, { headers }),
+          fetch(`/api/habits/${habitId}`, { headers }),
           fetch('/api/life-areas', { headers }),
         ]);
         
@@ -89,7 +90,7 @@ export default function EditHabitPage({ params }: { params: { id: string } }) {
     };
 
     loadData();
-  }, [params.id]);
+  }, [habitId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -118,7 +119,7 @@ export default function EditHabitPage({ params }: { params: { id: string } }) {
         payload.target_value = parseInt(targetValue);
       }
 
-      const response = await fetch(`/api/habits/${params.id}`, {
+      const response = await fetch(`/api/habits/${habitId}`, {
         method: 'PUT',
         headers,
         body: JSON.stringify(payload),

@@ -15,7 +15,8 @@ interface JournalEntry {
   updated_at: string;
 }
 
-export default function EditJournalPage({ params }: { params: { id: string } }) {
+export default async function EditJournalPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: entryId } = await params;
   const [entry, setEntry] = useState<JournalEntry | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -44,7 +45,7 @@ export default function EditJournalPage({ params }: { params: { id: string } }) 
       try {
         setIsLoading(true);
         const headers = authHelpers.getAuthHeaders();
-        const response = await fetch(`/api/journal/${params.id}`, { headers });
+        const response = await fetch(`/api/journal/${entryId}`, { headers });
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -71,7 +72,7 @@ export default function EditJournalPage({ params }: { params: { id: string } }) 
     };
 
     loadEntry();
-  }, [params.id]);
+  }, [entryId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +99,7 @@ export default function EditJournalPage({ params }: { params: { id: string } }) 
         payload.mood_rating = parseInt(moodRating);
       }
 
-      const response = await fetch(`/api/journal/${params.id}`, {
+      const response = await fetch(`/api/journal/${entryId}`, {
         method: 'PUT',
         headers,
         body: JSON.stringify(payload),
@@ -109,7 +110,7 @@ export default function EditJournalPage({ params }: { params: { id: string } }) 
         throw new Error(errorData.error || 'Failed to update journal entry');
       }
 
-      router.push(`/journal/${params.id}`);
+      router.push(`/journal/${entryId}`);
     } catch (err: any) {
       console.error('Error updating journal entry:', err);
       setError(err.message || 'Failed to update journal entry');
@@ -146,7 +147,7 @@ export default function EditJournalPage({ params }: { params: { id: string } }) 
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center space-x-4">
-          <Link href={`/journal/${params.id}`}>
+          <Link href={`/journal/${entryId}`}>
             <Button variant="ghost" className="text-primary-600 hover:text-primary-700">
               ← Back to Entry
             </Button>
@@ -212,7 +213,7 @@ export default function EditJournalPage({ params }: { params: { id: string } }) 
                 {content.split(/\s+/).length} words
               </div>
               <div className="flex items-center space-x-4">
-                <Link href={`/journal/${params.id}`}>
+                <Link href={`/journal/${entryId}`}>
                   <Button
                     type="button"
                     variant="outline"

@@ -15,7 +15,8 @@ interface LifeArea {
   updated_at: string;
 }
 
-export default function EditLifeAreaPage({ params }: { params: { id: string } }) {
+export default async function EditLifeAreaPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: areaId } = await params;
   const [lifeArea, setLifeArea] = useState<LifeArea | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -43,7 +44,7 @@ export default function EditLifeAreaPage({ params }: { params: { id: string } })
       try {
         setIsLoading(true);
         const headers = authHelpers.getAuthHeaders();
-        const response = await fetch(`/api/life-areas/${params.id}`, { headers });
+        const response = await fetch(`/api/life-areas/${areaId}`, { headers });
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -70,7 +71,7 @@ export default function EditLifeAreaPage({ params }: { params: { id: string } })
     };
 
     loadLifeArea();
-  }, [params.id]);
+  }, [areaId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,7 +95,7 @@ export default function EditLifeAreaPage({ params }: { params: { id: string } })
         color,
       };
 
-      const response = await fetch(`/api/life-areas/${params.id}`, {
+      const response = await fetch(`/api/life-areas/${areaId}`, {
         method: 'PUT',
         headers,
         body: JSON.stringify(payload),
