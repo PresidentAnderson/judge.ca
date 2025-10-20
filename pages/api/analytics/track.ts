@@ -12,6 +12,9 @@ interface TrackingEvent {
   page?: string;
   referrer?: string;
   userAgent?: string;
+  ip?: string;
+  category?: string;
+  serverTimestamp?: string;
 }
 
 interface EventValidation {
@@ -89,11 +92,14 @@ export default async function handler(
     }
 
     // Enrich event with server-side data
+    const forwardedFor = req.headers['x-forwarded-for'];
+    const clientIp = Array.isArray(forwardedFor) ? forwardedFor[0] : forwardedFor;
+    
     const enrichedEvent: TrackingEvent = {
       ...eventData,
       timestamp: eventData.timestamp || new Date().toISOString(),
       userAgent: req.headers['user-agent'] || 'unknown',
-      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+      ip: clientIp || req.socket.remoteAddress || 'unknown',
       referrer: req.headers.referer || 'direct',
       category: legalEventCategories[eventData.event as keyof typeof legalEventCategories] || 'other',
       serverTimestamp: new Date().toISOString()

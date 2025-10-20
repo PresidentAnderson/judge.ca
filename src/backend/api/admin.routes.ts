@@ -3,7 +3,7 @@ import { authenticate, authorize } from '../middleware/auth';
 
 const router = Router();
 
-router.use(authenticate, authorize('admin'));
+router.use(authenticate, authorize(['admin']));
 
 router.get('/dashboard', async (req, res) => {
   res.json({ message: 'Admin dashboard endpoint' });

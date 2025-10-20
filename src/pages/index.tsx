@@ -50,7 +50,7 @@ const scaleIn = {
   visible: { 
     opacity: 1, 
     scale: 1,
-    transition: { type: "spring", stiffness: 100 }
+    transition: { type: "spring" as const, stiffness: 100 }
   }
 };
 

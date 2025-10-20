@@ -204,7 +204,7 @@ function analyzeNavigationTiming(timing: PerformanceNavigationTiming) {
     ssl_handshake: timing.secureConnectionStart > 0 ? timing.connectEnd - timing.secureConnectionStart : 0,
     server_response: timing.responseEnd - timing.requestStart,
     dom_processing: timing.domContentLoadedEventEnd - timing.responseEnd,
-    page_load: timing.loadEventEnd - timing.navigationStart
+    page_load: timing.loadEventEnd - timing.startTime
   };
 
   // Report each metric

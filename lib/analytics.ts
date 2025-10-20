@@ -93,6 +93,11 @@ export enum AnalyticsEvents {
   ERROR_OCCURRED = 'error_occurred',
   PAGE_LOAD_TIME = 'page_load_time',
   API_RESPONSE_TIME = 'api_response_time',
+  
+  // Privacy & Consent
+  CONSENT_GIVEN = 'consent_given',
+  CONSENT_REJECTED = 'consent_rejected',
+  PRIVACY_POLICY_VIEWED = 'privacy_policy_viewed',
 }
 
 // Event parameters interface

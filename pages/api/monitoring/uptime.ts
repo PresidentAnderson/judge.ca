@@ -159,11 +159,20 @@ async function checkExternalAPIs(): Promise<boolean> {
 
     const results = await Promise.allSettled(
       services.map(async (url) => {
-        const response = await fetch(url, {
-          method: 'HEAD',
-          timeout: 5000
-        });
-        return response.status < 500;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        
+        try {
+          const response = await fetch(url, {
+            method: 'HEAD',
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+          return response.status < 500;
+        } catch (error) {
+          clearTimeout(timeoutId);
+          throw error;
+        }
       })
     );
 

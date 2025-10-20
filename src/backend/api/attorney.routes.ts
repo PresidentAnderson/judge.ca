@@ -30,7 +30,7 @@ const upload = multer({
   }
 });
 
-router.get('/profile', authenticate, authorize('attorney'), async (req: AuthRequest, res: Response, next: NextFunction) => {
+router.get('/profile', authenticate, authorize(['attorney']), async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const attorneyId = req.user!.id;
 
@@ -86,7 +86,7 @@ router.get('/profile', authenticate, authorize('attorney'), async (req: AuthRequ
   }
 });
 
-router.put('/profile', authenticate, authorize('attorney'), upload.single('profilePhoto'), async (req: AuthRequest, res: Response, next: NextFunction) => {
+router.put('/profile', authenticate, authorize(['attorney']), upload.single('profilePhoto'), async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const attorneyId = req.user!.id;
     const profileData = req.body;
@@ -141,7 +141,7 @@ router.put('/profile', authenticate, authorize('attorney'), upload.single('profi
   }
 });
 
-router.get('/dashboard/stats', authenticate, authorize('attorney'), async (req: AuthRequest, res: Response, next: NextFunction) => {
+router.get('/dashboard/stats', authenticate, authorize(['attorney']), async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const attorneyId = req.user!.id;
 
@@ -179,7 +179,7 @@ router.get('/dashboard/stats', authenticate, authorize('attorney'), async (req: 
   }
 });
 
-router.get('/dashboard', authenticate, authorize('attorney'), async (req: AuthRequest, res: Response, next: NextFunction) => {
+router.get('/dashboard', authenticate, authorize(['attorney']), async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const attorneyId = req.user!.id;
 
@@ -217,7 +217,7 @@ router.get('/dashboard', authenticate, authorize('attorney'), async (req: AuthRe
   }
 });
 
-router.put('/availability', authenticate, authorize('attorney'), async (req: AuthRequest, res: Response, next: NextFunction) => {
+router.put('/availability', authenticate, authorize(['attorney']), async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const attorneyId = req.user!.id;
     const { status, schedule } = req.body;

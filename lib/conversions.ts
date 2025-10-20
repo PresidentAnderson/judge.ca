@@ -37,6 +37,7 @@ interface ConversionData {
   source?: string;
   medium?: string;
   campaign?: string;
+  timestamp?: string;
 }
 
 interface ConversionFunnel {

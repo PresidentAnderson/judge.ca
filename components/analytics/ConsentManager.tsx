@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Shield, Eye, BarChart3, MessageSquare } from 'lucide-react';
-import { analytics } from '@/lib/analytics';
+import { analytics, AnalyticsEvents } from '@/lib/analytics';
 
 interface ConsentManagerProps {
   onConsentChange?: (consent: boolean) => void;
@@ -79,7 +79,7 @@ const ConsentManager: React.FC<ConsentManagerProps> = ({ onConsentChange }) => {
 
     // Track consent choice
     if (consentSettings.analytics) {
-      analytics.track('consent_given', {
+      analytics.track(AnalyticsEvents.CONSENT_GIVEN, {
         event_category: 'privacy',
         event_label: 'cookie_consent',
         value: 1,

@@ -32,6 +32,18 @@ const nextConfig = {
     styledComponents: true,
   },
   
+  // TypeScript configuration
+  typescript: {
+    // Build will fail if there are type errors
+    ignoreBuildErrors: false,
+  },
+  
+  // ESLint configuration
+  eslint: {
+    // Build will fail if there are ESLint errors
+    ignoreDuringBuilds: false,
+  },
+  
   // Bundle analyzer and optimization
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Bundle splitting optimization

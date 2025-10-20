@@ -148,7 +148,7 @@ export function MotionLazy({
 }
 
 // Factory function for creating lazy-loaded components
-export function createLazyComponent<T extends ComponentType<any>>(
+export function createLazyComponent<T extends (...args: any) => any>(
   importFunc: () => Promise<{ default: T }>,
   fallback?: ReactNode
 ) {
