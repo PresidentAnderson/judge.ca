@@ -78,7 +78,7 @@ export class AttorneyVerificationService {
       }
 
       const requiredDocs = this.REQUIRED_DOCUMENTS[attorney.province as keyof typeof this.REQUIRED_DOCUMENTS] || 
-                          this.REQUIRED_DOCUMENTS['QC'];
+                          this.REQUIRED_DOCUMENTS.QC;
 
       // Create verification record
       const verificationData = {
@@ -414,7 +414,7 @@ export class AttorneyVerificationService {
         .where('attorney_id', attorneyId)
         .first();
 
-      if (!verification) return;
+      if (!verification) {return;}
 
       const documents = await db('attorney_verification_documents')
         .where('attorney_id', attorneyId)
@@ -522,7 +522,7 @@ export class AttorneyVerificationService {
         .where('id', attorneyId)
         .first();
 
-      if (!attorney) return;
+      if (!attorney) {return;}
 
       const notificationData = {
         id: uuidv4(),

@@ -75,8 +75,8 @@ export const AttorneyCard: React.FC<AttorneyCardProps> = ({
   };
 
   const getBio = () => {
-    if (isFrenchl && attorney.bioFr) return attorney.bioFr;
-    if (!isFrenchl && attorney.bioEn) return attorney.bioEn;
+    if (isFrenchl && attorney.bioFr) {return attorney.bioFr;}
+    if (!isFrenchl && attorney.bioEn) {return attorney.bioEn;}
     return attorney.bioFr || attorney.bioEn || '';
   };
 

@@ -170,7 +170,7 @@ export const ClientPortal: React.FC = () => {
   };
 
   const handleFileUpload = async () => {
-    if (!uploadFile || !selectedCase) return;
+    if (!uploadFile || !selectedCase) {return;}
 
     const formData = new FormData();
     formData.append('file', uploadFile);
@@ -252,7 +252,7 @@ export const ClientPortal: React.FC = () => {
   };
 
   const CaseOverview = () => {
-    if (!selectedCase) return null;
+    if (!selectedCase) {return null;}
 
     const progress = (selectedCase.paidAmount / selectedCase.totalCost) * 100;
     const pendingTasks = tasks.filter(t => t.status === 'pending' && t.assignedTo === 'client').length;

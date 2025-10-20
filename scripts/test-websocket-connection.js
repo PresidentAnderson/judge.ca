@@ -68,7 +68,7 @@ async function testWebSocketConnection() {
     // Create socket connection
     const socket = io(config.backendUrl, {
       auth: {
-        token: token
+        token
       },
       transports: ['websocket'],
       timeout: 10000
@@ -224,13 +224,13 @@ async function runTests() {
     // Test HTTP endpoints first
     const httpResults = await testHttpEndpoints();
     
-    log('\n' + '='.repeat(50));
+    log(`\n${ '='.repeat(50)}`);
     
     // Test WebSocket connection
     const wsResults = await testWebSocketConnection();
     
     // Display results
-    log('\n' + '='.repeat(50));
+    log(`\n${ '='.repeat(50)}`);
     log(`${colors.bold}Test Results Summary${colors.reset}`);
     log('='.repeat(50));
     
@@ -254,7 +254,7 @@ async function runTests() {
     const totalPassed = httpPassed + wsPassed;
     const totalTests = Object.keys(httpResults).length + Object.keys(wsResults).length;
     
-    log('\n' + '='.repeat(50));
+    log(`\n${ '='.repeat(50)}`);
     if (totalPassed === totalTests) {
       success(`All tests passed! (${totalPassed}/${totalTests})`);
       log(`${colors.green}${colors.bold}🎉 WebSocket connection is working correctly!${colors.reset}`);
@@ -265,7 +265,7 @@ async function runTests() {
     
     // Configuration help
     if (totalPassed < totalTests) {
-      log('\n' + '='.repeat(50));
+      log(`\n${ '='.repeat(50)}`);
       log(`${colors.bold}Troubleshooting Tips:${colors.reset}`);
       log('1. Verify BACKEND_URL is correct');
       log('2. Check JWT_SECRET matches backend configuration');

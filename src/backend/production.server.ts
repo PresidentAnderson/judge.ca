@@ -58,7 +58,7 @@ app.use(helmet({
 
 // CORS configuration for production
 const corsOptions = {
-  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+  origin (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
     const allowedOrigins = [
       process.env.FRONTEND_URL,
       'https://judge-ca.vercel.app',
@@ -67,7 +67,7 @@ const corsOptions = {
     ].filter(Boolean);
     
     // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
+    if (!origin) {return callback(null, true);}
     
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
@@ -119,7 +119,7 @@ app.get('/', (req, res) => {
     endpoints: {
       health: '/health',
       api: '/api',
-      websocket: 'ws://localhost:' + PORT
+      websocket: `ws://localhost:${ PORT}`
     }
   });
 });

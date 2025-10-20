@@ -1,7 +1,37 @@
-import React from 'react';
-import * as gtag from 'gtag';
-import TagManager from 'react-gtm-module';
+import * as React from 'react';
 import * as Sentry from '@sentry/nextjs';
+
+// Google Tag Manager types
+interface GTMConfig {
+  gtmId: string;
+  dataLayer?: { [key: string]: any };
+}
+
+// Google Tag Manager implementation
+const TagManager = {
+  initialize: (config: GTMConfig) => {
+    if (typeof window === 'undefined') {return;}
+    
+    const { gtmId, dataLayer = {} } = config;
+    
+    // Add dataLayer to window
+    window.dataLayer = window.dataLayer || [];
+    
+    // Push initial data
+    window.dataLayer.push(dataLayer);
+    
+    // Create GTM script
+    const script = document.createElement('script');
+    script.innerHTML = `
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${gtmId}');
+    `;
+    document.head.appendChild(script);
+  }
+};
 
 // Analytics configuration
 export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
@@ -88,7 +118,7 @@ class AnalyticsService {
 
   // Initialize all analytics services
   async initialize() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {return;}
 
     // Check for user consent
     this.consentGiven = this.checkConsent();
@@ -129,13 +159,13 @@ class AnalyticsService {
 
   // Check user consent for tracking
   private checkConsent(): boolean {
-    if (typeof window === 'undefined') return false;
+    if (typeof window === 'undefined') {return false;}
     return localStorage.getItem('analytics-consent') === 'true';
   }
 
   // Set user consent
   setConsent(consent: boolean) {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
     
     this.consentGiven = consent;
     localStorage.setItem('analytics-consent', consent.toString());
@@ -147,7 +177,7 @@ class AnalyticsService {
 
   // Initialize Google Analytics 4
   private async initializeGA4() {
-    if (!GA4_ID) return;
+    if (!GA4_ID) {return;}
 
     // Load gtag script
     const script = document.createElement('script');
@@ -182,7 +212,7 @@ class AnalyticsService {
 
   // Initialize Google Tag Manager
   private initializeGTM() {
-    if (!GTM_ID) return;
+    if (!GTM_ID) {return;}
 
     TagManager.initialize({
       gtmId: GTM_ID,
@@ -195,15 +225,15 @@ class AnalyticsService {
 
   // Initialize Facebook Pixel
   private initializeFacebookPixel() {
-    if (!FB_PIXEL_ID) return;
+    if (!FB_PIXEL_ID) {return;}
 
     // Load Facebook Pixel script
     (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
-      if (f.fbq) return;
+      if (f.fbq) {return;}
       n = f.fbq = function() {
         n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
       };
-      if (!f._fbq) f._fbq = n;
+      if (!f._fbq) {f._fbq = n;}
       n.push = n;
       n.loaded = !0;
       n.version = '2.0';
@@ -213,7 +243,7 @@ class AnalyticsService {
       t.src = v;
       s = b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t, s);
-    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js'));
 
     window.fbq('init', FB_PIXEL_ID);
     window.fbq('track', 'PageView');
@@ -221,21 +251,21 @@ class AnalyticsService {
 
   // Initialize Microsoft Clarity
   private initializeClarity() {
-    if (!CLARITY_ID) return;
+    if (!CLARITY_ID) {return;}
 
     (function(c: any, l: any, a: any, r: any, i: any, t?: any, y?: any) {
       c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments); };
       t = l.createElement(r);
       t.async = 1;
-      t.src = 'https://www.clarity.ms/tag/' + i;
+      t.src = `https://www.clarity.ms/tag/${ i}`;
       y = l.getElementsByTagName(r)[0];
       y.parentNode.insertBefore(t, y);
-    })(window, document, 'clarity', 'script', CLARITY_ID);
+    }(window, document, 'clarity', 'script', CLARITY_ID));
   }
 
   // Track custom events
   track(event: AnalyticsEvents, params: AnalyticsEventParams = {}) {
-    if (!this.consentGiven) return;
+    if (!this.consentGiven) {return;}
 
     try {
       // Google Analytics 4
@@ -255,7 +285,7 @@ class AnalyticsService {
       // Google Tag Manager
       if (GTM_ID && window.dataLayer) {
         window.dataLayer.push({
-          event: event,
+          event,
           eventCategory: params.event_category || 'engagement',
           eventAction: event,
           eventLabel: params.event_label,
@@ -310,7 +340,7 @@ class AnalyticsService {
 
   // Track page views
   trackPageView(path: string, title?: string) {
-    if (!this.consentGiven) return;
+    if (!this.consentGiven) {return;}
 
     try {
       // Google Analytics 4
@@ -395,12 +425,14 @@ export const trackError = (error: Error, context?: string) => {
 
 // HOC for tracking page views
 export const withAnalytics = (WrappedComponent: React.ComponentType<any>) => {
-  return function AnalyticsWrapper(props: any) {
+  return function AnalyticsWrapper(props: any): JSX.Element {
     React.useEffect(() => {
-      analytics.trackPageView(window.location.pathname, document.title);
+      if (typeof window !== 'undefined') {
+        analytics.trackPageView(window.location.pathname, document.title);
+      }
     }, []);
 
-    return <WrappedComponent {...props} />;
+    return React.createElement(WrappedComponent, props);
   };
 };
 

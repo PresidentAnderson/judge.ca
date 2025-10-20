@@ -201,17 +201,17 @@ export class AIMatchingService {
 
     const relevantSpec = specializations.find(spec => spec.practice_area_id === criteria.practiceAreaId);
     
-    if (!relevantSpec) return 0;
+    if (!relevantSpec) {return 0;}
 
     let score = 0.6; // Base score for having the practice area
 
     // Bonus for primary specialization
-    if (relevantSpec.is_primary) score += 0.3;
+    if (relevantSpec.is_primary) {score += 0.3;}
 
     // Bonus for years of specialization
     const specYears = relevantSpec.years_experience || 0;
-    if (specYears >= 10) score += 0.1;
-    else if (specYears >= 5) score += 0.05;
+    if (specYears >= 10) {score += 0.1;}
+    else if (specYears >= 5) {score += 0.05;}
 
     return Math.min(score, 1.0);
   }
@@ -228,10 +228,10 @@ export class AIMatchingService {
 
     const required = experienceRequirements[complexity as keyof typeof experienceRequirements];
     
-    if (experienceYears >= required * 2) return 1.0;
-    if (experienceYears >= required * 1.5) return 0.9;
-    if (experienceYears >= required) return 0.8;
-    if (experienceYears >= required * 0.7) return 0.6;
+    if (experienceYears >= required * 2) {return 1.0;}
+    if (experienceYears >= required * 1.5) {return 0.9;}
+    if (experienceYears >= required) {return 0.8;}
+    if (experienceYears >= required * 0.7) {return 0.6;}
     return 0.3;
   }
 
@@ -239,27 +239,27 @@ export class AIMatchingService {
     const rating = attorney.ratingAverage;
     const reviewCount = attorney.ratingCount;
 
-    if (reviewCount === 0) return 0.5; // Neutral for new attorneys
+    if (reviewCount === 0) {return 0.5;} // Neutral for new attorneys
 
     let score = 0;
-    if (rating >= 4.8) score = 1.0;
-    else if (rating >= 4.5) score = 0.9;
-    else if (rating >= 4.0) score = 0.8;
-    else if (rating >= 3.5) score = 0.6;
-    else score = 0.3;
+    if (rating >= 4.8) {score = 1.0;}
+    else if (rating >= 4.5) {score = 0.9;}
+    else if (rating >= 4.0) {score = 0.8;}
+    else if (rating >= 3.5) {score = 0.6;}
+    else {score = 0.3;}
 
     // Confidence boost for more reviews
-    if (reviewCount >= 50) score += 0.05;
-    else if (reviewCount >= 20) score += 0.03;
-    else if (reviewCount >= 10) score += 0.01;
+    if (reviewCount >= 50) {score += 0.05;}
+    else if (reviewCount >= 20) {score += 0.03;}
+    else if (reviewCount >= 10) {score += 0.01;}
 
     return Math.min(score, 1.0);
   }
 
   private async scoreAvailability(attorney: Attorney, criteria: AIMatchingCriteria): Promise<number> {
     // Check attorney's current availability status
-    if (attorney.availabilityStatus === 'unavailable') return 0;
-    if (attorney.availabilityStatus === 'busy') return 0.3;
+    if (attorney.availabilityStatus === 'unavailable') {return 0;}
+    if (attorney.availabilityStatus === 'busy') {return 0.3;}
 
     let score = 0.8; // Base availability score
 
@@ -282,8 +282,8 @@ export class AIMatchingService {
       .first();
 
     const caseLoad = parseInt(currentCasesCount?.count || '0');
-    if (caseLoad < 5) score += 0.05;
-    else if (caseLoad > 15) score -= 0.1;
+    if (caseLoad < 5) {score += 0.05;}
+    else if (caseLoad > 15) {score -= 0.1;}
 
     return Math.min(score, 1.0);
   }
@@ -304,7 +304,7 @@ export class AIMatchingService {
   }
 
   private scoreCostAlignment(attorney: Attorney, criteria: AIMatchingCriteria): number {
-    if (criteria.budgetType === 'flexible') return 1.0;
+    if (criteria.budgetType === 'flexible') {return 1.0;}
 
     if (criteria.budgetType === 'contingency') {
       return attorney.contingencyAvailable ? 1.0 : 0;
@@ -315,14 +315,14 @@ export class AIMatchingService {
     }
 
     if (criteria.budgetType === 'hourly' && attorney.hourlyRateMin && attorney.hourlyRateMax) {
-      if (!criteria.budgetMax) return 0.5;
+      if (!criteria.budgetMax) {return 0.5;}
 
       const attorneyAvgRate = (attorney.hourlyRateMin + attorney.hourlyRateMax) / 2;
       const clientMaxBudget = criteria.budgetMax;
 
-      if (attorneyAvgRate <= clientMaxBudget) return 1.0;
-      if (attorneyAvgRate <= clientMaxBudget * 1.2) return 0.8;
-      if (attorneyAvgRate <= clientMaxBudget * 1.5) return 0.5;
+      if (attorneyAvgRate <= clientMaxBudget) {return 1.0;}
+      if (attorneyAvgRate <= clientMaxBudget * 1.2) {return 0.8;}
+      if (attorneyAvgRate <= clientMaxBudget * 1.5) {return 0.5;}
       return 0.2;
     }
 
@@ -330,13 +330,13 @@ export class AIMatchingService {
   }
 
   private scoreGeographic(attorney: Attorney, criteria: AIMatchingCriteria): number {
-    if (!criteria.location || !attorney.city) return 0.5;
+    if (!criteria.location || !attorney.city) {return 0.5;}
 
     const clientCity = criteria.location.toLowerCase();
     const attorneyCity = attorney.city.toLowerCase();
 
-    if (clientCity === attorneyCity) return 1.0;
-    if (attorney.province === 'QC') return 0.7; // Same province
+    if (clientCity === attorneyCity) {return 1.0;}
+    if (attorney.province === 'QC') {return 0.7;} // Same province
     return 0.3; // Different province
   }
 
@@ -358,20 +358,20 @@ export class AIMatchingService {
     let confidence = 60; // Base confidence
 
     // Data completeness factors
-    if (attorney.bioFr || attorney.bioEn) confidence += 5;
-    if (attorney.profilePhotoUrl) confidence += 3;
-    if (attorney.ratingCount > 10) confidence += 10;
-    if (attorney.ratingCount > 50) confidence += 5;
-    if (attorney.yearsExperience > 5) confidence += 5;
-    if (attorney.hourlyRateMin && attorney.hourlyRateMax) confidence += 7;
+    if (attorney.bioFr || attorney.bioEn) {confidence += 5;}
+    if (attorney.profilePhotoUrl) {confidence += 3;}
+    if (attorney.ratingCount > 10) {confidence += 10;}
+    if (attorney.ratingCount > 50) {confidence += 5;}
+    if (attorney.yearsExperience > 5) {confidence += 5;}
+    if (attorney.hourlyRateMin && attorney.hourlyRateMax) {confidence += 7;}
 
     // Score consistency (low variance indicates reliable data)
     const scoreValues = Object.values(scores) as number[];
     const avgScore = scoreValues.reduce((a, b) => a + b, 0) / scoreValues.length;
     const variance = scoreValues.reduce((acc, score) => acc + Math.pow(score - avgScore, 2), 0) / scoreValues.length;
     
-    if (variance < 0.1) confidence += 10; // Low variance = high confidence
-    else if (variance > 0.3) confidence -= 5; // High variance = lower confidence
+    if (variance < 0.1) {confidence += 10;} // Low variance = high confidence
+    else if (variance > 0.3) {confidence -= 5;} // High variance = lower confidence
 
     return Math.min(confidence, 98);
   }

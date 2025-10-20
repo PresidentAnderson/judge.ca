@@ -19,7 +19,7 @@ const WEB_VITALS_THRESHOLDS = {
 };
 
 // Performance observer for Web Vitals
-let webVitalsObserver: PerformanceObserver | null = null;
+const webVitalsObserver: PerformanceObserver | null = null;
 
 export function initializeWebVitals() {
   if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {
@@ -47,7 +47,7 @@ export function initializeWebVitals() {
 // Cumulative Layout Shift (CLS)
 function observeCLS() {
   let clsValue = 0;
-  let clsEntries: LayoutShift[] = [];
+  const clsEntries: LayoutShift[] = [];
 
   const observer = new PerformanceObserver((list) => {
     for (const entry of list.getEntries() as LayoutShift[]) {
@@ -252,24 +252,24 @@ function reportWebVital(metric: PerformanceMetrics) {
 
 // Get performance rating based on thresholds
 function getRating(value: number, thresholds: { good: number; poor: number }): 'good' | 'needs-improvement' | 'poor' {
-  if (value <= thresholds.good) return 'good';
-  if (value <= thresholds.poor) return 'needs-improvement';
+  if (value <= thresholds.good) {return 'good';}
+  if (value <= thresholds.poor) {return 'needs-improvement';}
   return 'poor';
 }
 
 // Get resource type from URL
 function getResourceType(url: string): string {
-  if (url.includes('.js')) return 'script';
-  if (url.includes('.css')) return 'stylesheet';
-  if (url.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) return 'image';
-  if (url.match(/\.(woff|woff2|ttf|otf)$/i)) return 'font';
-  if (url.includes('api/')) return 'api';
+  if (url.includes('.js')) {return 'script';}
+  if (url.includes('.css')) {return 'stylesheet';}
+  if (url.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {return 'image';}
+  if (url.match(/\.(woff|woff2|ttf|otf)$/i)) {return 'font';}
+  if (url.includes('api/')) {return 'api';}
   return 'other';
 }
 
 // Measure resource loading times
 export function measureResourceLoading() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   // Measure when all resources are loaded
   window.addEventListener('load', () => {

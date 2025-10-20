@@ -15,15 +15,15 @@ export enum ConversionType {
 
 // Conversion value configuration (in CAD)
 const CONVERSION_VALUES = {
-  [ConversionType.ATTORNEY_SIGNUP]: 250,      // Value of acquiring an attorney
-  [ConversionType.CLIENT_SIGNUP]: 50,         // Value of acquiring a client
-  [ConversionType.CONSULTATION_BOOKED]: 100,  // Base value for booking
+  [ConversionType.ATTORNEY_SIGNUP]: 250, // Value of acquiring an attorney
+  [ConversionType.CLIENT_SIGNUP]: 50, // Value of acquiring a client
+  [ConversionType.CONSULTATION_BOOKED]: 100, // Base value for booking
   [ConversionType.CONSULTATION_COMPLETED]: 0, // Dynamic based on actual payment
-  [ConversionType.PAYMENT_COMPLETED]: 0,      // Dynamic based on payment amount
+  [ConversionType.PAYMENT_COMPLETED]: 0, // Dynamic based on payment amount
   [ConversionType.SUBSCRIPTION_STARTED]: 200, // Monthly subscription value
-  [ConversionType.LEAD_GENERATED]: 25,        // Lead qualification value
-  [ConversionType.PREMIUM_UPGRADE]: 300,      // Premium feature upgrade
-  [ConversionType.REFERRAL_COMPLETED]: 75     // Referral bonus value
+  [ConversionType.LEAD_GENERATED]: 25, // Lead qualification value
+  [ConversionType.PREMIUM_UPGRADE]: 300, // Premium feature upgrade
+  [ConversionType.REFERRAL_COMPLETED]: 75 // Referral bonus value
 };
 
 interface ConversionData {
@@ -294,7 +294,7 @@ class ConversionTracker {
   // Calculate conversion rates for funnel
   private calculateConversionRates(funnelName: string): void {
     const funnel = this.conversionFunnels.get(funnelName);
-    if (!funnel || funnel.length < 2) return;
+    if (!funnel || funnel.length < 2) {return;}
 
     for (let i = 1; i < funnel.length; i++) {
       const currentStage = funnel[i];
@@ -307,51 +307,51 @@ class ConversionTracker {
 
   // Get traffic source from referrer or UTM parameters
   private getTrafficSource(): string {
-    if (typeof window === 'undefined') return 'direct';
+    if (typeof window === 'undefined') {return 'direct';}
 
     const urlParams = new URLSearchParams(window.location.search);
     const utmSource = urlParams.get('utm_source');
     
-    if (utmSource) return utmSource;
+    if (utmSource) {return utmSource;}
     
     const referrer = document.referrer;
-    if (!referrer) return 'direct';
+    if (!referrer) {return 'direct';}
     
     const referrerDomain = new URL(referrer).hostname;
     
     // Common traffic sources
-    if (referrerDomain.includes('google')) return 'google';
-    if (referrerDomain.includes('facebook')) return 'facebook';
-    if (referrerDomain.includes('linkedin')) return 'linkedin';
-    if (referrerDomain.includes('twitter')) return 'twitter';
-    if (referrerDomain.includes('bing')) return 'bing';
+    if (referrerDomain.includes('google')) {return 'google';}
+    if (referrerDomain.includes('facebook')) {return 'facebook';}
+    if (referrerDomain.includes('linkedin')) {return 'linkedin';}
+    if (referrerDomain.includes('twitter')) {return 'twitter';}
+    if (referrerDomain.includes('bing')) {return 'bing';}
     
     return 'referral';
   }
 
   // Get traffic medium
   private getTrafficMedium(): string {
-    if (typeof window === 'undefined') return 'none';
+    if (typeof window === 'undefined') {return 'none';}
 
     const urlParams = new URLSearchParams(window.location.search);
     const utmMedium = urlParams.get('utm_medium');
     
-    if (utmMedium) return utmMedium;
+    if (utmMedium) {return utmMedium;}
     
     const source = this.getTrafficSource();
     
     // Infer medium from source
-    if (['google', 'bing'].includes(source)) return 'organic';
-    if (['facebook', 'linkedin', 'twitter'].includes(source)) return 'social';
-    if (source === 'direct') return 'none';
-    if (source === 'referral') return 'referral';
+    if (['google', 'bing'].includes(source)) {return 'organic';}
+    if (['facebook', 'linkedin', 'twitter'].includes(source)) {return 'social';}
+    if (source === 'direct') {return 'none';}
+    if (source === 'referral') {return 'referral';}
     
     return 'unknown';
   }
 
   // Get campaign information
   private getCampaignInfo(): string {
-    if (typeof window === 'undefined') return 'none';
+    if (typeof window === 'undefined') {return 'none';}
 
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('utm_campaign') || 'none';

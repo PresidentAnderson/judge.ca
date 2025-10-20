@@ -909,7 +909,7 @@ export class PaymentPlansService {
         id: uuidv4(),
         enrollment_id: enrollmentId,
         type: 'payment',
-        amount: amount,
+        amount,
         currency: 'CAD',
         status: 'completed',
         payment_method: 'card',

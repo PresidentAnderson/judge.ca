@@ -19,7 +19,7 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  let error = { ...err };
+  const error = { ...err };
   error.message = err.message;
 
   logger.error({

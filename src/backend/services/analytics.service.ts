@@ -302,7 +302,7 @@ export class AnalyticsService {
 
       switch (reportType) {
         case 'attorney_performance':
-          if (!filters.attorneyId) throw new Error('Attorney ID required for performance report');
+          if (!filters.attorneyId) {throw new Error('Attorney ID required for performance report');}
           reportData = await this.getAttorneyAnalytics(
             filters.attorneyId,
             filters.period || 'month',
@@ -312,7 +312,7 @@ export class AnalyticsService {
           break;
 
         case 'revenue_summary':
-          if (!filters.attorneyId) throw new Error('Attorney ID required for revenue report');
+          if (!filters.attorneyId) {throw new Error('Attorney ID required for revenue report');}
           reportData = await this.getRevenueAnalytics(
             filters.attorneyId,
             filters.period || 'month',
@@ -538,7 +538,7 @@ export class AnalyticsService {
 
   private calculateTrends(currentMetrics: any, previousMetrics: any): any {
     const calculatePercentageChange = (current: number, previous: number): number => {
-      if (previous === 0) return current > 0 ? 100 : 0;
+      if (previous === 0) {return current > 0 ? 100 : 0;}
       return ((current - previous) / previous) * 100;
     };
 

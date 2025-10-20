@@ -127,7 +127,7 @@ export const AttorneyReviews: React.FC<AttorneyReviewsProps> = ({
   };
 
   const handleSubmitReview = async () => {
-    if (!user || reviewForm.rating === 0 || !reviewForm.title || !reviewForm.content) return;
+    if (!user || reviewForm.rating === 0 || !reviewForm.title || !reviewForm.content) {return;}
 
     try {
       const response = await fetch('/api/reviews', {
@@ -172,7 +172,7 @@ export const AttorneyReviews: React.FC<AttorneyReviewsProps> = ({
   };
 
   const handleVote = async (reviewId: string, voteType: 'helpful' | 'notHelpful') => {
-    if (!user) return;
+    if (!user) {return;}
 
     try {
       const response = await fetch(`/api/reviews/${reviewId}/vote`, {

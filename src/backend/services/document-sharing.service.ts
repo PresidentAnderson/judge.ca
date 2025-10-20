@@ -390,9 +390,9 @@ export class DocumentSharingService {
         .where('owner_id', userId)
         .where('owner_type', userType)
         .modify((builder) => {
-          if (folderId) builder.where('folder_id', folderId);
-          else builder.whereNull('folder_id');
-          if (category) builder.where('category', category);
+          if (folderId) {builder.where('folder_id', folderId);}
+          else {builder.whereNull('folder_id');}
+          if (category) {builder.where('category', category);}
         })
         .count('* as count')
         .first();
@@ -719,7 +719,7 @@ export class DocumentSharingService {
         .where('owner_type', userType)
         .first();
 
-      if (document) return true;
+      if (document) {return true;}
 
       // Check explicit permissions
       const permission = await db('document_permissions')

@@ -88,11 +88,11 @@ const ConsentManager: React.FC<ConsentManagerProps> = ({ onConsentChange }) => {
   };
 
   const handleConsentChange = (type: keyof ConsentSettings, value: boolean) => {
-    if (type === 'necessary') return; // Cannot disable necessary cookies
+    if (type === 'necessary') {return;} // Cannot disable necessary cookies
     setConsent(prev => ({ ...prev, [type]: value }));
   };
 
-  if (!isVisible) return null;
+  if (!isVisible) {return null;}
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end md:items-center justify-center p-4">

@@ -47,7 +47,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
   // Initialize socket connection
   useEffect(() => {
-    if (!token) return;
+    if (!token) {return;}
 
     const newSocket = io(process.env.NEXT_PUBLIC_WEBSOCKET_URL || 'http://localhost:3001', {
       auth: {
@@ -141,8 +141,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   const handleSendMessage = async () => {
-    if (!inputMessage.trim() && !selectedFile) return;
-    if (!socket || !isConnected) return;
+    if (!inputMessage.trim() && !selectedFile) {return;}
+    if (!socket || !isConnected) {return;}
 
     let fileData = undefined;
     
@@ -191,7 +191,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   const handleTyping = () => {
-    if (!socket || !isConnected) return;
+    if (!socket || !isConnected) {return;}
     
     if (!isTyping) {
       setIsTyping(true);
@@ -210,7 +210,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   const handleStopTyping = () => {
-    if (!socket || !isConnected || !isTyping) return;
+    if (!socket || !isConnected || !isTyping) {return;}
     
     setIsTyping(false);
     socket.emit('typing:stop', conversationId);
@@ -233,7 +233,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   const initiateCall = (callType: 'audio' | 'video') => {
-    if (!socket || !isConnected) return;
+    if (!socket || !isConnected) {return;}
     
     socket.emit('call:initiate', {
       conversationId,
@@ -242,7 +242,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   const deleteMessage = (messageId: string) => {
-    if (!socket || !isConnected) return;
+    if (!socket || !isConnected) {return;}
     
     if (confirm('Are you sure you want to delete this message?')) {
       socket.emit('delete:message', messageId);

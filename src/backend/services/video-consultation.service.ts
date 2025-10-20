@@ -213,7 +213,7 @@ export class VideoConsultationService {
       const total = await db('video_consultations')
         .where('user_id', userId)
         .modify((builder) => {
-          if (status) builder.where('status', status);
+          if (status) {builder.where('status', status);}
         })
         .count('* as count')
         .first();
@@ -252,7 +252,7 @@ export class VideoConsultationService {
       const total = await db('video_consultations')
         .where('attorney_id', attorneyId)
         .modify((builder) => {
-          if (status) builder.where('status', status);
+          if (status) {builder.where('status', status);}
         })
         .count('* as count')
         .first();
@@ -605,7 +605,7 @@ export class VideoConsultationService {
       const [startHour, startMinute] = workingHours.start.split(':').map(Number);
       const [endHour, endMinute] = workingHours.end.split(':').map(Number);
       
-      let currentTime = new Date(date);
+      const currentTime = new Date(date);
       currentTime.setHours(startHour, startMinute, 0, 0);
       
       const endTime = new Date(date);
@@ -658,7 +658,7 @@ export class VideoConsultationService {
         join_url: `https://zoom.us/j/${Date.now()}`,
         password: crypto.randomBytes(4).toString('hex').toUpperCase(),
         start_time: scheduledAt.toISOString(),
-        duration: duration,
+        duration,
         topic: 'Legal Consultation - Judge.ca'
       };
 
@@ -714,7 +714,7 @@ export class VideoConsultationService {
   }
 
   private async calculateRefundAmount(consultation: any, cancelledBy: string): Promise<number> {
-    if (!consultation.cost_amount) return 0;
+    if (!consultation.cost_amount) {return 0;}
 
     const preferences = await this.getConsultationPreferences(consultation.attorney_id);
     const hoursUntil = (new Date(consultation.scheduled_at).getTime() - Date.now()) / (1000 * 60 * 60);

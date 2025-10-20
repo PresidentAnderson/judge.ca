@@ -85,7 +85,7 @@ export class MessagingService {
         .where({ id: messageId })
         .first();
       
-      if (!message) return null;
+      if (!message) {return null;}
       
       return {
         id: message.id,
@@ -227,7 +227,7 @@ export class MessagingService {
     
     const authTag = cipher.getAuthTag();
     
-    return iv.toString('hex') + ':' + authTag.toString('hex') + ':' + encrypted;
+    return `${iv.toString('hex') }:${ authTag.toString('hex') }:${ encrypted}`;
   }
 
   async createConversation(userId: string, attorneyId: string, matchId?: string): Promise<Conversation> {
@@ -314,7 +314,7 @@ export class MessagingService {
         sender_type: senderType,
         recipient_id: recipientId,
         recipient_type: recipientType,
-        content: content, // Store plaintext for search (in production, use searchable encryption)
+        content, // Store plaintext for search (in production, use searchable encryption)
         encrypted_content: encryptedContent,
         message_type: messageType,
         file_url: fileData?.url,
@@ -579,7 +579,7 @@ export class MessagingService {
 
       const authTag = cipher.getAuthTag();
       
-      return iv.toString('hex') + ':' + authTag.toString('hex') + ':' + encrypted;
+      return `${iv.toString('hex') }:${ authTag.toString('hex') }:${ encrypted}`;
     } catch (error) {
       console.error('Encryption error:', error);
       return content; // Fallback to plaintext in case of error
@@ -589,7 +589,7 @@ export class MessagingService {
   private decryptMessage(encryptedContent: string, key: string): string {
     try {
       const parts = encryptedContent.split(':');
-      if (parts.length !== 3) return encryptedContent; // Not encrypted format
+      if (parts.length !== 3) {return encryptedContent;} // Not encrypted format
 
       const iv = Buffer.from(parts[0], 'hex');
       const authTag = Buffer.from(parts[1], 'hex');

@@ -99,7 +99,7 @@ function useIntersectionObserver({
   const [inView, setInView] = useState(false)
 
   useEffect(() => {
-    if (!ref) return
+    if (!ref) {return}
 
     const observer = new IntersectionObserver(
       ([entry]) => {

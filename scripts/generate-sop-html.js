@@ -570,7 +570,7 @@ function convertMarkdownToHTML(markdownPath, outputPath) {
         // Configure marked
         marked.setOptions({
             renderer: createCustomRenderer(),
-            highlight: function(code, lang) {
+            highlight(code, lang) {
                 return code; // No syntax highlighting for SOPs
             },
             pedantic: false,

@@ -90,7 +90,7 @@ const CheckoutForm: React.FC<StripeCheckoutProps> = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!stripe || !elements || !clientSecret) return;
+    if (!stripe || !elements || !clientSecret) {return;}
 
     setProcessing(true);
 

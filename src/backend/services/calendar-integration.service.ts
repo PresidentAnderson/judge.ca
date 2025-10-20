@@ -220,7 +220,7 @@ export class CalendarIntegrationService {
         attendees: JSON.stringify(event.attendees),
         reminders: JSON.stringify(event.reminders || [
           { method: 'email', minutes: 1440 }, // 24 hours
-          { method: 'popup', minutes: 60 }    // 1 hour
+          { method: 'popup', minutes: 60 } // 1 hour
         ]),
         status: 'confirmed',
         is_all_day: false,

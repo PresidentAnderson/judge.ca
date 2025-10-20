@@ -84,10 +84,10 @@ async function performHealthCheck(): Promise<UptimeCheck> {
   };
 
   // Collect errors for failed checks
-  if (!checks.database) errors.push('Database connection failed');
-  if (!checks.redis) errors.push('Redis connection failed');
-  if (!checks.external_apis) errors.push('External API checks failed');
-  if (!checks.file_storage) errors.push('File storage checks failed');
+  if (!checks.database) {errors.push('Database connection failed');}
+  if (!checks.redis) {errors.push('Redis connection failed');}
+  if (!checks.external_apis) {errors.push('External API checks failed');}
+  if (!checks.file_storage) {errors.push('File storage checks failed');}
 
   const responseTime = Date.now() - startTime;
   

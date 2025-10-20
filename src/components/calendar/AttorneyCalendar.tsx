@@ -155,14 +155,14 @@ export const AttorneyCalendar: React.FC<CalendarProps> = ({
 
   // Handle slot selection
   const handleSlotSelect = (slot: TimeSlot) => {
-    if (!slot.available) return;
+    if (!slot.available) {return;}
     setSelectedSlot(slot);
     setShowBookingModal(true);
   };
 
   // Handle booking submission
   const handleBookingSubmit = async () => {
-    if (!selectedSlot || !selectedDate) return;
+    if (!selectedSlot || !selectedDate) {return;}
     
     setLoading(true);
     try {

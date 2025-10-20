@@ -420,10 +420,10 @@ class AlertManager {
   // Get severity color for Slack
   private getSeverityColor(severity: AlertSeverity): string {
     const colors = {
-      [AlertSeverity.LOW]: '#36a64f',      // Green
-      [AlertSeverity.MEDIUM]: '#ff9500',   // Orange
-      [AlertSeverity.HIGH]: '#ff0000',     // Red
-      [AlertSeverity.CRITICAL]: '#8b0000'  // Dark Red
+      [AlertSeverity.LOW]: '#36a64f', // Green
+      [AlertSeverity.MEDIUM]: '#ff9500', // Orange
+      [AlertSeverity.HIGH]: '#ff0000', // Red
+      [AlertSeverity.CRITICAL]: '#8b0000' // Dark Red
     };
 
     return colors[severity] || '#808080';

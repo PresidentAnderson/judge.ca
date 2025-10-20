@@ -102,22 +102,22 @@ export class MatchingService {
 
   private calculatePracticeAreaScore(attorney: any): number {
     // Primary practice area gets full score
-    if (attorney.is_primary) return 100;
+    if (attorney.is_primary) {return 100;}
     
     // Secondary practice areas based on experience
-    if (attorney.practice_area_experience >= 10) return 90;
-    if (attorney.practice_area_experience >= 5) return 80;
-    if (attorney.practice_area_experience >= 3) return 70;
+    if (attorney.practice_area_experience >= 10) {return 90;}
+    if (attorney.practice_area_experience >= 5) {return 80;}
+    if (attorney.practice_area_experience >= 3) {return 70;}
     return 60;
   }
 
   private calculateBudgetScore(attorney: any, request: MatchRequest): number {
     // Perfect match for flexible budget
-    if (request.budgetType === 'flexible') return 100;
+    if (request.budgetType === 'flexible') {return 100;}
 
     // Check if attorney offers the requested budget type
-    if (request.budgetType === 'contingency' && !attorney.contingency_available) return 0;
-    if (request.budgetType === 'fixed' && !attorney.fixed_fee_available) return 20;
+    if (request.budgetType === 'contingency' && !attorney.contingency_available) {return 0;}
+    if (request.budgetType === 'fixed' && !attorney.fixed_fee_available) {return 20;}
 
     // For hourly rates
     if (request.budgetType === 'hourly' && request.budgetMin && request.budgetMax) {
@@ -147,10 +147,10 @@ export class MatchingService {
     const attorneyLanguages = JSON.parse(attorney.languages || '[]');
     
     // Perfect match
-    if (attorneyLanguages.includes(request.preferredLanguage)) return 100;
+    if (attorneyLanguages.includes(request.preferredLanguage)) {return 100;}
     
     // Can work in other language
-    if (attorneyLanguages.length > 0) return 50;
+    if (attorneyLanguages.length > 0) {return 50;}
     
     return 0;
   }
@@ -160,18 +160,18 @@ export class MatchingService {
     const requestCity = request.location.toLowerCase().split(',')[0].trim();
     const attorneyCity = attorney.city?.toLowerCase().trim();
     
-    if (requestCity === attorneyCity) return 100;
+    if (requestCity === attorneyCity) {return 100;}
     
     // Same province
-    if (attorney.province === 'QC') return 70;
+    if (attorney.province === 'QC') {return 70;}
     
     return 30;
   }
 
   private async calculateAvailabilityScore(attorney: any, request: MatchRequest): Promise<number> {
     // Check attorney's availability status
-    if (attorney.availability_status === 'unavailable') return 0;
-    if (attorney.availability_status === 'busy') return 50;
+    if (attorney.availability_status === 'unavailable') {return 0;}
+    if (attorney.availability_status === 'busy') {return 50;}
     
     // Factor in urgency
     if (request.urgency === 'immediate' && attorney.availability_status !== 'available') {
@@ -195,26 +195,26 @@ export class MatchingService {
     
     if (isComplex) {
       // Complex cases need experienced attorneys
-      if (yearsExp >= 15) return 100;
-      if (yearsExp >= 10) return 85;
-      if (yearsExp >= 5) return 70;
+      if (yearsExp >= 15) {return 100;}
+      if (yearsExp >= 10) {return 85;}
+      if (yearsExp >= 5) {return 70;}
       return 50;
     } else {
       // Simple cases can work with less experienced attorneys
-      if (yearsExp >= 3) return 100;
-      if (yearsExp >= 1) return 90;
+      if (yearsExp >= 3) {return 100;}
+      if (yearsExp >= 1) {return 90;}
       return 80;
     }
   }
 
   private calculateRatingScore(attorney: any): number {
-    if (attorney.rating_count === 0) return 70; // New attorneys get neutral score
+    if (attorney.rating_count === 0) {return 70;} // New attorneys get neutral score
     
     const rating = attorney.rating_average;
-    if (rating >= 4.8) return 100;
-    if (rating >= 4.5) return 90;
-    if (rating >= 4.0) return 80;
-    if (rating >= 3.5) return 60;
+    if (rating >= 4.8) {return 100;}
+    if (rating >= 4.5) {return 90;}
+    if (rating >= 4.0) {return 80;}
+    if (rating >= 3.5) {return 60;}
     return 40;
   }
 
@@ -226,13 +226,13 @@ export class MatchingService {
       .select(db.raw('AVG(EXTRACT(EPOCH FROM (updated_at - created_at))/3600) as avg_hours'))
       .first();
     
-    if (!avgResponseTime || !avgResponseTime.avg_hours) return 70; // No history
+    if (!avgResponseTime || !avgResponseTime.avg_hours) {return 70;} // No history
     
     const hours = avgResponseTime.avg_hours;
-    if (hours <= 4) return 100;
-    if (hours <= 12) return 90;
-    if (hours <= 24) return 80;
-    if (hours <= 48) return 60;
+    if (hours <= 4) {return 100;}
+    if (hours <= 12) {return 90;}
+    if (hours <= 24) {return 80;}
+    if (hours <= 48) {return 60;}
     return 40;
   }
 

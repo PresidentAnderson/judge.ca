@@ -471,7 +471,7 @@ export class TwoFactorAuthService {
       user_type: userType,
       token: await bcrypt.hash(code, 10),
       method: 'email',
-      email: email,
+      email,
       expires_at: expiresAt,
       created_at: new Date()
     });

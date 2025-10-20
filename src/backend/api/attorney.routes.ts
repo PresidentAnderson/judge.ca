@@ -13,8 +13,8 @@ const storage = multer.diskStorage({
     cb(null, 'public/uploads/profiles/');
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, 'profile-' + uniqueSuffix + path.extname(file.originalname));
+    const uniqueSuffix = `${Date.now() }-${ Math.round(Math.random() * 1E9)}`;
+    cb(null, `profile-${ uniqueSuffix }${path.extname(file.originalname)}`);
   }
 });
 
