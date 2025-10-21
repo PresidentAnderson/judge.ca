@@ -315,4 +315,20 @@ export class MatchingService {
     
     return match.id;
   }
+
+  async createMatches(matchRequestId: string, matches: MatchScore[]): Promise<string[]> {
+    try {
+      const matchRecords = await Promise.all(
+        matches.map(match => 
+          this.createMatchRecord(matchRequestId, match.attorneyId, match.totalScore)
+        )
+      );
+      
+      logger.info(`Created ${matchRecords.length} match records for request ${matchRequestId}`);
+      return matchRecords;
+    } catch (error) {
+      logger.error('Error creating match records:', error);
+      throw error;
+    }
+  }
 }

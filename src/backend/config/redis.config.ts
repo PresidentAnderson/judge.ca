@@ -177,4 +177,7 @@ export class RedisUtils {
   }
 }
 
+// Export redisService as well for backward compatibility
+export const redisService = RedisUtils;
+
 export default redis;

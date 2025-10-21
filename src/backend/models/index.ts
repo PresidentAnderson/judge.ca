@@ -4,7 +4,7 @@ import { User, Attorney, PracticeArea, MatchRequest, Match, Review } from '../..
 export class UserModel {
   constructor(private db: Knex) {}
 
-  async create(userData: Partial<User>): Promise<User> {
+  async create(userData: Partial<User> & { passwordHash?: string }): Promise<User> {
     const [user] = await this.db('users')
       .insert({
         email: userData.email,
@@ -73,7 +73,7 @@ export class UserModel {
 export class AttorneyModel {
   constructor(private db: Knex) {}
 
-  async create(attorneyData: Partial<Attorney>): Promise<Attorney> {
+  async create(attorneyData: Partial<Attorney> & { passwordHash?: string }): Promise<Attorney> {
     const [attorney] = await this.db('attorneys')
       .insert({
         email: attorneyData.email,
