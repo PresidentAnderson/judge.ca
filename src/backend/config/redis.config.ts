@@ -20,8 +20,29 @@ export const redisConfig: RedisConfig = {
   maxRetriesPerRequest: 3,
 };
 
-// Create Redis client instance
-export const redis = new Redis(redisConfig);
+// Create Redis client instance with lazy connection and retry strategy
+export const redis = new Redis({
+  ...redisConfig,
+  lazyConnect: true, // Don't connect immediately - prevents startup crashes
+  retryStrategy: (times) => {
+    // Retry with exponential backoff, max 3 attempts
+    if (times > 3) {
+      console.error('Redis connection failed after 3 attempts, continuing without cache');
+      return null; // Stop retrying
+    }
+    const delay = Math.min(times * 50, 2000);
+    console.log(`Redis retry attempt ${times}, waiting ${delay}ms`);
+    return delay;
+  },
+  reconnectOnError: (err) => {
+    // Only reconnect on READONLY errors
+    const targetError = 'READONLY';
+    if (err.message.includes(targetError)) {
+      return true;
+    }
+    return false;
+  }
+});
 
 // Redis connection event handlers
 redis.on('connect', () => {
@@ -39,6 +60,28 @@ redis.on('ready', () => {
 redis.on('close', () => {
   console.log('Redis connection closed');
 });
+
+// Initialize Redis connection (call this from server.ts)
+export async function initializeRedis(): Promise<boolean> {
+  try {
+    await redis.connect();
+    console.log('Redis initialized successfully');
+    return true;
+  } catch (error) {
+    console.error('Failed to initialize Redis, continuing without cache:', error);
+    return false;
+  }
+}
+
+// Check if Redis is available
+export async function isRedisAvailable(): Promise<boolean> {
+  try {
+    await redis.ping();
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 
 // Utility functions for common Redis operations
 export class RedisUtils {
@@ -176,5 +219,8 @@ export class RedisUtils {
     }
   }
 }
+
+// Export redis instance as redisService for backward compatibility
+export { redis as redisService };
 
 export default redis;

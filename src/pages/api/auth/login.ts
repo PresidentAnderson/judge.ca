@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import db from '@/backend/utils/database';
+import db from '../../../backend/utils/database';
 
 const loginSchema = z.object({
   email: z.string().email(),

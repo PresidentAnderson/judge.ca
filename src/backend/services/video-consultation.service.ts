@@ -64,7 +64,7 @@ interface ConsultationPreferences {
   recordingPolicy: 'always' | 'optional' | 'never';
   cancellationPolicy: {
     allowUserCancellation: boolean;
-    freecancellationHours: number;
+    freeCancellationHours: number;
     cancellationFeePercentage: number;
   };
 }

@@ -1,0 +1,244 @@
+================================================================================
+RAW BUILD LOGS - Judge.ca Platform
+Generated: October 30, 2025
+================================================================================
+
+COMMAND 1: npm run typecheck
+================================================================================
+
+> judge-ca@1.0.0 typecheck
+> tsc --noEmit
+
+playwright.config.ts(28,3): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type '((string | { outputFolder: string; })[] | (string | { outputFile: string; })[])[]' is not assignable to type 'LiteralUnion<"null" | "html" | "line" | "list" | "json" | "junit" | "github" | "dot", string> | ReporterDescription[] | undefined'.
+      Type '((string | { outputFolder: string; })[] | (string | { outputFile: string; })[])[]' is not assignable to type 'ReporterDescription[]'.
+        Type '(string | { outputFolder: string; })[] | (string | { outputFile: string; })[]' is not assignable to type 'ReporterDescription'.
+          Type '(string | { outputFolder: string; })[]' is not assignable to type 'ReporterDescription'.
+            Type '(string | { outputFolder: string; })[]' is not assignable to type 'readonly ["null"]'.
+              Target requires 1 element(s) but source may have fewer.
+src/backend/api/deployment.routes.ts(70,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/api/deployment.routes.ts(98,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/api/deployment.routes.ts(135,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/api/deployment.routes.ts(164,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/api/deployment.routes.ts(202,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/api/deployment.routes.ts(223,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/api/health.routes.ts(3,10): error TS2614: Module '"../config/redis.config"' has no exported member 'redisService'. Did you mean to use 'import redisService from "../config/redis.config"' instead?
+src/backend/api/user.routes.ts(93,29): error TS2339: Property 'createMatches' does not exist on type 'MatchingService'.
+src/backend/controllers/deployment.controller.ts(35,69): error TS2345: Argument of type '{ environment: "production"; autoPromote: boolean; healthCheckUrl: string; platform: string; branch: string; } | { environment: "development"; healthCheckUrl: string; platform: string; branch: string; autoPromote: boolean; } | { ...; }' is not assignable to parameter of type 'DeploymentConfig'.
+  Type '{ environment: "production"; autoPromote: boolean; healthCheckUrl: string; platform: string; branch: string; }' is not assignable to type 'DeploymentConfig'.
+    Types of property 'platform' are incompatible.
+      Type 'string' is not assignable to type '"vercel" | "docker" | "manual"'.
+src/backend/controllers/deployment.controller.ts(43,60): error TS18046: 'error' is of type 'unknown'.
+src/backend/controllers/deployment.controller.ts(46,18): error TS18046: 'error' is of type 'unknown'.
+src/backend/controllers/deployment.controller.ts(60,9): error TS2322: Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+src/backend/controllers/deployment.controller.ts(75,9): error TS2322: Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+src/backend/controllers/deployment.controller.ts(93,69): error TS2345: Argument of type '{ platform: string; environment: "development" | "staging" | "production"; branch: any; autoPromote: boolean; healthCheckUrl: string; environmentVariables: Record<string, string>; }' is not assignable to parameter of type 'DeploymentConfig'.
+  Types of property 'platform' are incompatible.
+    Type 'string' is not assignable to type '"vercel" | "docker" | "manual"'.
+src/backend/controllers/deployment.controller.ts(101,65): error TS18046: 'error' is of type 'unknown'.
+src/backend/controllers/deployment.controller.ts(104,18): error TS18046: 'error' is of type 'unknown'.
+src/backend/controllers/deployment.controller.ts(122,9): error TS2322: Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+src/backend/controllers/deployment.controller.ts(129,9): error TS2322: Type 'Response<any, Record<string, any>>' is not assignable to type 'void'.
+src/backend/controllers/deployment.controller.ts(150,59): error TS18046: 'error' is of type 'unknown'.
+src/backend/controllers/deployment.controller.ts(153,18): error TS18046: 'error' is of type 'unknown'.
+src/backend/controllers/deployment.controller.ts(296,74): error TS18046: 'error' is of type 'unknown'.
+src/backend/middleware/monitoring.ts(3,10): error TS2614: Module '"../config/redis.config"' has no exported member 'redisService'. Did you mean to use 'import redisService from "../config/redis.config"' instead?
+src/backend/middleware/monitoring.ts(74,11): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/backend/middleware/monitoring.ts(75,9): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/backend/middleware/monitoring.ts(77,7): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/backend/middleware/monitoring.ts(81,9): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/backend/middleware/monitoring.ts(83,9): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/backend/middleware/monitoring.ts(86,31): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/backend/models/index.ts(11,33): error TS2339: Property 'passwordHash' does not exist on type 'Partial<User>'.
+src/backend/models/index.ts(80,37): error TS2339: Property 'passwordHash' does not exist on type 'Partial<Attorney>'.
+src/backend/services/ai-matching.service.ts(284,31): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(505,42): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(506,43): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(507,49): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(508,51): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(511,32): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(529,34): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(530,32): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(531,36): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(785,35): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/analytics.service.ts(811,60): error TS2339: Property 'avg_value' does not exist on type '{ timeout: any; wrap: any; toSQL: any; queryContext: any; [EventEmitter.captureRejectionSymbol]?: any; addListener: any; on: any; once: any; removeListener: any; off: any; removeAllListeners: any; setMaxListeners: any; ... 20 more ...; readonly [Symbol.toStringTag]: any; }'.
+src/backend/services/calendar-integration.service.ts(3,24): error TS2307: Cannot find module 'googleapis' or its corresponding type declarations.
+src/backend/services/calendar-integration.service.ts(4,24): error TS2307: Cannot find module '@microsoft/microsoft-graph-client' or its corresponding type declarations.
+src/backend/services/calendar-integration.service.ts(5,63): error TS2307: Cannot find module 'ical-generator' or its corresponding type declarations.
+src/backend/services/calendar-integration.service.ts(6,18): error TS2307: Cannot find module 'ical-generator' or its corresponding type declarations.
+src/backend/services/calendar-integration.service.ts(80,22): error TS7006: Parameter 'done' implicitly has an 'any' type.
+src/backend/services/calendar-integration.service.ts(542,22): error TS7006: Parameter 'done' implicitly has an 'any' type.
+src/backend/services/calendar-integration.service.ts(583,37): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/backend/services/calendar-integration.service.ts(591,39): error TS7006: Parameter 'att' implicitly has an 'any' type.
+src/backend/services/calendar-integration.service.ts(601,22): error TS7006: Parameter 'done' implicitly has an 'any' type.
+src/backend/services/calendar-integration.service.ts(686,22): error TS7006: Parameter 'done' implicitly has an 'any' type.
+src/backend/services/calendar-integration.service.ts(745,26): error TS7006: Parameter 'done' implicitly has an 'any' type.
+src/backend/services/database-config-agent.service.ts(141,86): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(188,16): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(260,20): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(263,76): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(270,62): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(335,26): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(337,66): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(398,64): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(427,61): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(460,38): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/backend/services/database-config-agent.service.ts(462,38): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/backend/services/database-config-agent.service.ts(462,88): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(475,39): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/backend/services/database-config-agent.service.ts(477,39): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/backend/services/database-config-agent.service.ts(477,81): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(486,67): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(492,66): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(539,80): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/database-config-agent.service.ts(583,68): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/deployment-agent.service.ts(116,80): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/deployment-agent.service.ts(117,77): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/deployment-agent.service.ts(151,13): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'input' does not exist in type 'ObjectEncodingOptions & ExecOptions'.
+src/backend/services/deployment-agent.service.ts(159,15): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'input' does not exist in type 'ObjectEncodingOptions & ExecOptions'.
+src/backend/services/deployment-agent.service.ts(163,98): error TS18046: 'updateError' is of type 'unknown'.
+src/backend/services/deployment-agent.service.ts(305,103): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/document-sharing.service.ts(576,25): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/document-sharing.service.ts(778,34): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/legal-blog.service.ts(3,21): error TS2307: Cannot find module 'slugify' or its corresponding type declarations.
+src/backend/services/legal-blog.service.ts(5,23): error TS2307: Cannot find module 'isomorphic-dompurify' or its corresponding type declarations.
+src/backend/services/legal-blog.service.ts(358,23): error TS2339: Property 'relatedPosts' does not exist on type 'BlogPost'.
+src/backend/services/legal-blog.service.ts(425,30): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/legal-blog.service.ts(640,25): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/legal-blog.service.ts(727,40): error TS2339: Property 'randomBytes' does not exist on type 'Crypto'.
+src/backend/services/legal-blog.service.ts(728,39): error TS2339: Property 'randomBytes' does not exist on type 'Crypto'.
+src/backend/services/legal-blog.service.ts(952,32): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/messaging.service.ts(116,9): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(131,9): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(147,9): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(221,17): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(277,9): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(406,25): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/messaging.service.ts(461,35): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/messaging.service.ts(469,25): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/messaging.service.ts(477,9): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(492,9): error TS2393: Duplicate function implementation.
+src/backend/services/messaging.service.ts(571,11): error TS2393: Duplicate function implementation.
+src/backend/services/payment-plans.service.ts(335,41): error TS2339: Property 'charges' does not exist on type 'Response<PaymentIntent>'.
+src/backend/services/payment-plans.service.ts(383,27): error TS18046: 'error' is of type 'unknown'.
+src/backend/services/payment-plans.service.ts(770,18): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/payment-plans.service.ts(917,41): error TS2339: Property 'charges' does not exist on type 'Response<PaymentIntent>'.
+src/backend/services/push-notification.service.ts(3,19): error TS2307: Cannot find module 'firebase-admin' or its corresponding type declarations.
+src/backend/services/push-notification.service.ts(4,17): error TS2307: Cannot find module 'apn' or its corresponding type declarations.
+src/backend/services/push-notification.service.ts(5,22): error TS2307: Cannot find module 'expo-server-sdk' or its corresponding type declarations.
+src/backend/services/push-notification.service.ts(341,25): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/two-factor-auth.service.ts(4,23): error TS2307: Cannot find module 'speakeasy' or its corresponding type declarations.
+src/backend/services/two-factor-auth.service.ts(5,20): error TS2307: Cannot find module 'qrcode' or its corresponding type declarations.
+src/backend/services/two-factor-auth.service.ts(404,40): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/two-factor-auth.service.ts(612,35): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'string'.
+  Type 'number' is not assignable to type 'string'.
+src/backend/services/video-consultation.service.ts(568,13): error TS2561: Object literal may only specify known properties, but 'freeCancellationHours' does not exist in type '{ allowUserCancellation: boolean; freecancellationHours: number; cancellationFeePercentage: number; }'. Did you mean to write 'freecancellationHours'?
+src/backend/services/video-consultation.service.ts(726,54): error TS2551: Property 'freeCancellationHours' does not exist on type '{ allowUserCancellation: boolean; freecancellationHours: number; cancellationFeePercentage: number; }'. Did you mean 'freecancellationHours'?
+src/backend/utils/database.ts(5,16): error TS7053: Element implicitly has an 'any' type because expression of type '"development" | "production" | "test"' can't be used to index type '{ development: { client: string; connection: string | { host: string; port: number; database: string; user: string; password: string; }; pool: { min: number; max: number; }; migrations: { directory: string; tableName: string; }; seeds: { ...; }; }; staging: { ...; }; production: { ...; }; }'.
+  Property 'test' does not exist on type '{ development: { client: string; connection: string | { host: string; port: number; database: string; user: string; password: string; }; pool: { min: number; max: number; }; migrations: { directory: string; tableName: string; }; seeds: { ...; }; }; staging: { ...; }; production: { ...; }; }'.
+src/backend/utils/email.ts(1,24): error TS7016: Could not find a declaration file for module 'nodemailer'. '/Volumes/DevOPS 2025/01_DEVOPS_PLATFORM/judge.ca/node_modules/nodemailer/lib/nodemailer.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/nodemailer` if it exists or add a new declaration (.d.ts) file containing `declare module 'nodemailer';`
+src/components/chat/ChatWindow.tsx(3,25): error TS2307: Cannot find module '@/hooks/useAuth' or its corresponding type declarations.
+src/components/portal/ClientPortal.tsx(2,25): error TS2307: Cannot find module '@/hooks/useAuth' or its corresponding type declarations.
+src/components/reviews/AttorneyReviews.tsx(2,25): error TS2307: Cannot find module '@/hooks/useAuth' or its corresponding type declarations.
+src/frontend/pages/education/guides/[id].tsx(142,24): error TS2339: Property 'checklist' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'checklist' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(146,30): error TS2339: Property 'checklist' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'checklist' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(146,45): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(146,51): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(158,24): error TS2339: Property 'tips' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'tips' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(162,30): error TS2339: Property 'tips' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'tips' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(162,40): error TS7006: Parameter 'tip' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(162,45): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(172,24): error TS2339: Property 'warning' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'warning' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(181,71): error TS2339: Property 'warning' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'warning' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(187,24): error TS2339: Property 'table' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'table' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(192,34): error TS2339: Property 'table' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'table' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(192,53): error TS7006: Parameter 'header' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(192,61): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(200,32): error TS2339: Property 'table' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'table' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(200,48): error TS7006: Parameter 'row' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(200,53): error TS7006: Parameter 'rowIdx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(202,37): error TS7006: Parameter 'cell' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(202,43): error TS7006: Parameter 'cellIdx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(214,24): error TS2339: Property 'questions' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'questions' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(218,30): error TS2339: Property 'questions' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'questions' does not exist on type '{ heading: string; content: string; flags: { flag: string; explanation: string; }[]; steps?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(218,45): error TS7006: Parameter 'question' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(218,55): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(225,24): error TS2339: Property 'flags' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'flags' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(227,28): error TS2339: Property 'flags' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'flags' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(227,39): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(227,45): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(236,24): error TS2339: Property 'steps' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'steps' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(240,30): error TS2339: Property 'steps' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | { heading: string; content: string; tips: string[]; checklist?: undefined; warning?: undefined; table?: undefined; questions?: undefined; } | ... 4 more ... | { ...; }'.
+  Property 'steps' does not exist on type '{ heading: string; content: string; checklist: string[]; tips?: undefined; warning?: undefined; table?: undefined; questions?: undefined; }'.
+src/frontend/pages/education/guides/[id].tsx(240,41): error TS7006: Parameter 'step' implicitly has an 'any' type.
+src/frontend/pages/education/guides/[id].tsx(240,47): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/frontend/services/debugging-agent.service.ts(224,21): error TS2367: This comparison appears to be unintentional because the types 'HTMLElement' and 'Window & typeof globalThis' have no overlap.
+src/frontend/services/debugging-agent.service.ts(387,18): error TS18046: 'error' is of type 'unknown'.
+src/frontend/services/debugging-agent.service.ts(397,5): error TS2322: Type '(method: string, url: string | URL, args_0: unknown, args_1?: unknown, args_2?: unknown) => void' is not assignable to type '{ (method: string, url: string | URL): void; (method: string, url: string | URL, async: boolean, username?: string | null | undefined, password?: string | null | undefined): void; }'.
+  Target signature provides too few arguments. Expected 3 or more, but got 2.
+src/frontend/services/debugging-agent.service.ts(421,50): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'boolean'.
+src/pages/api/auth/login.ts(5,16): error TS2307: Cannot find module '@/backend/utils/database' or its corresponding type declarations.
+src/pages/api/auth/register.ts(5,16): error TS2307: Cannot find module '@/backend/utils/database' or its corresponding type declarations.
+
+================================================================================
+COMMAND 2: npm run build:backend
+================================================================================
+
+> judge-ca@1.0.0 build:backend
+> tsc -p tsconfig.server.json
+
+error TS5055: Cannot write file '/Volumes/DevOPS 2025/01_DEVOPS_PLATFORM/judge.ca/knexfile.js' because it would overwrite input file.
+
+================================================================================
+SUMMARY
+================================================================================
+
+TypeScript Errors: 155
+Files Affected:       28
+Next.js Build: SUCCESS (see .next/BUILD_ID)
+Backend Build: FAILED (tsconfig conflict)
+
+See BUILD_ERROR_ANALYSIS.md for detailed analysis
+See QUICK_FIX_GUIDE.md for immediate fixes
+

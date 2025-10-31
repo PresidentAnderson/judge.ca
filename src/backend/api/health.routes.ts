@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { monitoringService } from '../middleware/monitoring';
 import { redisService } from '../config/redis.config';
 import { logger } from '../utils/logger';
+import { testConnection } from '../utils/database';
 
 const router = Router();
 
@@ -74,11 +75,11 @@ router.get('/live', (req: Request, res: Response) => {
 router.get('/ready', async (req: Request, res: Response) => {
   try {
     // Check critical services only
-    const redisHealthy = await redisService.ping().catch(() => false);
-    
-    // In a real app, you'd also check database connectivity
-    const databaseHealthy = true; // Placeholder
-    
+    const redisHealthy = await redisService.ping().then(() => true).catch(() => false);
+
+    // Check database connectivity with real test
+    const databaseHealthy = await testConnection();
+
     const isReady = redisHealthy && databaseHealthy;
     
     res.status(isReady ? 200 : 503).json({

@@ -312,7 +312,32 @@ export class MatchingService {
       match_score: matchScore,
       status: 'proposed'
     }).returning('id');
-    
+
     return match.id;
+  }
+
+  async createMatches(matchRequestId: string, matches: MatchScore[]): Promise<void> {
+    try {
+      // Create match records for all found matches
+      const matchRecords = matches.map(match => ({
+        match_request_id: matchRequestId,
+        attorney_id: match.attorneyId,
+        match_score: match.totalScore,
+        match_details: JSON.stringify({
+          scores: match.scores,
+          explanation: match.explanation
+        }),
+        status: 'proposed',
+        created_at: new Date(),
+        updated_at: new Date()
+      }));
+
+      await db('matches').insert(matchRecords);
+
+      logger.info(`Created ${matchRecords.length} matches for request ${matchRequestId}`);
+    } catch (error) {
+      logger.error('Error creating matches:', error);
+      throw error;
+    }
   }
 }

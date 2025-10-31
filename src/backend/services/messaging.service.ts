@@ -113,122 +113,6 @@ export class MessagingService {
     }
   }
 
-  async markMessagesAsRead(messageIds: string[], userId: string): Promise<void> {
-    try {
-      await db('messages')
-        .whereIn('id', messageIds)
-        .where({ recipient_id: userId })
-        .update({
-          is_read: true,
-          updated_at: new Date()
-        });
-    } catch (error) {
-      console.error('Error marking messages as read:', error);
-      throw error;
-    }
-  }
-
-  async deleteMessage(messageId: string): Promise<void> {
-    try {
-      await db('messages')
-        .where({ id: messageId })
-        .update({
-          is_deleted: true,
-          content: '[Message deleted]',
-          encrypted_content: '',
-          updated_at: new Date()
-        });
-    } catch (error) {
-      console.error('Error deleting message:', error);
-      throw error;
-    }
-  }
-
-  async sendMessage(data: {
-    conversationId: string;
-    senderId: string;
-    senderType: 'user' | 'attorney';
-    content: string;
-    messageType: 'text' | 'file' | 'voice';
-    fileUrl?: string;
-    fileName?: string;
-    fileSize?: number;
-  }): Promise<Message> {
-    try {
-      // Get conversation to determine recipient
-      const conversation = await this.getConversation(data.conversationId);
-      const recipientId = data.senderType === 'user' ? conversation.attorneyId : conversation.userId;
-      const recipientType = data.senderType === 'user' ? 'attorney' : 'user';
-      
-      // Encrypt content
-      const encryptedContent = await this.encryptMessage(data.content, conversation.encryptionKey);
-      
-      // Create message
-      const messageId = uuidv4();
-      const now = new Date();
-      
-      await db('messages').insert({
-        id: messageId,
-        conversation_id: data.conversationId,
-        sender_id: data.senderId,
-        sender_type: data.senderType,
-        recipient_id: recipientId,
-        recipient_type: recipientType,
-        content: data.content,
-        encrypted_content: encryptedContent,
-        message_type: data.messageType,
-        file_url: data.fileUrl,
-        file_name: data.fileName,
-        file_size: data.fileSize,
-        is_read: false,
-        is_deleted: false,
-        created_at: now,
-        updated_at: now
-      });
-      
-      // Update conversation last message time
-      await db('conversations')
-        .where({ id: data.conversationId })
-        .update({
-          last_message_at: now,
-          updated_at: now
-        });
-      
-      return {
-        id: messageId,
-        conversationId: data.conversationId,
-        senderId: data.senderId,
-        senderType: data.senderType,
-        recipientId,
-        recipientType,
-        content: data.content,
-        encryptedContent,
-        messageType: data.messageType,
-        fileUrl: data.fileUrl,
-        fileName: data.fileName,
-        fileSize: data.fileSize,
-        isRead: false,
-        isDeleted: false,
-        createdAt: now,
-        updatedAt: now
-      };
-    } catch (error) {
-      console.error('Error sending message:', error);
-      throw error;
-    }
-  }
-
-  private async encryptMessage(content: string, key: string): Promise<string> {
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv(this.ENCRYPTION_ALGORITHM, Buffer.from(key, 'hex'), iv);
-    
-    let encrypted = cipher.update(content, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
-    
-    const authTag = cipher.getAuthTag();
-    
-    return `${iv.toString('hex') }:${ authTag.toString('hex') }:${ encrypted}`;
-  }
 
   async createConversation(userId: string, attorneyId: string, matchId?: string): Promise<Conversation> {
     try {
@@ -398,8 +282,19 @@ export class MessagingService {
         this.transformMessage(msg, conversation.encryption_key)
       ).reverse();
 
-      // Mark messages as read for the requesting user
-      await this.markMessagesAsRead(conversationId, userId);
+      // Mark unread messages as read for the requesting user
+      const unreadMessageIds = messages
+        .filter(msg => msg.recipient_id === userId && !msg.is_read)
+        .map(msg => msg.id);
+
+      if (unreadMessageIds.length > 0) {
+        await db('messages')
+          .whereIn('id', unreadMessageIds)
+          .update({
+            is_read: true,
+            updated_at: new Date()
+          });
+      }
 
       return {
         messages: decryptedMessages,
@@ -480,7 +375,7 @@ export class MessagingService {
         .where('conversation_id', conversationId)
         .where('recipient_id', userId)
         .where('is_read', false)
-        .update({ 
+        .update({
           is_read: true,
           updated_at: new Date()
         });

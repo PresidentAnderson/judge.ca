@@ -3,11 +3,25 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "commonjs",
-    "outDir": "./dist/backend",
+    "outDir": "./dist",
     "rootDir": "./src",
     "noEmit": false,
-    "jsx": "react"
+    "jsx": "react",
+    "allowJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["src/shared/*"],
+      "@backend/*": ["src/backend/*"]
+    }
   },
-  "include": ["src/backend/**/*", "src/shared/**/*"],
-  "exclude": ["node_modules", "dist", "src/frontend/**/*", "knexfile.js"]
+  "include": ["src/backend/**/*.ts", "src/shared/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/frontend/**/*",
+    "pages/**/*",
+    "components/**/*",
+    "**/*.js",
+    "**/*.jsx"
+  ]
 }

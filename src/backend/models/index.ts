@@ -1,10 +1,19 @@
 import { Knex } from 'knex';
 import { User, Attorney, PracticeArea, MatchRequest, Match, Review } from '../../shared/types';
 
+// Extended interfaces for database operations that include sensitive fields
+interface UserCreateData extends Partial<User> {
+  passwordHash: string;
+}
+
+interface AttorneyCreateData extends Partial<Attorney> {
+  passwordHash: string;
+}
+
 export class UserModel {
   constructor(private db: Knex) {}
 
-  async create(userData: Partial<User>): Promise<User> {
+  async create(userData: UserCreateData): Promise<User> {
     const [user] = await this.db('users')
       .insert({
         email: userData.email,
@@ -15,7 +24,7 @@ export class UserModel {
         preferred_language: userData.preferredLanguage || 'fr'
       })
       .returning('*');
-    
+
     return this.transformUser(user);
   }
 
@@ -73,7 +82,7 @@ export class UserModel {
 export class AttorneyModel {
   constructor(private db: Knex) {}
 
-  async create(attorneyData: Partial<Attorney>): Promise<Attorney> {
+  async create(attorneyData: AttorneyCreateData): Promise<Attorney> {
     const [attorney] = await this.db('attorneys')
       .insert({
         email: attorneyData.email,
