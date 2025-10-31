@@ -32,8 +32,16 @@ jobs:
       - name: 📦 Install Railway CLI
         run: npm install -g @railway/cli
 
-      - name: 🔑 Authenticate with Railway
-        run: railway login --browserless
+      - name: 🔍 Validate Railway Token
+        run: |
+          if [ -z "$RAILWAY_TOKEN" ]; then
+            echo "❌ ERROR: RAILWAY_TOKEN is not set"
+            echo "Please add RAILWAY_TOKEN to GitHub Secrets:"
+            echo "  1. Get token: https://railway.app/project/${{ env.RAILWAY_PROJECT_ID }}/settings/tokens"
+            echo "  2. Add secret: https://github.com/${{ github.repository }}/settings/secrets/actions"
+            exit 1
+          fi
+          echo "✅ RAILWAY_TOKEN is configured"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
