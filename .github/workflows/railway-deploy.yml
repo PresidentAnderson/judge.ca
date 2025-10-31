@@ -1,0 +1,77 @@
+# Railway Deployment Webhook
+# Automatically deploys to Railway on push to master branch
+
+name: Deploy to Railway
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+env:
+  RAILWAY_PROJECT_ID: 3ce7a059-22ef-440a-a6b1-24b345ad88d2
+  RAILWAY_TOKEN_ID: 9139d893-387b-43bf-90c7-4fe36467f821
+
+jobs:
+  deploy:
+    name: Deploy to Railway
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚀 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: 🔑 Authenticate with Railway
+        run: railway login --browserless
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: 🔗 Link Railway Project
+        run: railway link ${{ env.RAILWAY_PROJECT_ID }}
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: 🚢 Deploy to Railway
+        run: railway up --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: ✅ Deployment Status
+        run: railway status
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: 🌐 Get Deployment URL
+        id: get_url
+        run: |
+          URL=$(railway domain)
+          echo "DEPLOYMENT_URL=$URL" >> $GITHUB_OUTPUT
+          echo "🌐 Deployed to: $URL"
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: 🏥 Health Check
+        run: |
+          sleep 30  # Wait for deployment to be ready
+          curl -f ${{ steps.get_url.outputs.DEPLOYMENT_URL }}/api/health || echo "Health check failed"
+
+      - name: 📊 Deployment Summary
+        run: |
+          echo "### 🚀 Railway Deployment Complete! 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Project ID**: ${{ env.RAILWAY_PROJECT_ID }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployment URL**: ${{ steps.get_url.outputs.DEPLOYMENT_URL }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp**: $(date -u)" >> $GITHUB_STEP_SUMMARY
